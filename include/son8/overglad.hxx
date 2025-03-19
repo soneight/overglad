@@ -62,8 +62,10 @@ namespace son8::overglad::enums {
     }; // enum class Error
 } // namespace son8::overglad::enums
 
-#define SON8_OVERGLAD_PROC inline void
+#define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
+#define SON8_OVERGLAD_DISC inline auto
 #define SON8_OVERGLAD_FUNC [[nodiscard]] inline auto
+#define SON8_OVERGLAD_PROC inline void
 
 #  ifdef    SON8_OVERGLAD_INCLUDE
 #include <son8/overglad/v1_1.hxx>

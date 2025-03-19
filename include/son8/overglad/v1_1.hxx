@@ -11,8 +11,13 @@
 #include <son8/overglad.hxx>
 
 namespace son8::overglad {
-    SON8_OVERGLAD_FUNC get_error() noexcept
+    template< typename T >
+    SON8_OVERGLAD_FUNC get() noexcept;
+    template< >
+    SON8_OVERGLAD_FUNC get< enums::Error >() noexcept
     { return static_cast< enums::Error >(glad_glGetError()); }
+    SON8_OVERGLAD_DEPR get_error()
+    { return glad_glGetError(); }
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     SON8_OVERGLAD_PROC begin() noexcept
     { glad_glBegin(static_cast< GLenum >(enums::Draw::Default)); }
