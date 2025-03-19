@@ -21,6 +21,11 @@
 #endif
 
 namespace son8::overglad::enums {
+    // Boolean
+    enum class Boolean : GLboolean {
+        False_  = 0x0,
+        True_   = 0x1,
+    }; // enum class Boolean
     // Begin
     enum class Draw : GLenum {
         Points          = 0x0000,
