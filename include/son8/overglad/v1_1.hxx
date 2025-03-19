@@ -57,6 +57,43 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC vertex( GLdouble x, GLdouble y, GLdouble z, GLdouble w ) noexcept
     { glad_glVertex4d( x, y, z, w ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
+    // Chapter 2: OpenGL Operation
+    SON8_OVERGLAD_DEPR get_error( )
+    { return glGetError( ); }
+    SON8_OVERGLAD_DEPR begin(GLenum mode)
+    { glBegin( mode ); }
+    SON8_OVERGLAD_DEPR edge_flag( GLboolean flag )
+    { glEdgeFlag( flag ); }
+    SON8_OVERGLAD_DEPR edge_flag( GLboolean const *flag )
+    { glEdgeFlagv( flag ); }
+    SON8_OVERGLAD_DEPR vertex_2( GLint const *v )
+    { glVertex2iv( v ); }
+    SON8_OVERGLAD_DEPR vertex_3( GLint const *v )
+    { glVertex3iv( v ); }
+    SON8_OVERGLAD_DEPR vertex_4( GLint const *v )
+    { glVertex4iv( v ); }
+    SON8_OVERGLAD_DEPR vertex_2( GLshort const *v )
+    { glVertex2sv( v ); }
+    SON8_OVERGLAD_DEPR vertex_3( GLshort const *v )
+    { glVertex3sv( v ); }
+    SON8_OVERGLAD_DEPR vertex_4( GLshort const *v )
+    { glVertex4sv( v ); }
+    SON8_OVERGLAD_DEPR vertex_2( GLfloat const *v )
+    { glVertex2fv( v ); }
+    SON8_OVERGLAD_DEPR vertex_3( GLfloat const *v )
+    { glVertex3fv( v ); }
+    SON8_OVERGLAD_DEPR vertex_4( GLfloat const *v )
+    { glVertex4fv( v ); }
+    SON8_OVERGLAD_DEPR vertex_2( GLdouble const *v )
+    { glVertex2dv( v ); }
+    SON8_OVERGLAD_DEPR vertex_3( GLdouble const *v )
+    { glVertex3dv( v ); }
+    SON8_OVERGLAD_DEPR vertex_4( GLdouble const *v )
+    { glVertex4dv( v ); }
+#endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
+
 } // namespace son8::overglad
 
 #endif//SON8_OVERGLAD_V1_1_HXX
