@@ -1,8 +1,6 @@
 #ifndef SON8_OVERGLAD_HXX
 #define SON8_OVERGLAD_HXX
 
-#include <glad/son8/source.h>
-
 #ifndef          SON8_OVERGLAD_DEFINED
 #define          SON8_OVERGLAD_DEFINED
 #define          SON8_OVERGLAD_INCLUDE
@@ -15,6 +13,12 @@
 #define     SON8_OVERGLAD_PROFILE_CORE
 #define SON8_OVERGLAD_VERSION 0x0406CE
 # endif        //SON8_OVERGLAD_DEFINED
+
+#include <glad/son8/source.h>
+
+#ifdef SON8_OVERGLAD_INCLUDE_DEPRECATED
+#include <glad/son8/define.h>
+#endif
 
 namespace son8::overglad::enums {
     // Begin
