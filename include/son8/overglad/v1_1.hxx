@@ -27,6 +27,11 @@ namespace son8::overglad {
     { glad_glEnd( ); }
     SON8_OVERGLAD_PROC edge_flag( enums::Boolean flag ) noexcept
     { glad_glEdgeFlag( static_cast< GLboolean >( flag ) ); }
+    /* TODO (v) */
+#if SON8_OVERGLAD_TODO_V
+    SON8_OVERGLAD_PROC edge_flag( types::array1bool const &flagv ) noexcept
+    { glad_glEdgeFlagv( flagv.data( ) ); }
+#endif
     SON8_OVERGLAD_PROC vertex( GLint x, GLint y ) noexcept
     { glad_glVertex2i( x, y ); }
     SON8_OVERGLAD_PROC vertex( GLshort x, GLshort y ) noexcept

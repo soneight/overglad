@@ -20,6 +20,11 @@
 #include <glad/son8/define.h>
 #endif
 
+/* TODO (v): Does not allow *(v) versions of functions or use std::array? */
+#define SON8_OVERGLAD_TODO_V 0
+#if SON8_OVERGLAD_TODO_V
+#include <array>
+#endif
 namespace son8::overglad::enums {
     // Boolean
     enum class Boolean : GLboolean {
@@ -70,6 +75,13 @@ namespace son8::overglad::enums {
 #endif
     }; // enum class Error
 } // namespace son8::overglad::enums
+
+namespace son8::overglad::types {
+    /* TODO (v) */
+#if SON8_OVERGLAD_TODO_V
+    using array1bool = std::array< GLboolean, 1 >;
+#endif
+}
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
 #define SON8_OVERGLAD_DISC inline auto
