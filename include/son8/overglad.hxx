@@ -42,6 +42,11 @@ namespace son8::overglad::enums {
         Edge    = 0x8079,
     }; // enum class ClientState
 #endif//SON8_OVERGLAD_PROFILE_CORE
+     // FrontFace
+     enum class Dir : GLenum {
+        CW  = 0x0900,
+        CCW = 0x0901,
+    }; // enum class Dir
     // Begin
     enum class Draw : GLenum {
         Points          = 0x0000,
@@ -85,8 +90,15 @@ namespace son8::overglad::enums {
         Context     = 0x0507,
 #endif
     }; // enum class Error
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+    // MatrixMode
+    enum class MatrixMode : GLenum {
+        Model   = 0x1700,
+        Project = 0x1701,
+        Texture = 0x1702,
+    }; // enum class MatrixMode
 } // namespace son8::overglad::enums
-
+#endif//SON8_OVERGLAD_PROFILE_CORE
 namespace son8::overglad::types {
     /* TODO (v) */
 #if SON8_OVERGLAD_TODO_V
