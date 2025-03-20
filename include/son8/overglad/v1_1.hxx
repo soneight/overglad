@@ -140,6 +140,7 @@ namespace son8::overglad {
     { glad_glIndexf( i ); }
     SON8_OVERGLAD_PROC index( GLdouble i ) noexcept
     { glad_glIndexd( i ); }
+    // TODO: wrapper for {edge_flag|tex_coord|color|index|vertex}_pointer
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -260,6 +261,18 @@ namespace son8::overglad {
     { glIndexfv( v ); }
     SON8_OVERGLAD_DEPR index( GLdouble const *v )
     { glIndexdv( v ); }
+    SON8_OVERGLAD_DEPR edge_flag_pointer( GLsizei stride, GLvoid const *pointer)
+    { glEdgeFlagPointer( stride, pointer ); }
+    SON8_OVERGLAD_DEPR tex_coord_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    { glTexCoordPointer( size, type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR color_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    { glColorPointer( size, type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR index_pointer( GLenum type, GLsizei stride, GLvoid const *pointer)
+    { glIndexPointer( type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR normal_pointer( GLenum type, GLsizei stride, GLvoid const *pointer)
+    { glNormalPointer( type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR vertex_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    { glVertexPointer( size, type, stride, pointer ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad
