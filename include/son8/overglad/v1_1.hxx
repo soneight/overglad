@@ -149,6 +149,14 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC array_element( GLint i ) noexcept
     { glad_glArrayElement( i ); }
     // TODO: wrapper for interleaved_arrays
+    SON8_OVERGLAD_PROC rect( GLint x1, GLint y1, GLint x2, GLint y2 ) noexcept
+    { glad_glRecti( x1, y1, x2, y2 ); }
+    SON8_OVERGLAD_PROC rect( GLshort x1, GLshort y1, GLshort x2, GLshort y2 ) noexcept
+    { glad_glRects( x1, y1, x2, y2 ); }
+    SON8_OVERGLAD_PROC rect( GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2 ) noexcept
+    { glad_glRectf( x1, y1, x2, y2 ); }
+    SON8_OVERGLAD_PROC rect( GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2 ) noexcept
+    { glad_glRectd( x1, y1, x2, y2 ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -291,6 +299,14 @@ namespace son8::overglad {
     { glDrawElements( mode, count, type, indices ); }
     SON8_OVERGLAD_DEPR interleaved_arrays( GLenum format, GLsizei stride, GLvoid const *pointer )
     { glInterleavedArrays( format, stride, pointer ); }
+    SON8_OVERGLAD_DEPR rect( GLint const *v1, GLint const *v2 )
+    { glRectiv( v1, v2 ); }
+    SON8_OVERGLAD_DEPR rect( GLshort const *v1, GLshort const *v2 )
+    { glRectsv( v1, v2 ); }
+    SON8_OVERGLAD_DEPR rect( GLfloat const *v1, GLfloat const *v2 )
+    { glRectfv( v1, v2 ); }
+    SON8_OVERGLAD_DEPR rect( GLdouble const *v1, GLdouble const *v2 )
+    { glRectdv( v1, v2 ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad
