@@ -18,6 +18,7 @@ namespace son8::overglad {
     template< >
     SON8_OVERGLAD_FUNC get< enums::Error >( ) noexcept
     { return static_cast< enums::Error >( glad_glGetError() ); }
+    // TODO: wrapper for draw_{arrays|elements}
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     SON8_OVERGLAD_PROC begin( ) noexcept
     { glad_glBegin( static_cast< GLenum >( enums::Draw::Default ) ); }
@@ -141,6 +142,13 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC index( GLdouble i ) noexcept
     { glad_glIndexd( i ); }
     // TODO: wrapper for {edge_flag|tex_coord|color|index|vertex}_pointer
+    SON8_OVERGLAD_PROC enable( enums::ClientState array ) noexcept
+    { glad_glEnableClientState( static_cast< GLenum >( array ) ); }
+    SON8_OVERGLAD_PROC disable( enums::ClientState array ) noexcept
+    { glad_glDisableClientState( static_cast< GLenum >( array ) ); }
+    SON8_OVERGLAD_PROC array_element( GLint i ) noexcept
+    { glad_glArrayElement( i ); }
+    // TODO: wrapper for interleaved_arrays
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -273,6 +281,16 @@ namespace son8::overglad {
     { glNormalPointer( type, stride, pointer ); }
     SON8_OVERGLAD_DEPR vertex_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
     { glVertexPointer( size, type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR enable_client_state( GLenum array )
+    { glEnableClientState( array ); }
+    SON8_OVERGLAD_DEPR disable_client_state( GLenum array )
+    { glDisableClientState( array ); }
+    SON8_OVERGLAD_DEPR draw_arrays( GLenum mode, GLint first, GLsizei count )
+    { glDrawArrays( mode, first, count ); }
+    SON8_OVERGLAD_DEPR draw_elements( GLenum mode, GLsizei count, GLenum type, GLvoid const *indices )
+    { glDrawElements( mode, count, type, indices ); }
+    SON8_OVERGLAD_DEPR interleaved_arrays( GLenum format, GLsizei stride, GLvoid const *pointer )
+    { glInterleavedArrays( format, stride, pointer ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad

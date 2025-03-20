@@ -31,6 +31,17 @@ namespace son8::overglad::enums {
         False_  = 0x0,
         True_   = 0x1,
     }; // enum class Boolean
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+    // EnableClientState, DisableClientState
+    enum class ClientState : GLenum {
+        Vertex  = 0x8074,
+        Normal  = 0x8075,
+        Color   = 0x8076,
+        Index   = 0x8077,
+        Texture = 0x8078,
+        Edge    = 0x8079,
+    }; // enum class ClientState
+#endif//SON8_OVERGLAD_PROFILE_CORE
     // Begin
     enum class Draw : GLenum {
         Points          = 0x0000,
