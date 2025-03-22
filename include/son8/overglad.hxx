@@ -97,8 +97,8 @@ namespace son8::overglad::enums {
         Project = 0x1701,
         Texture = 0x1702,
     }; // enum class MatrixMode
-} // namespace son8::overglad::enums
 #endif//SON8_OVERGLAD_PROFILE_CORE
+} // namespace son8::overglad::enums
 namespace son8::overglad::types {
     /* TODO (v) */
 #if SON8_OVERGLAD_TODO_V
