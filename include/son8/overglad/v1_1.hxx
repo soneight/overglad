@@ -32,6 +32,21 @@ namespace son8::overglad {
     // TODO: enable/disable (target, capability?)
     SON8_OVERGLAD_PROC front_face( enums::Dir dir ) noexcept
     { glad_glFrontFace( static_cast< GLenum >( dir ) ); }
+    // Chapter 3: Rasterization
+    // TODO: double check PointSize core profile
+    SON8_OVERGLAD_PROC point_size( GLfloat size ) noexcept
+    { glad_glPointSize( size ); }
+    SON8_OVERGLAD_PROC line_width( GLfloat width ) noexcept
+    { glad_glLineWidth( width ); }
+    // TODO: maybe overload function that have mode as parameter in this way?
+    SON8_OVERGLAD_PROC cull( enums::Face face ) noexcept
+    { glad_glCullFace( static_cast< GLenum >( face ) ); }
+    // in core profile face is always Front_Back, so use it by default
+    SON8_OVERGLAD_PROC mode( enums::Polygon m ) noexcept
+    { glad_glPolygonMode( static_cast< GLenum >( enums::Face::Front_Back ), static_cast< GLenum >( m ) ); }
+    SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units ) noexcept
+    { glad_glPolygonOffset( factor, units ); }
+    // TODO: add PixelStore, TexImage, CopyTexImage
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -220,8 +235,17 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC raster_pos( GLdouble x, GLdouble y, GLdouble z, GLdouble w ) noexcept
     { glad_glRasterPos4d( x, y, z, w ); }
     // TODO: add {material|light|light_model|color_material|shade_model}
+    // Chapter 3: Rasterization
+    SON8_OVERGLAD_PROC line_stipple( GLint factor, GLushort pattern ) noexcept
+    { glad_glLineStipple( factor, pattern ); }
+    SON8_OVERGLAD_PROC mode( enums::Face face, enums::Polygon m) noexcept
+    { glad_glPolygonMode( static_cast< GLenum >( face ), static_cast< GLenum >( m ) ); }
+    // TODO: add PixelTransfer, DrawPixels
+    SON8_OVERGLAD_PROC pixel_zoom( GLfloat x, GLfloat y ) noexcept
+    { glad_glPixelZoom( x, y ); }
+    // TODO: add Bitmap
 #endif//SON8_OVERGLAD_PROFILE_CORE
-
+// INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_DEPR get_error( )
@@ -452,6 +476,45 @@ namespace son8::overglad {
     { glColorMaterial( face, mode ); }
     SON8_OVERGLAD_DEPR shade_model( GLenum mode )
     { glShadeModel( mode ); }
+    // Chapter 3: Rasterization
+    SON8_OVERGLAD_DEPR cull_face( GLenum mode )
+    { glCullFace( mode ); }
+    SON8_OVERGLAD_DEPR polygon_stipple( GLubyte const *pattern )
+    { glPolygonStipple( pattern ); }
+    SON8_OVERGLAD_DEPR cull_face( GLenum mode )
+    { glCullFace( mode ); }
+    SON8_OVERGLAD_DEPR polygon_mode( GLenum face, GLenum mode )
+    { glPolygonMode( face, mode ); }
+    SON8_OVERGLAD_DEPR pixel_store( GLenum pname, GLint param )
+    { glPixelStorei( pname, param ); }
+    SON8_OVERGLAD_DEPR pixel_store( GLenum pname, GLfloat param )
+    { glPixelStoref( pname, param ); }
+    SON8_OVERGLAD_DEPR pixel_transfer( GLenum pname, GLint param )
+    { glPixelTransferi( pname, param ); }
+    SON8_OVERGLAD_DEPR pixel_transfer( GLenum pname, GLfloat param )
+    { glPixelTransferf( pname, param ); }
+    SON8_OVERGLAD_DEPR pixel_map( GLenum map, GLsizei size, GLuint const *values )
+    { glPixelMapuiv( map, size, values ); }
+    SON8_OVERGLAD_DEPR pixel_map( GLenum map, GLsizei size, GLfloat const *values )
+    { glPixelMapfv( map, size, values ); }
+    SON8_OVERGLAD_DEPR pixel_map( GLenum map, GLsizei size, GLushort const *values )
+    { glPixelMapusv( map, size, values ); }
+    SON8_OVERGLAD_DEPR draw_pixels( GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid const *data )
+    { glDrawPixels( width, height, format, type, data ); }
+    SON8_OVERGLAD_DEPR bitmap( GLsizei w, GLsizei h, GLfloat xbo, GLfloat ybo, GLfloat xbi, GLfloat ybi, GLubyte const *data )
+    { glBitmap( w, h, xbo, ybo, xbi, ybi, data ); }
+    SON8_OVERGLAD_DEPR tex_image( GLenum target, GLint level, GLint internal, GLsizei w, GLsizei h, GLint border, GLenum format, GLenum type, GLvoid const *data )
+    { glTexImage2D( target, level, internal, w, h, border, format, type, data ); }
+    SON8_OVERGLAD_DEPR tex_image( GLenum target, GLint level, GLint internal, GLsizei w, GLint border, GLenum format, GLenum type, GLvoid const *data )
+    { glTexImage1D( target, level, internal, w, border, format, type, data ); }
+    SON8_OVERGLAD_DEPR copy_tex_image( GLenum target, GLint level, GLenum internal, GLint x, GLint y, GLsizei w, GLsizei h, GLint border )
+    { glCopyTexImage2D( target, level, internal, x, y, w, h, border ); }
+    SON8_OVERGLAD_DEPR copy_tex_image ( GLenum target, GLint level, GLenum internal, GLint x, GLint y, GLsizei w, GLint border )
+    { glCopyTexImage1D( target, level, internal, x, y, w, border ); }
+    SON8_OVERGLAD_DEPR tex_subimage( GLenum target, GLint level, GLint x, GLsizei w, GLenum format, GLenum type, GLvoid const *data )
+    { glTexSubImage1D( target, level, x, w, format, type, data ); }
+    SON8_OVERGLAD_DEPR tex_subimage( GLenum target, GLint level, GLint x, GLint y, GLsizei w, GLsizei h, GLenum format, GLenum type, GLvoid const *data )
+    { glTexSubImage2D( target, level, x, y, w, h, format, type, data ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad

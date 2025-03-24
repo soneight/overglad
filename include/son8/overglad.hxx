@@ -42,6 +42,12 @@ namespace son8::overglad::enums {
         Edge    = 0x8079,
     }; // enum class ClientState
 #endif//SON8_OVERGLAD_PROFILE_CORE
+    // CullFace, PolygonMode
+    enum class Face : GLenum {
+        Front       = 0x0404,
+        Back        = 0x0405,
+        Front_Back  = 0x0408,
+    }; // enum class CullFace
      // FrontFace
      enum class Dir : GLenum {
         CW  = 0x0900,
@@ -98,6 +104,13 @@ namespace son8::overglad::enums {
         Texture = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
+    // PolygonMode
+    enum class Polygon : GLenum {
+        Point   = 0x1B00,
+        Line    = 0x1B01,
+        Fill    = 0x1B02,
+    }; // enum class Polygon
+
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
     /* TODO (v) */
