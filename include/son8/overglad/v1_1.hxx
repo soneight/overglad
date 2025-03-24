@@ -46,7 +46,7 @@ namespace son8::overglad {
     { glad_glPolygonMode( static_cast< GLenum >( enums::Face::Front_Back ), static_cast< GLenum >( m ) ); }
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units ) noexcept
     { glad_glPolygonOffset( factor, units ); }
-    // TODO: add PixelStore, TexImage, CopyTexImage
+    // TODO: add PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -243,7 +243,7 @@ namespace son8::overglad {
     // TODO: add PixelTransfer, DrawPixels
     SON8_OVERGLAD_PROC pixel_zoom( GLfloat x, GLfloat y ) noexcept
     { glad_glPixelZoom( x, y ); }
-    // TODO: add Bitmap
+    // TODO: add Bitmap, AreTexuresResident, PrioritizeTextures, TexEnv, Fog
 #endif//SON8_OVERGLAD_PROFILE_CORE
 // INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -515,6 +515,44 @@ namespace son8::overglad {
     { glTexSubImage1D( target, level, x, w, format, type, data ); }
     SON8_OVERGLAD_DEPR tex_subimage( GLenum target, GLint level, GLint x, GLint y, GLsizei w, GLsizei h, GLenum format, GLenum type, GLvoid const *data )
     { glTexSubImage2D( target, level, x, y, w, h, format, type, data ); }
+    SON8_OVERGLAD_DEPR copy_tex_subimage( GLenum target, GLint level, GLint xoffset, GLint y, GLint x, GLsizei w )
+    { glCopyTexSubImage1D( target, level, xoffset, x, y, w ); }
+    SON8_OVERGLAD_DEPR copy_tex_subimage( GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei w, GLsizei h )
+    { glCopyTexSubImage2D( target, level, xoffset, yoffset, x, y, w, h ); }
+    SON8_OVERGLAD_DEPR tex_parameter( GLenum target, GLenum pname, GLint param )
+    { glTexParameteri( target, pname, param ); }
+    SON8_OVERGLAD_DEPR tex_parameter( GLenum target, GLenum pname, GLfloat param )
+    { glTexParameterf( target, pname, param ); }
+    SON8_OVERGLAD_DEPR tex_parameter( GLenum target, GLenum pname, GLint const *params )
+    { glTexParameteriv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR tex_parameter( GLenum target, GLenum pname, GLfloat const *params )
+    { glTexParameterfv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR bind_texture( GLenum target, GLuint texture)
+    { glBindTexture( target, texture ); }
+    SON8_OVERGLAD_DEPR delete_textures( GLsizei n, GLuint const *textures )
+    { glDeleteTextures( n, textures ); }
+    SON8_OVERGLAD_DEPR gen_textures( GLsizei n, GLuint *textures )
+    { glGenTextures( n, textures ); }
+    SON8_OVERGLAD_DEPR are_textures_resident( GLsizei n, GLuint const *textures, GLboolean *residences )
+    { return glAreTexturesResident( n, textures, residences ); }
+    SON8_OVERGLAD_DEPR prioritize_textures( GLsizei n, GLuint const *textures, GLclampf const *priorities )
+    { glPrioritizeTextures( n, textures, priorities ); }
+    SON8_OVERGLAD_DEPR tex_env( GLenum target, GLenum pname, GLint param )
+    { glTexEnvi( target, pname, param ); }
+    SON8_OVERGLAD_DEPR tex_env( GLenum target, GLenum pname, GLfloat param )
+    { glTexEnvf( target, pname, param ); }
+    SON8_OVERGLAD_DEPR tex_env( GLenum target, GLenum pname, GLint const *params )
+    { glTexEnviv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR tex_env( GLenum target, GLenum pname, GLfloat const *params )
+    { glTexEnvfv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR fog( GLenum pname, GLint param )
+    { glFogi( pname, param ); }
+    SON8_OVERGLAD_DEPR fog( GLenum pname, GLfloat param )
+    { glFogf( pname, param ); }
+    SON8_OVERGLAD_DEPR fog( GLenum pname, GLint const *params )
+    { glFogiv( pname, params ); }
+    SON8_OVERGLAD_DEPR fog( GLenum pname, GLfloat const *params )
+    { glFogfv( pname, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad
