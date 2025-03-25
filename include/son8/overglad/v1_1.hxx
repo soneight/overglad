@@ -477,8 +477,6 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR shade_model( GLenum mode )
     { glShadeModel( mode ); }
     // Chapter 3: Rasterization
-    SON8_OVERGLAD_DEPR cull_face( GLenum mode )
-    { glCullFace( mode ); }
     SON8_OVERGLAD_DEPR polygon_stipple( GLubyte const *pattern )
     { glPolygonStipple( pattern ); }
     SON8_OVERGLAD_DEPR cull_face( GLenum mode )
