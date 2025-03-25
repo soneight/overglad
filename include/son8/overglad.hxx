@@ -31,6 +31,22 @@ namespace son8::overglad::enums {
         False_  = 0x0,
         True_   = 0x1,
     }; // enum class Boolean
+    // Clear
+    enum class Clearbit : GLbitfield {
+        Depth   = 0x00000100,
+        Stencil = 0x00000400,
+        Color   = 0x00004000,
+#ifdef SON8_OVERGLAD_PROFILE_CORE
+        All     = Depth | Stencil | Color,
+#else
+        Accum   = 0x00000200,
+        All     = Depth | Accum | Stencil | Color,
+#endif//SON8_OVERGLAD_PROFILE_CORE
+    }; // enum class Clearbit
+
+    Clearbit operator|( Clearbit a, Clearbit b ) noexcept
+    { return static_cast< Clearbit >( static_cast< GLbitfield >( a ) | static_cast< GLbitfield >( b ) ); }
+
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // EnableClientState, DisableClientState
     enum class ClientState : GLenum {

@@ -47,6 +47,21 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units ) noexcept
     { glad_glPolygonOffset( factor, units ); }
     // TODO: add PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    // TODO: Scissor, StencilFunc, StencilOp, BlendFunc, LogicOp, DrawBuffer, ColorMask, DepthMask
+    SON8_OVERGLAD_PROC clear( enums::Clearbit mask ) noexcept
+    { glad_glClear( static_cast< GLbitfield >( mask ) ); }
+    SON8_OVERGLAD_PROC clear_color( )
+    { glad_glClearColor( 0.f, 0.f, 0.f, 1.f ); } // TODO: or alpha zero?
+    SON8_OVERGLAD_PROC clear_color( GLfloat grey )
+    { glad_glClearColor( grey, grey, grey, 1.f ); }
+    SON8_OVERGLAD_PROC clear_color( GLfloat grey, GLfloat alpha )
+    { glad_glClearColor( grey, grey, grey, alpha ); }
+    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b)
+    { glad_glClearColor( r, g, b, 1.f ); }
+    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b, GLfloat a)
+    { glad_glClearColor( r, g, b, a ); }
+    // TODO: ClearColor, ClearDepth, ClearStencil, ReadPixels, ReadBuffer
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -244,6 +259,8 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC pixel_zoom( GLfloat x, GLfloat y ) noexcept
     { glad_glPixelZoom( x, y ); }
     // TODO: add Bitmap, AreTexuresResident, PrioritizeTextures, TexEnv, Fog
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    // TODO: AlphaFunc, IndexMask, ClearIndex, ClearAccum, Accum, CopyPixels
 #endif//SON8_OVERGLAD_PROFILE_CORE
 // INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -551,6 +568,48 @@ namespace son8::overglad {
     { glFogiv( pname, params ); }
     SON8_OVERGLAD_DEPR fog( GLenum pname, GLfloat const *params )
     { glFogfv( pname, params ); }
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    SON8_OVERGLAD_DEPR scissor( GLint left, GLint bottom, GLsizei width, GLsizei height )
+    { glScissor( left, bottom, width, height ); }
+    SON8_OVERGLAD_DEPR alpha_func( GLenum func, GLclampf ref )
+    { glAlphaFunc( func, ref ); }
+    SON8_OVERGLAD_DEPR stencil_func( GLenum func, GLint ref, GLuint mask )
+    { glStencilFunc( func, ref, mask ); }
+    SON8_OVERGLAD_DEPR stencil_op( GLenum fail, GLenum dpfail, GLenum dppass )
+    { glStencilOp( fail, dpfail, dppass ); }
+    SON8_OVERGLAD_DEPR depth_func( GLenum func )
+    { glDepthFunc( func ); }
+    SON8_OVERGLAD_DEPR blend_func( GLenum src, GLenum dst )
+    { glBlendFunc( src, dst ); }
+    SON8_OVERGLAD_DEPR logic_op( GLenum op )
+    { glLogicOp( op ); }
+    SON8_OVERGLAD_DEPR draw_buffer( GLenum buf )
+    { glDrawBuffer( buf ); }
+    SON8_OVERGLAD_DEPR index_mask( GLuint mask )
+    { glIndexMask( mask ); }
+    SON8_OVERGLAD_DEPR color_mask( GLboolean r, GLboolean g, GLboolean b, GLboolean a )
+    { glColorMask( r, g, b, a ); }
+    SON8_OVERGLAD_DEPR depth_mask( GLboolean mask )
+    { glDepthMask( mask ); }
+    SON8_OVERGLAD_DEPR clear( GLbitfield buf )
+    { glClear( buf ); }
+    SON8_OVERGLAD_DEPR clear_index( GLfloat index )
+    { glClearIndex( index ); }
+    SON8_OVERGLAD_DEPR clear_depth( GLclampd d )
+    { glClearDepth( d ); }
+    SON8_OVERGLAD_DEPR clear_stencil( GLint s )
+    { glClearStencil( s ); }
+    SON8_OVERGLAD_DEPR clear_accum( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
+    { glClearAccum( r, g, b, a ); }
+    SON8_OVERGLAD_DEPR accum( GLenum op, GLfloat value )
+    { glAccum( op, value ); }
+    SON8_OVERGLAD_DEPR read_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *data)
+    { glReadPixels( x, y, width, height, format, type, data ); }
+    SON8_OVERGLAD_DEPR read_buffer( GLenum buf )
+    { glReadBuffer( buf ); }
+    SON8_OVERGLAD_DEPR copy_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum type )
+    { glCopyPixels( x, y, width, height, type ); }
+
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad
