@@ -62,6 +62,12 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b, GLfloat a)
     { glad_glClearColor( r, g, b, a ); }
     // TODO: ClearColor, ClearDepth, ClearStencil, ReadPixels, ReadBuffer
+    // Chapter 5: Special Functions
+    SON8_OVERGLAD_PROC flush( ) noexcept
+    { glad_glFlush( ); }
+    SON8_OVERGLAD_PROC finish( ) noexcept
+    { glad_glFinish( ); }
+    // TODO: Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -261,6 +267,14 @@ namespace son8::overglad {
     // TODO: add Bitmap, AreTexuresResident, PrioritizeTextures, TexEnv, Fog
     // Chapter 4: Per-Fragment Operations and the Framebuffer
     // TODO: AlphaFunc, IndexMask, ClearIndex, ClearAccum, Accum, CopyPixels
+    // Chapter 5: Special Functions
+    // TODO: Map+, EvalCoord+, MapGrid+, EvalMesh+, EvalPoint, InitNames, PopName, PushName, LoadName
+    SON8_OVERGLAD_FUNC mode( enums::Render m ) noexcept
+    { return glad_glRenderMode( static_cast< GLenum >( m ) ); }
+    // TODO: SelectBuffer, FeedbackBuffer, Passthrough, NewList
+    SON8_OVERGLAD_PROC end_list( ) noexcept
+    { glad_glEndList( ); }
+    // TODO: CallList, CallLists, ListBase, GenLists, IsList, DeleteLists
 #endif//SON8_OVERGLAD_PROFILE_CORE
 // INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -609,7 +623,85 @@ namespace son8::overglad {
     { glReadBuffer( buf ); }
     SON8_OVERGLAD_DEPR copy_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum type )
     { glCopyPixels( x, y, width, height, type ); }
-
+    // Chapter 5: Special Functions
+    SON8_OVERGLAD_DEPR map( GLenum type, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat const *points )
+    { glMap1f( type, u1, u2, stride, order, points ); }
+    SON8_OVERGLAD_DEPR map( GLenum type, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble const *points )
+    { glMap1d( type, u1, u2, stride, order, points ); }
+    SON8_OVERGLAD_DEPR map( GLenum target
+        , GLfloat u1, GLfloat u2, GLint ustride, GLint uorder
+        , GLfloat v1, GLfloat v2, GLint vstride, GLint vorder
+        , GLfloat const *points )
+    { glMap2f( target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points ); }
+    SON8_OVERGLAD_DEPR map( GLenum target
+        , GLdouble u1, GLdouble u2, GLint ustride, GLint uorder
+        , GLdouble v1, GLdouble v2, GLint vstride, GLint vorder
+        , GLdouble const *points )
+    { glMap2d( target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points ); }
+    SON8_OVERGLAD_DEPR eval( GLfloat arg )
+    { glEvalCoord1f( arg ); }
+    SON8_OVERGLAD_DEPR eval( GLdouble arg )
+    { glEvalCoord1d( arg ); }
+    SON8_OVERGLAD_DEPR eval( GLfloat arg1, GLfloat arg2 )
+    { glEvalCoord2f( arg1, arg2 ); }
+    SON8_OVERGLAD_DEPR eval( GLdouble arg1, GLdouble arg2 )
+    { glEvalCoord2d( arg1, arg2 ); }
+    SON8_OVERGLAD_DEPR eval_1( GLfloat const *arg)
+    { glEvalCoord1fv( arg ); }
+    SON8_OVERGLAD_DEPR eval_1( GLdouble const *arg)
+    { glEvalCoord1dv( arg ); }
+    SON8_OVERGLAD_DEPR eval_2( GLfloat const *arg)
+    { glEvalCoord2fv( arg ); }
+    SON8_OVERGLAD_DEPR eval_2( GLdouble const *arg)
+    { glEvalCoord2dv( arg ); }
+    SON8_OVERGLAD_DEPR grid( GLint n, GLfloat u1, GLfloat u2 )
+    { glMapGrid1f( n, u1, u2 ); }
+    SON8_OVERGLAD_DEPR grid( GLint n, GLdouble u1, GLdouble u2 )
+    { glMapGrid1d( n, u1, u2 ); }
+    SON8_OVERGLAD_DEPR grid( GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2 )
+    { glMapGrid2f( un, u1, u2, vn, v1, v2 ); }
+    SON8_OVERGLAD_DEPR grid( GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2 )
+    { glMapGrid2d( un, u1, u2, vn, v1, v2 ); }
+    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2)
+    { glEvalMesh1( mode, p1, p2 ); }
+    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2, GLint q1, GLint q2)
+    { glEvalMesh2( mode, p1, p2, q1, q2 ); }
+    SON8_OVERGLAD_DEPR eval( GLint p )
+    { glEvalPoint1( p ); }
+    SON8_OVERGLAD_DEPR eval( GLint p, GLint q )
+    { glEvalPoint2( p, q ); }
+    SON8_OVERGLAD_DEPR init_names()
+    { glInitNames(); }
+    SON8_OVERGLAD_DEPR pop_name()
+    { glPopName(); }
+    SON8_OVERGLAD_DEPR push_name( GLuint name )
+    { glPushName( name ); }
+    SON8_OVERGLAD_DEPR load_name( GLuint name )
+    { glLoadName( name ); }
+    SON8_OVERGLAD_DEPR render_mode( GLenum mode )
+    { return glRenderMode( mode ); }
+    SON8_OVERGLAD_DEPR select_buffer( GLsizei n, GLuint *buffer )
+    { glSelectBuffer( n, buffer ); }
+    SON8_OVERGLAD_DEPR feedback_buffer( GLsizei n, GLenum type, GLfloat *buffer )
+    { glFeedbackBuffer( n, type, buffer ); }
+    SON8_OVERGLAD_DEPR pass_through( GLfloat token )
+    { glPassThrough( token ); }
+    SON8_OVERGLAD_DEPR new_list( GLuint n, GLenum mode )
+    { glNewList( n, mode ); }
+    SON8_OVERGLAD_DEPR call_list( GLuint n )
+    { glCallList( n ); }
+    SON8_OVERGLAD_DEPR call_lists( GLsizei n, GLenum type, GLvoid const *lists )
+    { glCallLists( n, type, lists ); }
+    SON8_OVERGLAD_DEPR list_base( GLuint base )
+    { glListBase( base ); }
+    SON8_OVERGLAD_DEPR gen_lists( GLsizei n, GLuint *lists )
+    { return glGenLists( n ); }
+    SON8_OVERGLAD_DEPR is_list( GLuint list )
+    { return glIsList( list ); }
+    SON8_OVERGLAD_DEPR delete_lists( GLuint list, GLsizei range )
+    { glDeleteLists( list, range ); }
+    SON8_OVERGLAD_DEPR hint( GLenum target, GLenum hint )
+    { glHint( target, hint ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad

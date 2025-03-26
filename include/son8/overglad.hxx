@@ -126,7 +126,14 @@ namespace son8::overglad::enums {
         Line    = 0x1B01,
         Fill    = 0x1B02,
     }; // enum class Polygon
-
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+    // RenderMode
+    enum class Render : GLenum {
+        Render      = 0x1C00,
+        Feedback    = 0x1C01,
+        Select      = 0x1C02,
+    }; // enum class Render
+#endif
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
     /* TODO (v) */
