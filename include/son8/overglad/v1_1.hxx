@@ -694,7 +694,7 @@ namespace son8::overglad {
     { glCallLists( n, type, lists ); }
     SON8_OVERGLAD_DEPR list_base( GLuint base )
     { glListBase( base ); }
-    SON8_OVERGLAD_DEPR gen_lists( GLsizei n, GLuint *lists )
+    SON8_OVERGLAD_DEPR gen_lists( GLsizei n )
     { return glGenLists( n ); }
     SON8_OVERGLAD_DEPR is_list( GLuint list )
     { return glIsList( list ); }
