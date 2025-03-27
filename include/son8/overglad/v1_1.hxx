@@ -68,6 +68,12 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC finish( ) noexcept
     { glad_glFinish( ); }
     // TODO: Hint
+    // Chapter 6: State and State Requests
+    // TODO: GetBooleanv, GetIntegerv, GetFloatv, GetDoublev
+    // IsEnabled,
+    SON8_OVERGLAD_FUNC get( enums::Capability cap ) noexcept
+    { return static_cast< bool >( glad_glIsEnabled( static_cast< GLenum >( cap ) ) ); }
+    // TODO: GetTexParameter*, GetTexLevelParameter*, GetTexImage, IsTexture, GetPointerv, GetString
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -275,6 +281,16 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC end_list( ) noexcept
     { glad_glEndList( ); }
     // TODO: CallList, CallLists, ListBase, GenLists, IsList, DeleteLists
+    // Chapter 6: State and State Requests
+    // TODO: GetClipPlane, GetLight*, GetMaterial*, GetTexEnv*, GetTexGen*, GetPixelMap*, GetMap*, GetPolygonStipple
+    SON8_OVERGLAD_PROC push_attrib( enums::Server bitfield ) noexcept
+    { glad_glPushAttrib( static_cast< GLbitfield >( bitfield ) ); }
+    SON8_OVERGLAD_PROC push_attrib( enums::Client bitfield ) noexcept
+    { glad_glPushClientAttrib( static_cast< GLbitfield >( bitfield ) ); }
+    SON8_OVERGLAD_PROC pop_attrib( ) noexcept
+    { glad_glPopAttrib( ); }
+    SON8_OVERGLAD_PROC pop_client_attrib( ) noexcept
+    { glad_glPopClientAttrib( ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
 // INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -702,6 +718,68 @@ namespace son8::overglad {
     { glDeleteLists( list, range ); }
     SON8_OVERGLAD_DEPR hint( GLenum target, GLenum hint )
     { glHint( target, hint ); }
+    // Chapter 6: State and State Requests
+    SON8_OVERGLAD_DEPR get_boolean( GLenum value, GLboolean *data )
+    { glGetBooleanv( value, data ); }
+    SON8_OVERGLAD_DEPR get_integer( GLenum value, GLint *data )
+    { glGetIntegerv( value, data ); }
+    SON8_OVERGLAD_DEPR get_float( GLenum value, GLfloat *data )
+    { glGetFloatv( value, data ); }
+    SON8_OVERGLAD_DEPR get_double( GLenum value, GLdouble *data )
+    { glGetDoublev( value, data ); }
+    SON8_OVERGLAD_DEPR is_enabled( GLenum value )
+    { return glIsEnabled( value ); }
+    SON8_OVERGLAD_DEPR get_clip_plane( GLenum plane, GLdouble *eqn )
+    { glGetClipPlane( plane, eqn ); }
+    SON8_OVERGLAD_DEPR get_light( GLenum light, GLenum value, GLint *data )
+    { glGetLightiv( light, value, data ); }
+    SON8_OVERGLAD_DEPR get_light( GLenum light, GLenum value, GLfloat *data )
+    { glGetLightfv( light, value, data ); }
+    SON8_OVERGLAD_DEPR get_material( GLenum face, GLenum value, GLint *data )
+    { glGetMaterialiv( face, value, data ); }
+    SON8_OVERGLAD_DEPR get_material( GLenum face, GLenum value, GLfloat *data )
+    { glGetMaterialfv( face, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_env( GLenum env, GLenum value, GLint *data )
+    { glGetTexEnviv( env, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_env( GLenum env, GLenum value, GLfloat *data )
+    { glGetTexEnvfv( env, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_gen( GLenum coord, GLenum value, GLint *data )
+    { glGetTexGeniv( coord, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_gen( GLenum coord, GLenum value, GLfloat *data )
+    { glGetTexGenfv( coord, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_parameter( GLenum target, GLenum value, GLint *data )
+    { glGetTexParameteriv( target, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_parameter( GLenum target, GLenum value, GLfloat *data )
+    { glGetTexParameterfv( target, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_level_parameter( GLenum target, GLint lod, GLenum value, GLint *data )
+    { glGetTexLevelParameteriv( target, lod, value, data ); }
+    SON8_OVERGLAD_DEPR get_pixel_map( GLenum map, GLuint *data )
+    { glGetPixelMapuiv( map, data ); }
+    SON8_OVERGLAD_DEPR get_pixel_map( GLenum map, GLushort *data )
+    { glGetPixelMapusv( map, data ); }
+    SON8_OVERGLAD_DEPR get_pixel_map( GLenum map, GLfloat *data )
+    { glGetPixelMapfv( map, data ); }
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLint *data)
+    { glGetMapiv( map, value, data ); }
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLfloat *data)
+    { glGetMapfv( map, value, data ); }
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLdouble *data)
+    { glGetMapdv( map, value, data ); }
+    SON8_OVERGLAD_DEPR get_tex_image( GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img )
+    { glGetTexImage( tex, lod, format, type, img ); }
+    SON8_OVERGLAD_DEPR is_texture( GLuint texture )
+    { return glIsTexture( texture ); }
+    SON8_OVERGLAD_DEPR get_polygon_stipple( GLubyte *pattern)
+    { glGetPolygonStipple( pattern ); }
+    SON8_OVERGLAD_DEPR get_pointer( GLenum pname, GLvoid **params )
+    { glGetPointerv( pname, params ); }
+    SON8_OVERGLAD_DEPR get_string( GLenum name )
+    { return reinterpret_cast< char const * >( glGetString( name ) ); }
+    SON8_OVERGLAD_DEPR push_attrib( GLbitfield mask )
+    { glPushAttrib( mask ); }
+    SON8_OVERGLAD_DEPR push_client_attrib( GLbitfield mask )
+    { glPushClientAttrib( mask ); }
+
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 
 } // namespace son8::overglad
