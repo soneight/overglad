@@ -20,11 +20,9 @@
 #include <glad/son8/define.h>
 #endif
 
-/* TODO (v): Does not allow *(v) versions of functions or use std::array? */
-#define SON8_OVERGLAD_TODO_V 0
-#if SON8_OVERGLAD_TODO_V
+// for v functions
 #include <array>
-#endif
+
 namespace son8::overglad::enums {
     // Boolean
     enum class Boolean : GLboolean {
@@ -62,40 +60,40 @@ namespace son8::overglad::enums {
         Texture_Gen_R           = 0x0C62,
         Texture_Gen_Q           = 0x0C63,
         Auto_Normal             = 0x0D80,
-        Map1_Color_4            = 0x0D90,
-        Map1_Index              = 0x0D91,
-        Map1_Normal             = 0x0D92,
-        Map1_Texture_Coord_1    = 0x0D93,
-        Map1_Texture_Coord_2    = 0x0D94,
-        Map1_Texture_Coord_3    = 0x0D95,
-        Map1_Texture_Coord_4    = 0x0D96,
-        Map1_Vertex_3           = 0x0D97,
-        Map1_Vertex_4           = 0x0D98,
-        Map2_Color_4            = 0x0DB0,
-        Map2_Index              = 0x0DB1,
-        Map2_Normal             = 0x0DB2,
-        Map2_Texture_Coord_1    = 0x0DB3,
-        Map2_Texture_Coord_2    = 0x0DB4,
-        Map2_Texture_Coord_3    = 0x0DB5,
-        Map2_Texture_Coord_4    = 0x0DB6,
-        Map2_Vertex_3           = 0x0DB7,
-        Map2_Vertex_4           = 0x0DB8,
+        Map_1_Color_4           = 0x0D90,
+        Map_1_Index             = 0x0D91,
+        Map_1_Normal            = 0x0D92,
+        Map_1_Texture_Coord_1   = 0x0D93,
+        Map_1_Texture_Coord_2   = 0x0D94,
+        Map_1_Texture_Coord_3   = 0x0D95,
+        Map_1_Texture_Coord_4   = 0x0D96,
+        Map_1_Vertex_3          = 0x0D97,
+        Map_1_Vertex_4          = 0x0D98,
+        Map_2_Color_4           = 0x0DB0,
+        Map_2_Index             = 0x0DB1,
+        Map_2_Normal            = 0x0DB2,
+        Map_2_Texture_Coord_1   = 0x0DB3,
+        Map_2_Texture_Coord_2   = 0x0DB4,
+        Map_2_Texture_Coord_3   = 0x0DB5,
+        Map_2_Texture_Coord_4   = 0x0DB6,
+        Map_2_Vertex_3          = 0x0DB7,
+        Map_2_Vertex_4          = 0x0DB8,
         Texture_1D              = 0x0DE0,
         Texture_2D              = 0x0DE1,
-        Clip_Plane0             = 0x3000,
-        Clip_Plane1             = 0x3001,
-        Clip_Plane2             = 0x3002,
-        Clip_Plane3             = 0x3003,
-        Clip_Plane4             = 0x3004,
-        Clip_Plane5             = 0x3005,
-        Light0                  = 0x4000,
-        Light1                  = 0x4001,
-        Light2                  = 0x4002,
-        Light3                  = 0x4003,
-        Light4                  = 0x4004,
-        Light5                  = 0x4005,
-        Light6                  = 0x4006,
-        Light7                  = 0x4007,
+        Clip_Plane_0            = 0x3000,
+        Clip_Plane_1            = 0x3001,
+        Clip_Plane_2            = 0x3002,
+        Clip_Plane_3            = 0x3003,
+        Clip_Plane_4            = 0x3004,
+        Clip_Plane_5            = 0x3005,
+        Light_0                 = 0x4000,
+        Light_1                 = 0x4001,
+        Light_2                 = 0x4002,
+        Light_3                 = 0x4003,
+        Light_4                 = 0x4004,
+        Light_5                 = 0x4005,
+        Light_6                 = 0x4006,
+        Light_7                 = 0x4007,
         Vertex_Array            = 0x8074,
         Normal_Array            = 0x8075,
         Color_Array             = 0x8076,
@@ -202,6 +200,19 @@ namespace son8::overglad::enums {
         Texture = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+    // ClipPlane
+    enum class Plane : GLeunm {
+        Num_0 = 0x3000,
+        Num_1 = 0x3001,
+        Num_2 = 0x3002,
+        Num_3 = 0x3003,
+        Num_4 = 0x3004,
+        Num_5 = 0x3005,
+    }; // enum class Plane
+#endif
+
     // PolygonMode
     enum class Polygon : GLenum {
         Point   = 0x1B00,
@@ -247,11 +258,41 @@ namespace son8::overglad::enums {
 #endif//SON8_OVERGLAD_PROFILE_CORE
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
-    /* TODO (v) */
-#if SON8_OVERGLAD_TODO_V
-    using array1bool = std::array< GLboolean, 1 >;
-#endif
-}
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+    using array1i       = std::array< GLint, 1 >;
+    using array1s       = std::array< GLshort, 1 >;
+    using array1f       = std::array< GLfloat, 1 >;
+    using array1d       = std::array< GLdouble, 1 >;
+    using array1ub      = std::array< GLubyte, 1 >;
+    using array1bool    = std::array< GLboolean, 1 >;
+
+    using array2i       = std::array< GLint, 2 >;
+    using array2s       = std::array< GLshort, 2 >;
+    using array2f       = std::array< GLfloat, 2 >;
+    using array2d       = std::array< GLdouble, 2 >;
+
+    using array3i       = std::array< GLint, 3 >;
+    using array3b       = std::array< GLbyte, 3 >;
+    using array3s       = std::array< GLshort, 3 >;
+    using array3f       = std::array< GLfloat, 3 >;
+    using array3d       = std::array< GLdouble, 3 >;
+    using array3ui      = std::array< GLuint, 3 >;
+    using array3ub      = std::array< GLubyte, 3 >;
+    using array3us      = std::array< GLushort, 3 >;
+
+    using array4i       = std::array< GLint, 4 >;
+    using array4b       = std::array< GLbyte, 4 >;
+    using array4s       = std::array< GLshort, 4 >;
+    using array4f       = std::array< GLfloat, 4 >;
+    using array4d       = std::array< GLdouble, 4 >;
+    using array4ui      = std::array< GLuint, 4 >;
+    using array4ub      = std::array< GLubyte, 4 >;
+    using array4us      = std::array< GLushort, 4 >;
+
+    using array16f      = std::array< GLfloat, 16 >;
+    using array16d      = std::array< GLdouble, 16 >;
+#endif//SON8_OVERGLAD_PROFILE_CORE
+} // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
 #define SON8_OVERGLAD_DISC inline auto
