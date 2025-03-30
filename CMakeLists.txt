@@ -3,7 +3,7 @@ project(overglad VERSION 0.0.1 LANGUAGES CXX)
 
 set(SON8PROJ son8__${PROJECT_NAME})
 
-option(SON8_OVERGLAD_INCLUDE_DEPRECATED "Enable [[deprecated]] overglad and glad entities" OFF)
+option(SON8_OVERGLAD_INCLUDE_DEPRECATED "Enable glad and [[deprecated]] overglad entities" OFF)
 
 add_subdirectory(source)
 add_library(son8::${PROJECT_NAME} ALIAS ${SON8PROJ})
@@ -17,6 +17,6 @@ if (SON8_OVERGLAD_INCLUDE_DEPRECATED)
     target_compile_definitions(${SON8PROJ} INTERFACE SON8_OVERGLAD_INCLUDE_DEPRECATED)
 endif()
 
-if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/temp/CMakeLists.txt")
+if (EXISTS "${CMAKE_SOURCE_DIR}/temp/CMakeLists.txt")
     add_subdirectory(temp)
 endif()

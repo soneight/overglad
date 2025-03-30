@@ -36,7 +36,6 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC front_face( enums::Dir dir ) noexcept
     { glad_glFrontFace( static_cast< GLenum >( dir ) ); }
     // Chapter 3: Rasterization
-    // TODO: double check PointSize core profile
     SON8_OVERGLAD_PROC point_size( GLfloat size ) noexcept
     { glad_glPointSize( size ); }
     SON8_OVERGLAD_PROC line_width( GLfloat width ) noexcept
@@ -49,9 +48,23 @@ namespace son8::overglad {
     { glad_glPolygonMode( static_cast< GLenum >( enums::Face::Front_Back ), static_cast< GLenum >( m ) ); }
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units ) noexcept
     { glad_glPolygonOffset( factor, units ); }
-    // TODO: add PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
+    // TODO: PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    // TODO: Scissor, StencilFunc, StencilOp, BlendFunc, LogicOp, DrawBuffer, ColorMask, DepthMask
+    SON8_OVERGLAD_PROC scissor( GLint left, GLint bottom, GLsizei width, GLsizei height )
+    { glad_glScissor( left, bottom, width, height ); }
+    // TODO: StencilFunc, StencilOp
+    SON8_OVERGLAD_PROC depth( enums::Func func ) noexcept
+    { glad_glDepthFunc( static_cast< GLenum >( func ) ); }
+    // TODO: BlendFunc
+    SON8_OVERGLAD_PROC logic( enums::Op op ) noexcept
+    { glad_glLogicOp( static_cast< GLenum >( op ) ); }
+    // TODO: DrawBuffer
+    SON8_OVERGLAD_PROC color_mask( GLboolean r, GLboolean g, GLboolean b, GLboolean a )
+    { glad_glColorMask( r, g, b, a ); }
+    SON8_OVERGLAD_PROC depth_mask( GLboolean mask )
+    { glad_glDepthMask( mask ); }
+    SON8_OVERGLAD_PROC stencil_mask( GLuint mask )
+    { glad_glStencilMask( mask ); }
     SON8_OVERGLAD_PROC clear( enums::Clearbit mask ) noexcept
     { glad_glClear( static_cast< GLbitfield >( mask ) ); }
     SON8_OVERGLAD_PROC clear_color( )
@@ -64,7 +77,11 @@ namespace son8::overglad {
     { glad_glClearColor( r, g, b, 1.f ); }
     SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b, GLfloat a)
     { glad_glClearColor( r, g, b, a ); }
-    // TODO: ClearColor, ClearDepth, ClearStencil, ReadPixels, ReadBuffer
+    SON8_OVERGLAD_PROC clear_depth( GLdouble d )
+    { glad_glClearDepth( d ); }
+    SON8_OVERGLAD_PROC clear_stencil( GLint s )
+    { glad_glClearStencil( s ); }
+    // TODO: ReadPixels, ReadBuffer
     // Chapter 5: Special Functions
     SON8_OVERGLAD_PROC flush( ) noexcept
     { glad_glFlush( ); }
@@ -412,18 +429,26 @@ namespace son8::overglad {
     { glad_glRasterPos4fv( coords.data( ) ); }
     SON8_OVERGLAD_PROC raster_pos( types::array4d const &coords ) noexcept
     { glad_glRasterPos4dv( coords.data( ) ); }
-    // TODO: add Material, Light, LightModel, ColorMaterial, ShadeModel
+    // TODO: Material, Light, LightModel, ColorMaterial, ShadeModel
     // Chapter 3: Rasterization
     SON8_OVERGLAD_PROC line_stipple( GLint factor, GLushort pattern ) noexcept
     { glad_glLineStipple( factor, pattern ); }
+    // TODO: PolygonStipple
     SON8_OVERGLAD_PROC mode( enums::Face face, enums::Polygon m) noexcept
     { glad_glPolygonMode( static_cast< GLenum >( face ), static_cast< GLenum >( m ) ); }
-    // TODO: add PixelTransfer, DrawPixels
+    // TODO: PixelTransfer*, PixelMap*, DrawPixels
     SON8_OVERGLAD_PROC pixel_zoom( GLfloat x, GLfloat y ) noexcept
     { glad_glPixelZoom( x, y ); }
-    // TODO: add Bitmap, AreTexuresResident, PrioritizeTextures, TexEnv, Fog
+    // TODO: Bitmap, AreTexturesResident, PrioritizeTextures, TexEnv, Fog
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    // TODO: AlphaFunc, IndexMask, ClearIndex, ClearAccum, Accum, CopyPixels
+    // TODO: AlphaFunc
+    SON8_OVERGLAD_PROC index_mask( GLuint mask )
+    { glad_glIndexMask( mask ); }
+    SON8_OVERGLAD_PROC clear_index( GLuint index )
+    { glad_glClearIndex( index ); }
+    SON8_OVERGLAD_DEPR clear_accum( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
+    { glad_glClearAccum( r, g, b, a ); }
+    // TODO: Accum, CopyPixels
     // Chapter 5: Special Functions
     // TODO: Map+, EvalCoord+, MapGrid+, EvalMesh+, EvalPoint, InitNames, PopName, PushName, LoadName
     SON8_OVERGLAD_FUNC mode( enums::Render m ) noexcept
@@ -748,8 +773,6 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR fog( GLenum pname, GLfloat const *params )
     { glFogfv( pname, params ); }
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    SON8_OVERGLAD_DEPR scissor( GLint left, GLint bottom, GLsizei width, GLsizei height )
-    { glScissor( left, bottom, width, height ); }
     SON8_OVERGLAD_DEPR alpha_func( GLenum func, GLclampf ref )
     { glAlphaFunc( func, ref ); }
     SON8_OVERGLAD_DEPR stencil_func( GLenum func, GLint ref, GLuint mask )
@@ -764,22 +787,10 @@ namespace son8::overglad {
     { glLogicOp( op ); }
     SON8_OVERGLAD_DEPR draw_buffer( GLenum buf )
     { glDrawBuffer( buf ); }
-    SON8_OVERGLAD_DEPR index_mask( GLuint mask )
-    { glIndexMask( mask ); }
-    SON8_OVERGLAD_DEPR color_mask( GLboolean r, GLboolean g, GLboolean b, GLboolean a )
-    { glColorMask( r, g, b, a ); }
-    SON8_OVERGLAD_DEPR depth_mask( GLboolean mask )
-    { glDepthMask( mask ); }
     SON8_OVERGLAD_DEPR clear( GLbitfield buf )
     { glClear( buf ); }
     SON8_OVERGLAD_DEPR clear_index( GLfloat index )
     { glClearIndex( index ); }
-    SON8_OVERGLAD_DEPR clear_depth( GLclampd d )
-    { glClearDepth( d ); }
-    SON8_OVERGLAD_DEPR clear_stencil( GLint s )
-    { glClearStencil( s ); }
-    SON8_OVERGLAD_DEPR clear_accum( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
-    { glClearAccum( r, g, b, a ); }
     SON8_OVERGLAD_DEPR accum( GLenum op, GLfloat value )
     { glAccum( op, value ); }
     SON8_OVERGLAD_DEPR read_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *data)

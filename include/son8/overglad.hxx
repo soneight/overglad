@@ -144,8 +144,19 @@ namespace son8::overglad::enums {
         Back        = 0x0405,
         Front_Back  = 0x0408,
     }; // enum class CullFace
-     // FrontFace
-     enum class Dir : GLenum {
+    // Func
+    enum class Func : GLenum {
+        Never       = 0x0200,
+        Less        = 0x0201,
+        Equal       = 0x0202,
+        Lequal      = 0x0203,
+        Greater     = 0x0204,
+        Notequal    = 0x0205,
+        Gequal      = 0x0206,
+        Always      = 0x0207,
+    }; // enum class Func
+    // FrontFace
+    enum class Dir : GLenum {
         CW  = 0x0900,
         CCW = 0x0901,
     }; // enum class Dir
@@ -201,9 +212,29 @@ namespace son8::overglad::enums {
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
+    // LogicOp
+    enum class Op : GLenum {
+        Clear          = 0x1500,
+        And            = 0x1501,
+        And_Reverse    = 0x1502,
+        Copy           = 0x1503,
+        And_Inverted   = 0x1504,
+        Noop           = 0x1505,
+        Xor            = 0x1506,
+        Or             = 0x1507,
+        Nor            = 0x1508,
+        Equiv          = 0x1509,
+        Invert         = 0x150A,
+        Or_Reverse     = 0x150B,
+        Copy_Inverted  = 0x150C,
+        Or_Inverted    = 0x150D,
+        Nand           = 0x150E,
+        Set            = 0x150F,
+    }; // enum class Op
+
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // ClipPlane
-    enum class Plane : GLeunm {
+    enum class Plane : GLenum {
         Num_0 = 0x3000,
         Num_1 = 0x3001,
         Num_2 = 0x3002,
