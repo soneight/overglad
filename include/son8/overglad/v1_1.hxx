@@ -90,7 +90,6 @@ namespace son8::overglad {
     // TODO: Hint
     // Chapter 6: State and State Requests
     // TODO: GetBooleanv, GetIntegerv, GetFloatv, GetDoublev
-    // IsEnabled,
     SON8_OVERGLAD_FUNC get( enums::Capability cap ) noexcept
     { return static_cast< bool >( glad_glIsEnabled( static_cast< GLenum >( cap ) ) ); }
     // TODO: GetTexParameter*, GetTexLevelParameter*, GetTexImage, IsTexture, GetPointerv, GetString
@@ -468,7 +467,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC pop_client_attrib( ) noexcept
     { glad_glPopClientAttrib( ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
-// INFO: do not apply profile macros for DEPRECATED as glad header not doing this either (TODO?)
+// INFO: skip profile and version macros for DEPRECATED as glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_DEPR get_error( )
