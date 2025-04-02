@@ -17,6 +17,6 @@ if (SON8_OVERGLAD_INCLUDE_DEPRECATED)
     target_compile_definitions(${SON8PROJ} INTERFACE SON8_OVERGLAD_INCLUDE_DEPRECATED)
 endif()
 
-if (EXISTS "${CMAKE_SOURCE_DIR}/temp/CMakeLists.txt")
+if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/temp/CMakeLists.txt")
     add_subdirectory(temp)
 endif()
