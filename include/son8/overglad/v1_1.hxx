@@ -87,7 +87,8 @@ namespace son8::overglad {
     { glad_glFlush( ); }
     SON8_OVERGLAD_PROC finish( ) noexcept
     { glad_glFinish( ); }
-    // TODO: Hint
+    SON8_OVERGLAD_PROC mode( enums::Hint hint, enums::Care care ) noexcept
+    { glad_glHint( static_cast< GLenum >( hint ), static_cast< GLenum >( care ) ); }
     // Chapter 6: State and State Requests
     // TODO: GetBooleanv, GetIntegerv, GetFloatv, GetDoublev
     SON8_OVERGLAD_FUNC get( enums::Capability cap ) noexcept

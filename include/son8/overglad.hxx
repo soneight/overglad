@@ -102,6 +102,12 @@ namespace son8::overglad::enums {
         Edge_Flag_Array         = 0x8079,
 #endif//SON8_OVERGLAD_PROFILE_CORE
     }; // enum class Capability
+    // Hint
+    enum class Care : GLenum {
+        Dont = 0x1100,
+        Fast = 0x1101,
+        Nice = 0x1102,
+    }; // enum class Care
     // Clear
     enum class Clearbit : GLbitfield {
         Depth   = 0x00000100,
@@ -138,23 +144,6 @@ namespace son8::overglad::enums {
         Edge    = 0x8079,
     }; // enum class ClientState
 #endif//SON8_OVERGLAD_PROFILE_CORE
-    // CullFace, PolygonMode
-    enum class Face : GLenum {
-        Front       = 0x0404,
-        Back        = 0x0405,
-        Front_Back  = 0x0408,
-    }; // enum class CullFace
-    // Func
-    enum class Func : GLenum {
-        Never       = 0x0200,
-        Less        = 0x0201,
-        Equal       = 0x0202,
-        Lequal      = 0x0203,
-        Greater     = 0x0204,
-        Notequal    = 0x0205,
-        Gequal      = 0x0206,
-        Always      = 0x0207,
-    }; // enum class Func
     // FrontFace
     enum class Dir : GLenum {
         CW  = 0x0900,
@@ -203,6 +192,42 @@ namespace son8::overglad::enums {
         Context     = 0x0507,
 #endif
     }; // enum class Error
+    // CullFace, PolygonMode
+    enum class Face : GLenum {
+        Front       = 0x0404,
+        Back        = 0x0405,
+        Front_Back  = 0x0408,
+    }; // enum class CullFace
+    // Func
+    enum class Func : GLenum {
+        Never       = 0x0200,
+        Less        = 0x0201,
+        Equal       = 0x0202,
+        Lequal      = 0x0203,
+        Greater     = 0x0204,
+        Notequal    = 0x0205,
+        Gequal      = 0x0206,
+        Always      = 0x0207,
+    }; // enum class Func
+    // Hint
+    enum class Hint : GLenum {
+        Line        = 0x0C52,
+        Polygon     = 0x0C53,
+#ifdef SON8_OVERGLAD_VERSION_1_5
+        Texture     = 0x84EF,
+#endif
+#ifdef SON8_OVERGLAD_VERSION_2_1
+        Fragment    = 0x8B8B,
+#endif
+#ifndef SON8_OVERGLAD_PROFILE_CORE
+        Perspective = 0x0C50,
+        Point       = 0x0C51,
+        Fog         = 0x0C54,
+#   ifdef SON8_OVERGLAD_VERSION_1_5
+        Mipmap      = 0x8192,
+#   endif
+#endif
+    }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // MatrixMode
     enum class MatrixMode : GLenum {
@@ -211,7 +236,6 @@ namespace son8::overglad::enums {
         Texture = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
-
     // LogicOp
     enum class Op : GLenum {
         Clear          = 0x1500,
