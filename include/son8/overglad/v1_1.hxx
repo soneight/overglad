@@ -1,24 +1,20 @@
 #ifndef SON8_OVERGLAD_V1_1_HXX
 #define SON8_OVERGLAD_V1_1_HXX
 
-# ifndef          SON8_OVERGLAD_DEFINED
-# define          SON8_OVERGLAD_DEFINED
-# define      SON8_OVERGLAD_VERSION_1_1
-# define     SON8_OVERGLAD_PROFILE_NONE
-# define SON8_OVERGLAD_VERSION 0x010100
-#  endif        //SON8_OVERGLAD_DEFINED
+#ifndef          SON8_OVERGLAD_DEFINED
+#define          SON8_OVERGLAD_DEFINED
+#define      SON8_OVERGLAD_VERSION_1_1
+#define     SON8_OVERGLAD_PROFILE_NONE
+#define SON8_OVERGLAD_VERSION 0x010100
+#endif         //SON8_OVERGLAD_DEFINED
 
 #include <son8/overglad.hxx>
 
 namespace son8::overglad {
-    // additions
-    template< typename T >
-    SON8_OVERGLAD_FUNC get( ) noexcept;
     // Chapter 2: OpenGL Operation
-    template< >
-    SON8_OVERGLAD_FUNC get< enums::Error >( ) noexcept
-    { return static_cast< enums::Error >( glad_glGetError() ); }
-    // TODO: wrapper for draw_{arrays|elements}
+    SON8_OVERGLAD_FUNC get( ) noexcept
+    { return static_cast< enums::Error >( glad_glGetError( ) ); }
+    // TODO: DrawArrays, DrawElements
     SON8_OVERGLAD_PROC depth_range( GLdouble n, GLdouble f ) noexcept
     { glad_glDepthRange( n, f ); }
     SON8_OVERGLAD_PROC viewport( ) noexcept
@@ -40,7 +36,6 @@ namespace son8::overglad {
     { glad_glPointSize( size ); }
     SON8_OVERGLAD_PROC line_width( GLfloat width ) noexcept
     { glad_glLineWidth( width ); }
-    // TODO: maybe overload function that have mode as parameter in this way?
     SON8_OVERGLAD_PROC cull( enums::Face face ) noexcept
     { glad_glCullFace( static_cast< GLenum >( face ) ); }
     // in core profile face is always Front_Back, so use it by default
@@ -50,7 +45,7 @@ namespace son8::overglad {
     { glad_glPolygonOffset( factor, units ); }
     // TODO: PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    SON8_OVERGLAD_PROC scissor( GLint left, GLint bottom, GLsizei width, GLsizei height )
+    SON8_OVERGLAD_PROC scissor( GLint left, GLint bottom, GLsizei width, GLsizei height ) noexcept
     { glad_glScissor( left, bottom, width, height ); }
     // TODO: StencilFunc, StencilOp
     SON8_OVERGLAD_PROC depth( enums::Func func ) noexcept
@@ -59,27 +54,27 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC logic( enums::Op op ) noexcept
     { glad_glLogicOp( static_cast< GLenum >( op ) ); }
     // TODO: DrawBuffer
-    SON8_OVERGLAD_PROC color_mask( GLboolean r, GLboolean g, GLboolean b, GLboolean a )
+    SON8_OVERGLAD_PROC color_mask( GLboolean r, GLboolean g, GLboolean b, GLboolean a ) noexcept
     { glad_glColorMask( r, g, b, a ); }
-    SON8_OVERGLAD_PROC depth_mask( GLboolean mask )
+    SON8_OVERGLAD_PROC depth_mask( GLboolean mask ) noexcept
     { glad_glDepthMask( mask ); }
-    SON8_OVERGLAD_PROC stencil_mask( GLuint mask )
+    SON8_OVERGLAD_PROC stencil_mask( GLuint mask ) noexcept
     { glad_glStencilMask( mask ); }
     SON8_OVERGLAD_PROC clear( enums::Clearbit mask ) noexcept
     { glad_glClear( static_cast< GLbitfield >( mask ) ); }
-    SON8_OVERGLAD_PROC clear_color( )
-    { glad_glClearColor( 0.f, 0.f, 0.f, 1.f ); } // TODO: or alpha zero?
-    SON8_OVERGLAD_PROC clear_color( GLfloat grey )
+    SON8_OVERGLAD_PROC clear_color( ) noexcept
+    { glad_glClearColor( 0.f, 0.f, 0.f, 0.f ); }
+    SON8_OVERGLAD_PROC clear_color( GLfloat grey ) noexcept
     { glad_glClearColor( grey, grey, grey, 1.f ); }
-    SON8_OVERGLAD_PROC clear_color( GLfloat grey, GLfloat alpha )
+    SON8_OVERGLAD_PROC clear_color( GLfloat grey, GLfloat alpha ) noexcept
     { glad_glClearColor( grey, grey, grey, alpha ); }
-    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b)
+    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b ) noexcept
     { glad_glClearColor( r, g, b, 1.f ); }
-    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b, GLfloat a)
+    SON8_OVERGLAD_PROC clear_color( GLfloat r, GLfloat g, GLfloat b, GLfloat a ) noexcept
     { glad_glClearColor( r, g, b, a ); }
-    SON8_OVERGLAD_PROC clear_depth( GLdouble d )
+    SON8_OVERGLAD_PROC clear_depth( GLdouble d ) noexcept
     { glad_glClearDepth( d ); }
-    SON8_OVERGLAD_PROC clear_stencil( GLint s )
+    SON8_OVERGLAD_PROC clear_stencil( GLint s ) noexcept
     { glad_glClearStencil( s ); }
     // TODO: ReadPixels, ReadBuffer
     // Chapter 5: Special Functions
@@ -379,7 +374,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC pop_matrix( ) noexcept
     { glad_glPopMatrix( ); }
     // TODO: TexGen
-    SON8_OVERGLAD_PROC clip( enums::Plane plane, types::array4d const &eqn) noexcept
+    SON8_OVERGLAD_PROC clip( enums::Plane plane, types::array4d const &eqn ) noexcept
     { glad_glClipPlane( static_cast< GLenum >( plane ), eqn.data( ) ); }
     SON8_OVERGLAD_PROC raster_pos( GLint x, GLint y ) noexcept
     { glad_glRasterPos2i( x, y ); }
@@ -434,7 +429,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC line_stipple( GLint factor, GLushort pattern ) noexcept
     { glad_glLineStipple( factor, pattern ); }
     // TODO: PolygonStipple
-    SON8_OVERGLAD_PROC mode( enums::Face face, enums::Polygon m) noexcept
+    SON8_OVERGLAD_PROC mode( enums::Face face, enums::Polygon m ) noexcept
     { glad_glPolygonMode( static_cast< GLenum >( face ), static_cast< GLenum >( m ) ); }
     // TODO: PixelTransfer*, PixelMap*, DrawPixels
     SON8_OVERGLAD_PROC pixel_zoom( GLfloat x, GLfloat y ) noexcept
@@ -442,11 +437,11 @@ namespace son8::overglad {
     // TODO: Bitmap, AreTexturesResident, PrioritizeTextures, TexEnv, Fog
     // Chapter 4: Per-Fragment Operations and the Framebuffer
     // TODO: AlphaFunc
-    SON8_OVERGLAD_PROC index_mask( GLuint mask )
+    SON8_OVERGLAD_PROC index_mask( GLuint mask ) noexcept
     { glad_glIndexMask( mask ); }
-    SON8_OVERGLAD_PROC clear_index( GLuint index )
+    SON8_OVERGLAD_PROC clear_index( GLuint index ) noexcept
     { glad_glClearIndex( index ); }
-    SON8_OVERGLAD_DEPR clear_accum( GLfloat r, GLfloat g, GLfloat b, GLfloat a )
+    SON8_OVERGLAD_PROC clear_accum( GLfloat r, GLfloat g, GLfloat b, GLfloat a ) noexcept
     { glad_glClearAccum( r, g, b, a ); }
     // TODO: Accum, CopyPixels
     // Chapter 5: Special Functions
@@ -458,17 +453,17 @@ namespace son8::overglad {
     { glad_glEndList( ); }
     // TODO: CallList, CallLists, ListBase, GenLists, IsList, DeleteLists
     // Chapter 6: State and State Requests
-    // TODO: GetClipPlane, GetLight*, GetMaterial*, GetTexEnv*, GetTexGen*, GetPixelMap*, GetMap*, GetPolygonStipple
+    // TODO: GetClipPlane, GetLight+, GetMaterial+, GetTexEnv+, GetTexGen+, GetPixelMap+, GetMap+, GetPolygonStipple
     SON8_OVERGLAD_PROC push_attrib( enums::Server bitfield ) noexcept
     { glad_glPushAttrib( static_cast< GLbitfield >( bitfield ) ); }
     SON8_OVERGLAD_PROC push_attrib( enums::Client bitfield ) noexcept
     { glad_glPushClientAttrib( static_cast< GLbitfield >( bitfield ) ); }
-    SON8_OVERGLAD_PROC pop_attrib( ) noexcept
+    SON8_OVERGLAD_PROC pop_server_attrib( ) noexcept
     { glad_glPopAttrib( ); }
     SON8_OVERGLAD_PROC pop_client_attrib( ) noexcept
     { glad_glPopClientAttrib( ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
-// INFO: skip profile and version macros for DEPRECATED as glad header not doing this either (TODO?)
+// INFO: skip profile and version macros for DEPRECATED as in glad header not doing this either (TODO?)
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_DEPR get_error( )
@@ -585,17 +580,17 @@ namespace son8::overglad {
     { glIndexfv( v ); }
     SON8_OVERGLAD_DEPR index( GLdouble const *v )
     { glIndexdv( v ); }
-    SON8_OVERGLAD_DEPR edge_flag_pointer( GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR edge_flag_pointer( GLsizei stride, GLvoid const *pointer )
     { glEdgeFlagPointer( stride, pointer ); }
-    SON8_OVERGLAD_DEPR tex_coord_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR tex_coord_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
     { glTexCoordPointer( size, type, stride, pointer ); }
-    SON8_OVERGLAD_DEPR color_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR color_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
     { glColorPointer( size, type, stride, pointer ); }
-    SON8_OVERGLAD_DEPR index_pointer( GLenum type, GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR index_pointer( GLenum type, GLsizei stride, GLvoid const *pointer )
     { glIndexPointer( type, stride, pointer ); }
-    SON8_OVERGLAD_DEPR normal_pointer( GLenum type, GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR normal_pointer( GLenum type, GLsizei stride, GLvoid const *pointer )
     { glNormalPointer( type, stride, pointer ); }
-    SON8_OVERGLAD_DEPR vertex_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer)
+    SON8_OVERGLAD_DEPR vertex_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
     { glVertexPointer( size, type, stride, pointer ); }
     SON8_OVERGLAD_DEPR enable_client_state( GLenum array )
     { glEnableClientState( array ); }
@@ -615,7 +610,7 @@ namespace son8::overglad {
     { glRectfv( v1, v2 ); }
     SON8_OVERGLAD_DEPR rect( GLdouble const *v1, GLdouble const *v2 )
     { glRectdv( v1, v2 ); }
-    SON8_OVERGLAD_DEPR matrix_mode( GLenum mode)
+    SON8_OVERGLAD_DEPR matrix_mode( GLenum mode )
     { glMatrixMode( mode ); }
     SON8_OVERGLAD_DEPR load_matrix( GLfloat const *m )
     { glLoadMatrixf( m ); }
@@ -643,29 +638,29 @@ namespace son8::overglad {
     { glTexGendv( coord, pname, param ); }
     SON8_OVERGLAD_DEPR clip_plane( GLenum plane, GLdouble const *eqn )
     { glClipPlane( plane, eqn ); }
-    SON8_OVERGLAD_DEPR raster_pos_2( GLint const *v)
+    SON8_OVERGLAD_DEPR raster_pos_2( GLint const *v )
     { glRasterPos2iv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_2( GLshort const *v)
+    SON8_OVERGLAD_DEPR raster_pos_2( GLshort const *v )
     { glRasterPos2sv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_2( GLfloat const *v)
+    SON8_OVERGLAD_DEPR raster_pos_2( GLfloat const *v )
     { glRasterPos2fv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_2( GLdouble const *v)
+    SON8_OVERGLAD_DEPR raster_pos_2( GLdouble const *v )
     { glRasterPos2dv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_3( GLint const *v)
+    SON8_OVERGLAD_DEPR raster_pos_3( GLint const *v )
     { glRasterPos3iv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_3( GLshort const *v)
+    SON8_OVERGLAD_DEPR raster_pos_3( GLshort const *v )
     { glRasterPos3sv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_3( GLfloat const *v)
+    SON8_OVERGLAD_DEPR raster_pos_3( GLfloat const *v )
     { glRasterPos3fv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_3( GLdouble const *v)
+    SON8_OVERGLAD_DEPR raster_pos_3( GLdouble const *v )
     { glRasterPos3dv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_4( GLint const *v)
+    SON8_OVERGLAD_DEPR raster_pos_4( GLint const *v )
     { glRasterPos4iv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_4( GLshort const *v)
+    SON8_OVERGLAD_DEPR raster_pos_4( GLshort const *v )
     { glRasterPos4sv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_4( GLfloat const *v)
+    SON8_OVERGLAD_DEPR raster_pos_4( GLfloat const *v )
     { glRasterPos4fv( v ); }
-    SON8_OVERGLAD_DEPR raster_pos_4( GLdouble const *v)
+    SON8_OVERGLAD_DEPR raster_pos_4( GLdouble const *v )
     { glRasterPos4dv( v ); }
     SON8_OVERGLAD_DEPR front_face( GLenum mode )
     { glFrontFace( mode ); }
@@ -746,7 +741,7 @@ namespace son8::overglad {
     { glTexParameteriv( target, pname, params ); }
     SON8_OVERGLAD_DEPR tex_parameter( GLenum target, GLenum pname, GLfloat const *params )
     { glTexParameterfv( target, pname, params ); }
-    SON8_OVERGLAD_DEPR bind_texture( GLenum target, GLuint texture)
+    SON8_OVERGLAD_DEPR bind_texture( GLenum target, GLuint texture )
     { glBindTexture( target, texture ); }
     SON8_OVERGLAD_DEPR delete_textures( GLsizei n, GLuint const *textures )
     { glDeleteTextures( n, textures ); }
@@ -793,7 +788,7 @@ namespace son8::overglad {
     { glClearIndex( index ); }
     SON8_OVERGLAD_DEPR accum( GLenum op, GLfloat value )
     { glAccum( op, value ); }
-    SON8_OVERGLAD_DEPR read_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *data)
+    SON8_OVERGLAD_DEPR read_pixels( GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *data )
     { glReadPixels( x, y, width, height, format, type, data ); }
     SON8_OVERGLAD_DEPR read_buffer( GLenum buf )
     { glReadBuffer( buf ); }
@@ -822,13 +817,13 @@ namespace son8::overglad {
     { glEvalCoord2f( arg1, arg2 ); }
     SON8_OVERGLAD_DEPR eval( GLdouble arg1, GLdouble arg2 )
     { glEvalCoord2d( arg1, arg2 ); }
-    SON8_OVERGLAD_DEPR eval_1( GLfloat const *arg)
+    SON8_OVERGLAD_DEPR eval_1( GLfloat const *arg )
     { glEvalCoord1fv( arg ); }
-    SON8_OVERGLAD_DEPR eval_1( GLdouble const *arg)
+    SON8_OVERGLAD_DEPR eval_1( GLdouble const *arg )
     { glEvalCoord1dv( arg ); }
-    SON8_OVERGLAD_DEPR eval_2( GLfloat const *arg)
+    SON8_OVERGLAD_DEPR eval_2( GLfloat const *arg )
     { glEvalCoord2fv( arg ); }
-    SON8_OVERGLAD_DEPR eval_2( GLdouble const *arg)
+    SON8_OVERGLAD_DEPR eval_2( GLdouble const *arg )
     { glEvalCoord2dv( arg ); }
     SON8_OVERGLAD_DEPR grid( GLint n, GLfloat u1, GLfloat u2 )
     { glMapGrid1f( n, u1, u2 ); }
@@ -838,18 +833,18 @@ namespace son8::overglad {
     { glMapGrid2f( un, u1, u2, vn, v1, v2 ); }
     SON8_OVERGLAD_DEPR grid( GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2 )
     { glMapGrid2d( un, u1, u2, vn, v1, v2 ); }
-    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2)
+    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2 )
     { glEvalMesh1( mode, p1, p2 ); }
-    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2, GLint q1, GLint q2)
+    SON8_OVERGLAD_DEPR eval( GLenum mode, GLint p1, GLint p2, GLint q1, GLint q2 )
     { glEvalMesh2( mode, p1, p2, q1, q2 ); }
     SON8_OVERGLAD_DEPR eval( GLint p )
     { glEvalPoint1( p ); }
     SON8_OVERGLAD_DEPR eval( GLint p, GLint q )
     { glEvalPoint2( p, q ); }
-    SON8_OVERGLAD_DEPR init_names()
-    { glInitNames(); }
-    SON8_OVERGLAD_DEPR pop_name()
-    { glPopName(); }
+    SON8_OVERGLAD_DEPR init_names( )
+    { glInitNames( ); }
+    SON8_OVERGLAD_DEPR pop_name( )
+    { glPopName( ); }
     SON8_OVERGLAD_DEPR push_name( GLuint name )
     { glPushName( name ); }
     SON8_OVERGLAD_DEPR load_name( GLuint name )
@@ -919,17 +914,17 @@ namespace son8::overglad {
     { glGetPixelMapusv( map, data ); }
     SON8_OVERGLAD_DEPR get_pixel_map( GLenum map, GLfloat *data )
     { glGetPixelMapfv( map, data ); }
-    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLint *data)
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLint *data )
     { glGetMapiv( map, value, data ); }
-    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLfloat *data)
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLfloat *data )
     { glGetMapfv( map, value, data ); }
-    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLdouble *data)
+    SON8_OVERGLAD_DEPR get_map( GLenum map, GLenum value, GLdouble *data )
     { glGetMapdv( map, value, data ); }
     SON8_OVERGLAD_DEPR get_tex_image( GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img )
     { glGetTexImage( tex, lod, format, type, img ); }
     SON8_OVERGLAD_DEPR is_texture( GLuint texture )
     { return glIsTexture( texture ); }
-    SON8_OVERGLAD_DEPR get_polygon_stipple( GLubyte *pattern)
+    SON8_OVERGLAD_DEPR get_polygon_stipple( GLubyte *pattern )
     { glGetPolygonStipple( pattern ); }
     SON8_OVERGLAD_DEPR get_pointer( GLenum pname, GLvoid **params )
     { glGetPointerv( pname, params ); }
@@ -939,9 +934,9 @@ namespace son8::overglad {
     { glPushAttrib( mask ); }
     SON8_OVERGLAD_DEPR push_client_attrib( GLbitfield mask )
     { glPushClientAttrib( mask ); }
-
+    SON8_OVERGLAD_DEPR pop_attrib( )
+    { glPopAttrib( ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
-
 } // namespace son8::overglad
 
 #endif//SON8_OVERGLAD_V1_1_HXX

@@ -12,7 +12,7 @@
 #define      SON8_OVERGLAD_VERSION_4_6
 #define     SON8_OVERGLAD_PROFILE_CORE
 #define SON8_OVERGLAD_VERSION 0x0406CE
-# endif        //SON8_OVERGLAD_DEFINED
+#endif         //SON8_OVERGLAD_DEFINED
 
 #include <glad/son8/source.h>
 
@@ -26,8 +26,8 @@
 namespace son8::overglad::enums {
     // Boolean
     enum class Boolean : GLboolean {
-        False_  = 0x0,
-        True_   = 0x1,
+        False   = 0x0,
+        True    = 0x1,
     }; // enum class Boolean
     // Enable, Disable, IsEnabled
     enum class Capability : GLenum {
@@ -104,9 +104,9 @@ namespace son8::overglad::enums {
     }; // enum class Capability
     // Hint
     enum class Care : GLenum {
-        Dont = 0x1100,
-        Fast = 0x1101,
-        Nice = 0x1102,
+        Dont    = 0x1100,
+        Fast    = 0x1101,
+        Nice    = 0x1102,
     }; // enum class Care
     // Clear
     enum class Clearbit : GLbitfield {
@@ -223,48 +223,48 @@ namespace son8::overglad::enums {
         Perspective = 0x0C50,
         Point       = 0x0C51,
         Fog         = 0x0C54,
-#   ifdef SON8_OVERGLAD_VERSION_1_5
+#ifdef SON8_OVERGLAD_VERSION_1_5
         Mipmap      = 0x8192,
-#   endif
-#endif
+#endif//v1_5
+#endif//!CORE
     }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // MatrixMode
     enum class MatrixMode : GLenum {
-        Model   = 0x1700,
-        Project = 0x1701,
-        Texture = 0x1702,
+        Modelview   = 0x1700,
+        Projection  = 0x1701,
+        Texture     = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
     // LogicOp
     enum class Op : GLenum {
-        Clear          = 0x1500,
-        And            = 0x1501,
-        And_Reverse    = 0x1502,
-        Copy           = 0x1503,
-        And_Inverted   = 0x1504,
-        Noop           = 0x1505,
-        Xor            = 0x1506,
-        Or             = 0x1507,
-        Nor            = 0x1508,
-        Equiv          = 0x1509,
-        Invert         = 0x150A,
-        Or_Reverse     = 0x150B,
-        Copy_Inverted  = 0x150C,
-        Or_Inverted    = 0x150D,
-        Nand           = 0x150E,
-        Set            = 0x150F,
+        Clear           = 0x1500,
+        And             = 0x1501,
+        And_Reverse     = 0x1502,
+        Copy            = 0x1503,
+        And_Inverted    = 0x1504,
+        Noop            = 0x1505,
+        Xor             = 0x1506,
+        Or              = 0x1507,
+        Nor             = 0x1508,
+        Equiv           = 0x1509,
+        Invert          = 0x150A,
+        Or_Reverse      = 0x150B,
+        Copy_Inverted   = 0x150C,
+        Or_Inverted     = 0x150D,
+        Nand            = 0x150E,
+        Set             = 0x150F,
     }; // enum class Op
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // ClipPlane
     enum class Plane : GLenum {
-        Num_0 = 0x3000,
-        Num_1 = 0x3001,
-        Num_2 = 0x3002,
-        Num_3 = 0x3003,
-        Num_4 = 0x3004,
-        Num_5 = 0x3005,
+        Num_0   = 0x3000,
+        Num_1   = 0x3001,
+        Num_2   = 0x3002,
+        Num_3   = 0x3003,
+        Num_4   = 0x3004,
+        Num_5   = 0x3005,
     }; // enum class Plane
 #endif
 
@@ -305,9 +305,9 @@ namespace son8::overglad::enums {
         List        = 0x00020000,
         Texture     = 0x00040000,
         Scissor     = 0x00080000,
-#   ifdef SON8_OVERGLAD_VERSION_1_5
+#ifdef SON8_OVERGLAD_VERSION_1_5
         Multisample = 0x20000000,
-#   endif
+#endif
         All         = 0xFFFFFFFF,
     }; // enum class Server
 #endif//SON8_OVERGLAD_PROFILE_CORE
@@ -354,13 +354,13 @@ namespace son8::overglad::types {
 #define SON8_OVERGLAD_FUNC [[nodiscard]] inline auto
 #define SON8_OVERGLAD_PROC inline void
 
-#  ifdef    SON8_OVERGLAD_INCLUDE
+#ifdef      SON8_OVERGLAD_INCLUDE
 #include <son8/overglad/v1_1.hxx>
 #include <son8/overglad/v1_5.hxx>
 #include <son8/overglad/v2_1.hxx>
 #include <son8/overglad/v3_3.hxx>
 #include <son8/overglad/v4_3.hxx>
-#  endif  //SON8_OVERGLAD_INCLUDE
+#endif    //SON8_OVERGLAD_INCLUDE
 
 #endif//SON8_OVERGLAD_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
