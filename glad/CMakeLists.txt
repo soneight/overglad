@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.14...3.28 )
+cmake_minimum_required( VERSION 3.14...3.27 )
 project( glad VERSION 2.0.8 )
 
 add_subdirectory( source )
