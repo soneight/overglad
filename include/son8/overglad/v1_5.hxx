@@ -24,6 +24,38 @@ namespace son8::overglad {
     { glad_glFogCoordfv( coord.data( ) ); }
     SON8_OVERGLAD_PROC fog_coord( types::array1d const &coord )
     { glad_glFogCoorddv( coord.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( GLint r, GLint g, GLint b )
+    { glad_glSecondaryColor3i( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLbyte r, GLbyte g, GLbyte b )
+    { glad_glSecondaryColor3b( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLshort r, GLshort g, GLshort b )
+    { glad_glSecondaryColor3s( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLfloat r, GLfloat g, GLfloat b )
+    { glad_glSecondaryColor3f( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLdouble r, GLdouble g, GLdouble b )
+    { glad_glSecondaryColor3d( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLuint r, GLuint g, GLuint b )
+    { glad_glSecondaryColor3ui( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLubyte r, GLubyte g, GLubyte b )
+    { glad_glSecondaryColor3ub( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( GLushort r, GLushort g, GLushort b )
+    { glad_glSecondaryColor3us( r, g, b ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3i const &components )
+    { glad_glSecondaryColor3iv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3b const &components )
+    { glad_glSecondaryColor3bv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3s const &components)
+    { glad_glSecondaryColor3sv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3f const &components )
+    { glad_glSecondaryColor3fv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3d const &components )
+    { glad_glSecondaryColor3dv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3ui const &components )
+    { glad_glSecondaryColor3uiv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3ub const &components )
+    { glad_glSecondaryColor3ubv( components.data( ) ); }
+    SON8_OVERGLAD_PROC secondary_color( types::array3us const &components )
+    { glad_glSecondaryColor3usv( components.data( ) ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // deprecated
@@ -96,6 +128,22 @@ namespace son8::overglad {
     { glad_glFogCoordfv( coord ); }
     SON8_OVERGLAD_DEPR fog_coord( GLdouble const *coord )
     { glad_glFogCoorddv( coord ); }
+    SON8_OVERGLAD_PROC secondary_color( GLint const *components )
+    { glad_glSecondaryColor3iv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLbyte const *components )
+    { glad_glSecondaryColor3bv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLshort const *components)
+    { glad_glSecondaryColor3sv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLfloat const *components )
+    { glad_glSecondaryColor3fv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLdouble const *components )
+    { glad_glSecondaryColor3dv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLuint const *components )
+    { glad_glSecondaryColor3uiv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLubyte const *components )
+    { glad_glSecondaryColor3ubv( components ); }
+    SON8_OVERGLAD_PROC secondary_color( GLushort const *components )
+    { glad_glSecondaryColor3usv( components ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
