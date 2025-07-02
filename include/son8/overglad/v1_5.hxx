@@ -12,6 +12,8 @@
 
 namespace son8::overglad {
     // core
+    // Chapter 2: OpenGL Operation
+    // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
@@ -56,6 +58,7 @@ namespace son8::overglad {
     { glad_glSecondaryColor3ubv( components.data( ) ); }
     SON8_OVERGLAD_PROC secondary_color( types::array3us const &components )
     { glad_glSecondaryColor3usv( components.data( ) ); }
+    // TODO: SecondaryColorPointer,FogCoordPointer,ClientActiveTexture
 #endif//SON8_OVERGLAD_PROFILE_CORE
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // deprecated
@@ -144,6 +147,18 @@ namespace son8::overglad {
     { glad_glSecondaryColor3ubv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLushort const *components )
     { glad_glSecondaryColor3usv( components ); }
+    SON8_OVERGLAD_DEPR secondary_color_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
+    { glad_glSecondaryColorPointer( size, type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR fog_coord_pointer( GLenum type, GLsizei stride, GLvoid const *pointer )
+    { glad_glFogCoordPointer( type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR client_active_texture( GLenum texture )
+    { glad_glClientActiveTexture( texture ); }
+    SON8_OVERGLAD_DEPR multi_draw_arrays( GLenum mode, GLint const *first, GLsizei const *count, GLsizei drawcount )
+    { glad_glMultiDrawArrays( mode, first, count, drawcount ); }
+    SON8_OVERGLAD_DEPR multi_draw_elements( GLenum mode, GLsizei const *count, GLenum type, GLvoid *const *indices, GLsizei drawcount )
+    { glad_glMultiDrawElements( mode, count, type, indices, drawcount ); }
+    SON8_OVERGLAD_DEPR draw_range_elements( GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, GLvoid const *indices )
+    { glad_glDrawRangeElements( mode, start, end, count, type, indices ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
