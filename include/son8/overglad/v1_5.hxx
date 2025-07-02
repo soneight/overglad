@@ -14,7 +14,16 @@ namespace son8::overglad {
     // core
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
+    // Chapter 2: OpenGL Operation
     // TODO: MultiTexCoord
+    SON8_OVERGLAD_PROC fog_coord( GLfloat coord )
+    { glad_glFogCoordf( coord ); }
+    SON8_OVERGLAD_PROC fog_coord( GLdouble coord )
+    { glad_glFogCoordd( coord ); }
+    SON8_OVERGLAD_PROC fog_coord( types::array1f const &coord )
+    { glad_glFogCoordfv( coord.data( ) ); }
+    SON8_OVERGLAD_PROC fog_coord( types::array1d const &coord )
+    { glad_glFogCoorddv( coord.data( ) ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // deprecated
@@ -83,6 +92,10 @@ namespace son8::overglad {
     { glad_glMultiTexCoord4fv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_4( GLenum texture, GLdouble const *coords )
     { glad_glMultiTexCoord4dv( texture, coords ); }
+    SON8_OVERGLAD_DEPR fog_coord( GLfloat const *coord )
+    { glad_glFogCoordfv( coord ); }
+    SON8_OVERGLAD_DEPR fog_coord( GLdouble const *coord )
+    { glad_glFogCoorddv( coord ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
