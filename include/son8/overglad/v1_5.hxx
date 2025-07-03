@@ -36,6 +36,19 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC active_texture( enums::Multi texture )
     { glad_glActiveTexture( static_cast< GLenum >( texture ) ); }
     // TODO: PointParameter,TexImage3D,TexSubImage3D,CopyTexSubImage3D,CompressedTexImage[123]D,CompressedTexSubImage[123]D
+    SON8_OVERGLAD_FUNC sample_coverage( GLfloat value, GLboolean invert )
+    { return glad_glSampleCoverage( value, invert ); }
+    // TODO: BeginQuery,EndQuery,GenQueries,DeleteQueries
+    SON8_OVERGLAD_PROC mode( enums::Equation equation )
+    { glad_glBlendEquation( static_cast< GLenum >( equation ) ); }
+    // TODO: BlendFuncSeparate
+    SON8_OVERGLAD_PROC blend_color( GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha )
+    { glad_glBlendColor( red, green, blue, alpha ); }
+    SON8_OVERGLAD_FUNC is_query( GLuint id )
+    { return glad_glIsQuery( id ); }
+    // TODO: GetQueryiv,GetQueryObjectiv,GetQueryObjectuiv
+    SON8_OVERGLAD_FUNC is_buffer( GLuint buffer )
+    { return glad_glIsBuffer( buffer ); }
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
@@ -296,7 +309,6 @@ namespace son8::overglad {
         GLsizei width, GLint border,
         GLsizei imageSize, GLvoid const *data )
     { glCompressedTexImage1D( target, level, internalformat, width, border, imageSize, data ); }
-
     SON8_OVERGLAD_DEPR compressed_tex_sub_image( GLenum target, GLint level,
         GLint xoffset,
         GLsizei width,
@@ -312,7 +324,32 @@ namespace son8::overglad {
         GLsizei width, GLsizei height, GLsizei depth,
         GLenum format, GLsizei imageSize, GLvoid *data )
     { glCompressedTexSubImage3D( target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data ); }
-
+    SON8_OVERGLAD_DEPR begin_query( GLenum target, GLuint id )
+    { glBeginQuery( target, id ); }
+    SON8_OVERGLAD_DEPR end_query( GLenum target )
+    { glEndQuery( target ); }
+    SON8_OVERGLAD_DEPR gen_queries( GLsizei n, GLuint *ids )
+    { glGenQueries( n, ids ); }
+    SON8_OVERGLAD_DEPR delete_queries( GLsizei n, GLuint const *ids )
+    { glDeleteQueries( n, ids ); }
+    SON8_OVERGLAD_DEPR blend_equation( GLenum mode )
+    { glBlendEquation( mode ); }
+    SON8_OVERGLAD_DEPR blend_func_separate( GLenum srsRGB, GLenum dstRGB, GLenum srsAlpha, GLenum dstAlpha )
+    { glBlendFuncSeparate( srsRGB, dstRGB, srsAlpha, dstAlpha ); }
+    SON8_OVERGLAD_DEPR get_buffer_parameter( GLenum target, GLenum value, GLint *data )
+    { glGetBufferParameteriv( target, value, data ); }
+    SON8_OVERGLAD_DEPR get_compressed_tex_image( GLenum target, GLint level, GLvoid *pixels )
+    { glGetCompressedTexImage( target, level, pixels ); }
+    SON8_OVERGLAD_DEPR get_query( GLenum target, GLenum pname, GLint *params )
+    { glGetQueryiv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR get_query_object( GLuint id, GLenum pname, GLint *params )
+    { glGetQueryObjectiv( id, pname, params ); }
+    SON8_OVERGLAD_DEPR get_query_object( GLuint id, GLenum pname, GLuint *params )
+    { glGetQueryObjectuiv( id, pname, params ); }
+    SON8_OVERGLAD_DEPR get_buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, GLvoid *data )
+    { glGetBufferSubData( target, offset, size, data ); }
+    SON8_OVERGLAD_DEPR get_buffer_pointer( GLenum target, GLenum pname, GLvoid **params )
+    { glGetBufferPointerv( target, pname, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 

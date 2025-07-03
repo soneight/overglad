@@ -190,6 +190,18 @@ namespace son8::overglad::enums {
         Patches         = 0x000E,
 #endif
     }; // enum class Draw
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // BlendEquation
+    enum class Equation : GLenum {
+        Add         = 0x8006,
+        Subtract    = 0x800A,
+        Reverse     = 0x800B,
+        Min         = 0x8007,
+        Max         = 0x8008,
+    }; // enum class Equation
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // GetError
     enum class Error : GLenum {
         No          = 0x0,
@@ -321,7 +333,7 @@ namespace son8::overglad::enums {
         Num_4   = 0x3004,
         Num_5   = 0x3005,
     }; // enum class Plane
-#endif
+#endif//SON8_OVERGLAD_PROFILE_CORE
 
     // PolygonMode
     enum class Polygon : GLenum {
@@ -336,7 +348,7 @@ namespace son8::overglad::enums {
         Feedback    = 0x1C01,
         Select      = 0x1C02,
     }; // enum class Render
-#endif
+#endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     enum class Server : GLbitfield {
@@ -471,3 +483,8 @@ namespace son8::overglad::types {
 
 #endif//SON8_OVERGLAD_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
+// REMINDER:
+//     in deprecated section add functions that use GLenum, GLbitfield, pointers
+//     if function contains simple types like int, float, double, etc.
+//     then put it in corresponding core or compatibility section
+//     functions are added in the specification appearance order
