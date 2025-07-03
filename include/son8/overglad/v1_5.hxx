@@ -15,26 +15,27 @@ namespace son8::overglad {
     // Chapter 2: OpenGL Operation
     // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
     template< enums::Buffer T >
-    SON8_OVERGLAD_PROC bind( types::Buffer< T > buffer )
+    SON8_OVERGLAD_PROC bind( types::Buf< T > buffer )
     { glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }
     template< enums::Buffer T >
-    SON8_OVERGLAD_PROC free( types::Buffer< T > &buffer )
+    SON8_OVERGLAD_PROC free( types::Buf< T > &buffer )
     { GLuint b = buffer; glad_glDeleteBuffers( 1, &b ); }
     template< enums::Buffer T >
-    SON8_OVERGLAD_PROC free( types::Buffers< T > &buffers )
+    SON8_OVERGLAD_PROC free( types::Bufs< T > &buffers )
     { glad_glDeleteBuffers( buffers.size( ), buffers.data( ) ); }
     template< enums::Buffer T >
-    SON8_OVERGLAD_PROC gens( types::Buffer< T > &buffer )
+    SON8_OVERGLAD_PROC gens( types::Buf< T > &buffer )
     { GLuint b; glad_glGenBuffers( 1, &b ); buffer = { b }; }
     template< enums::Buffer T >
-    SON8_OVERGLAD_PROC gens( types::Buffers< T > &buffers )
+    SON8_OVERGLAD_PROC gens( types::Bufs< T > &buffers )
     { glad_glGenBuffers( buffers.size( ), buffers.data( ) ); }
     // TODO: BufferData,BufferSubData,MapBuffer
     template< enums::Buffer T >
-    SON8_OVERGLAD_FUNC unmap( types::Buffer< T > buffer )
+    SON8_OVERGLAD_FUNC unmap( types::Buf< T > buffer )
     { return glad_glUnmapBuffer( static_cast< GLenum >( buffer.type( ) ) ); }
     SON8_OVERGLAD_PROC active_texture( enums::Multi texture )
     { glad_glActiveTexture( static_cast< GLenum >( texture ) ); }
+    // TODO: PointParameter,TexImage3D,TexSubImage3D,CopyTexSubImage3D,CompressedTexImage[123]D,CompressedTexSubImage[123]D
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
@@ -262,6 +263,55 @@ namespace son8::overglad {
     { glad_glWindowPos3fv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_3( GLdouble const *coords )
     { glad_glWindowPos3dv( coords ); }
+    SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLint param )
+    { glPointParameteri( pname, param ); }
+    SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLfloat param )
+    { glPointParameterf( pname, param ); }
+    SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLint const *params )
+    { glPointParameteriv( pname, params ); }
+    SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLfloat const *params )
+    { glPointParameterfv( pname, params ); }
+    SON8_OVERGLAD_DEPR tex_image( GLenum target, GLint level, GLint internalformat,
+        GLsizei width, GLsizei height, GLsizei depth, GLint border,
+        GLenum format, GLenum type, GLvoid const *data )
+    { glTexImage3D( target, level, internalformat, width, height, depth, border, format, type, data ); }
+    SON8_OVERGLAD_DEPR tex_sub_image( GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset,
+        GLsizei width, GLsizei height, GLsizei depth,
+        GLenum format, GLenum type, GLvoid const *data )
+    { glTexSubImage3D( target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data ); }
+    SON8_OVERGLAD_DEPR copy_tex_sub_image( GLenum target, GLint level,
+        GLint xoffset, GLint yoffset, GLint zoffset,
+        GLint x, GLint y,
+        GLsizei width, GLsizei height )
+    { glCopyTexSubImage3D( target, level, xoffset, yoffset, zoffset, x, y, width, height ); }
+    SON8_OVERGLAD_DEPR compressed_tex_image( GLenum target, GLint level, GLenum internalformat,
+        GLsizei width, GLsizei height, GLsizei depth, GLint border,
+        GLsizei imageSize, GLvoid const *data )
+    { glCompressedTexImage3D( target, level, internalformat, width, height, depth, border, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_tex_image( GLenum target, GLint level, GLenum internalformat,
+        GLsizei width, GLsizei height, GLint border,
+        GLsizei imageSize, GLvoid const *data )
+    { glCompressedTexImage2D( target, level, internalformat, width, height, border, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_tex_image( GLenum target, GLint level, GLenum internalformat,
+        GLsizei width, GLint border,
+        GLsizei imageSize, GLvoid const *data )
+    { glCompressedTexImage1D( target, level, internalformat, width, border, imageSize, data ); }
+
+    SON8_OVERGLAD_DEPR compressed_tex_sub_image( GLenum target, GLint level,
+        GLint xoffset,
+        GLsizei width,
+        GLenum format, GLsizei imageSize, GLvoid const *data )
+    { glCompressedTexSubImage1D( target, level, xoffset, width, format, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_tex_sub_image( GLenum target, GLint level,
+        GLint xoffset, GLint yoffset,
+        GLsizei width, GLsizei height,
+        GLenum format, GLsizei imageSize, GLvoid *data )
+    { glCompressedTexSubImage2D( target, level, xoffset, yoffset, width, height, format, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_tex_sub_image( GLenum target, GLint level,
+        GLint xoffset, GLint yoffset, GLint zoffset,
+        GLsizei width, GLsizei height, GLsizei depth,
+        GLenum format, GLsizei imageSize, GLvoid *data )
+    { glCompressedTexSubImage3D( target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data ); }
 
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad

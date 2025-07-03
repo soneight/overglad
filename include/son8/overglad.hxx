@@ -419,38 +419,40 @@ namespace son8::overglad::types {
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
+    // TODO: for future use Buffer as NamedBuffer
+    // (similar to Tex and Texture in original opengl spec)
     template< enums::Buffer T >
-    class Buffer final {
+    class Buf final {
         GLuint index_;
     public:
-        Buffer( GLuint index = 0 ) : index_{ index } { };
+        Buf( GLuint index = 0 ) : index_{ index } { };
         operator GLuint( ) const noexcept { return index_; }
         GLuint index( ) const noexcept { return index_; }
         enums::Buffer type( ) const noexcept { return T; }
     };
 
     template< enums::Buffer T >
-    class Buffers final {
+    class Bufs final {
         GLuint *data_;
         GLsizei size_;
     public:
-        Buffers( GLsizei size ) : data_{ new GLuint[size] }, size_{ size } { }
-        ~Buffers( ) { delete [] data_; }
-        Buffers( Buffers && ) = delete;
-        Buffers( Buffers const & ) = delete;
-        Buffers &operator=( Buffers && ) = delete;
-        Buffers &operator=( Buffers const & ) = delete;
+        Bufs( GLsizei size ) : data_{ new GLuint[size] }, size_{ size } { }
+        ~Bufs( ) { delete [] data_; }
+        Bufs( Bufs && ) = delete;
+        Bufs( Bufs const & ) = delete;
+        Bufs &operator=( Bufs && ) = delete;
+        Bufs &operator=( Bufs const & ) = delete;
 
-        Buffer< T > operator[]( GLsizei index ) const { return Buffer< T >{ data_[index] }; }
+        Buf< T > operator[]( GLsizei index ) const { return Buf< T >{ data_[index] }; }
 
         GLuint *data( ) const noexcept { return data_; }
         GLsizei size( ) const noexcept { return size_; }
     };
 
-    using buffer_array = Buffer< enums::Buffer::Array >;
-    using buffer_element = Buffer< enums::Buffer::Element >;
-    using buffers_array = Buffers< enums::Buffer::Array >;
-    using buffers_element = Buffers< enums::Buffer::Element >;
+    using buf_array = Buf< enums::Buffer::Array >;
+    using buf_element = Buf< enums::Buffer::Element >;
+    using bufs_array = Bufs< enums::Buffer::Array >;
+    using bufs_element = Bufs< enums::Buffer::Element >;
 #endif//SON8_OVERGLAD_VERSION_1_5
 } // namespace son8::overglad::types
 
