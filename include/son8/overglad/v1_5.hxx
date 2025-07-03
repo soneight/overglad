@@ -14,6 +14,25 @@ namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Operation
     // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
+    template< enums::Buffer T >
+    SON8_OVERGLAD_PROC bind( types::Buffer< T > buffer )
+    { glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }
+    template< enums::Buffer T >
+    SON8_OVERGLAD_PROC free( types::Buffer< T > &buffer )
+    { GLuint b = buffer; glad_glDeleteBuffers( 1, &b ); }
+    template< enums::Buffer T >
+    SON8_OVERGLAD_PROC free( types::Buffers< T > &buffers )
+    { glad_glDeleteBuffers( buffers.size( ), buffers.data( ) ); }
+    template< enums::Buffer T >
+    SON8_OVERGLAD_PROC gens( types::Buffer< T > &buffer )
+    { GLuint b; glad_glGenBuffers( 1, &b ); buffer = { b }; }
+    template< enums::Buffer T >
+    SON8_OVERGLAD_PROC gens( types::Buffers< T > &buffers )
+    { glad_glGenBuffers( buffers.size( ), buffers.data( ) ); }
+    // TODO: BufferData,BufferSubData,MapBuffer
+    template< enums::Buffer T >
+    SON8_OVERGLAD_FUNC unmap( types::Buffer< T > buffer )
+    { return glad_glUnmapBuffer( static_cast< GLenum >( buffer.type( ) ) ); }
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
@@ -159,6 +178,23 @@ namespace son8::overglad {
     { glad_glMultiDrawElements( mode, count, type, indices, drawcount ); }
     SON8_OVERGLAD_DEPR draw_range_elements( GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, GLvoid const *indices )
     { glad_glDrawRangeElements( mode, start, end, count, type, indices ); }
+    SON8_OVERGLAD_DEPR bind_buffer( GLenum target, GLuint buffer )
+    { glad_glBindBuffer( target, buffer ); }
+    SON8_OVERGLAD_DEPR delete_buffers( GLsizei n, GLuint const *buffers )
+    { glad_glDeleteBuffers( n, buffers ); }
+    SON8_OVERGLAD_DEPR gen_buffers( GLsizei n, GLuint *buffers )
+    { glad_glGenBuffers( n, buffers ); }
+
+
+    SON8_OVERGLAD_DEPR buffer_data( GLenum target, GLsizeiptr size, void const *data, GLenum usage )
+    { glad_glBufferData( target, size, data, usage ); }
+    SON8_OVERGLAD_DEPR buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, void const *data )
+    { glad_glBufferSubData( target, offset, size, data ); }
+    SON8_OVERGLAD_DEPR map_buffer( GLenum target, GLenum access ) -> GLvoid *
+    { return glad_glMapBuffer( target, access ); }
+    SON8_OVERGLAD_DEPR unmap_buffer( GLenum target )
+    { return glad_glUnmapBuffer( target ); }
+
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 

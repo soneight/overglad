@@ -24,11 +24,27 @@
 #include <array>
 
 namespace son8::overglad::enums {
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // MapBuffer
+    enum class Access : GLenum {
+        Read_Only   = 0x88B8,
+        Write_Only  = 0x88B9,
+        Read_Write  = 0x88BA,
+    }; // enum class Access
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // Boolean
     enum class Boolean : GLboolean {
         False   = 0x0,
         True    = 0x1,
     }; // enum class Boolean
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    enum class Buffer : GLenum {
+        Array   = 0x8892,
+        Element = 0x8893,
+    };
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // Enable, Disable, IsEnabled
     enum class Capability : GLenum {
         Polygon_Smooth          = 0x0B41,
@@ -311,6 +327,21 @@ namespace son8::overglad::enums {
         All         = 0xFFFFFFFF,
     }; // enum class Server
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // BufferData
+    enum class Usage : GLenum {
+        Stream_Draw     = 0x88E0,
+        Stream_Read     = 0x88E1,
+        Stream_Copy     = 0x88E2,
+        Static_Draw     = 0x88E4,
+        Static_Read     = 0x88E5,
+        Static_Copy     = 0x88E6,
+        Dynamic_Draw    = 0x88E8,
+        Dynamic_Read    = 0x88E9,
+        Dynamic_Copy    = 0x88EA,
+    }; // enum class Usage
+#endif//SON8_OVERGLAD_VERSION_1_5
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -347,6 +378,41 @@ namespace son8::overglad::types {
     using array16f      = std::array< GLfloat, 16 >;
     using array16d      = std::array< GLdouble, 16 >;
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    template< enums::Buffer T >
+    class Buffer final {
+        GLuint index_;
+    public:
+        Buffer( GLuint index = 0 ) : index_{ index } { };
+        operator GLuint( ) const noexcept { return index_; }
+        GLuint index( ) const noexcept { return index_; }
+        enums::Buffer type( ) const noexcept { return T; }
+    };
+
+    template< enums::Buffer T >
+    class Buffers final {
+        GLuint *data_;
+        GLsizei size_;
+    public:
+        Buffers( GLsizei size ) : data_{ new GLuint[size] }, size_{ size } { }
+        ~Buffers( ) { delete [] data_; }
+        Buffers( Buffers && ) = delete;
+        Buffers( Buffers const & ) = delete;
+        Buffers &operator=( Buffers && ) = delete;
+        Buffers &operator=( Buffers const & ) = delete;
+
+        Buffer< T > operator[]( GLsizei index ) const { return Buffer< T >{ data_[index] }; }
+
+        GLuint *data( ) const noexcept { return data_; }
+        GLsizei size( ) const noexcept { return size_; }
+    };
+
+    using buffer_array = Buffer< enums::Buffer::Array >;
+    using buffer_element = Buffer< enums::Buffer::Element >;
+    using buffers_array = Buffers< enums::Buffer::Array >;
+    using buffers_element = Buffers< enums::Buffer::Element >;
+#endif//SON8_OVERGLAD_VERSION_1_5
 } // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
