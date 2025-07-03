@@ -941,3 +941,4 @@ namespace son8::overglad {
 
 #endif//SON8_OVERGLAD_V1_1_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
+// TODO: update mode functions in a form `mode( enums::ModeName modename )`
