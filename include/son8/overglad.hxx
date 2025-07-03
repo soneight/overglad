@@ -439,8 +439,8 @@ namespace son8::overglad::types {
     public:
         Buf( GLuint index = 0 ) : index_{ index } { };
         operator GLuint( ) const noexcept { return index_; }
-        GLuint index( ) const noexcept { return index_; }
-        enums::Buffer type( ) const noexcept { return T; }
+        auto index( ) const noexcept { return index_; }
+        auto type( ) const noexcept { return T; }
     };
 
     template< enums::Buffer T >
@@ -455,10 +455,11 @@ namespace son8::overglad::types {
         Bufs &operator=( Bufs && ) = delete;
         Bufs &operator=( Bufs const & ) = delete;
 
-        Buf< T > operator[]( GLsizei index ) const { return Buf< T >{ data_[index] }; }
+        auto operator[]( GLsizei index ) const { return Buf< T >{ data_[index] }; }
 
-        GLuint *data( ) const noexcept { return data_; }
-        GLsizei size( ) const noexcept { return size_; }
+        auto data( ) noexcept { return data_; }
+        auto data( ) const noexcept -> GLuint const * { return data_; }
+        auto size( ) const noexcept { return size_; }
     };
 
     using buf_array = Buf< enums::Buffer::Array >;
