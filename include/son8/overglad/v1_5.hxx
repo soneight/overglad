@@ -128,141 +128,141 @@ namespace son8::overglad {
     // deprecated
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLint s )
-    { glad_glMultiTexCoord1i( texture, s ); }
+    { glMultiTexCoord1i( texture, s ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLshort s )
-    { glad_glMultiTexCoord1s( texture, s ); }
+    { glMultiTexCoord1s( texture, s ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLfloat s )
-    { glad_glMultiTexCoord1f( texture, s ); }
+    { glMultiTexCoord1f( texture, s ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLdouble s )
-    { glad_glMultiTexCoord1d( texture, s ); }
+    { glMultiTexCoord1d( texture, s ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLint s, GLint t )
-    { glad_glMultiTexCoord2i( texture, s, t ); }
+    { glMultiTexCoord2i( texture, s, t ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLshort s, GLshort t )
-    { glad_glMultiTexCoord2s( texture, s, t ); }
+    { glMultiTexCoord2s( texture, s, t ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLfloat s, GLfloat t )
-    { glad_glMultiTexCoord2f( texture, s, t ); }
+    { glMultiTexCoord2f( texture, s, t ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLdouble s, GLdouble t )
-    { glad_glMultiTexCoord2d( texture, s, t ); }
+    { glMultiTexCoord2d( texture, s, t ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLint s, GLint t, GLint p )
-    { glad_glMultiTexCoord3i( texture, s, t, p ); }
+    { glMultiTexCoord3i( texture, s, t, p ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLshort s, GLshort t, GLshort p )
-    { glad_glMultiTexCoord3s( texture, s, t, p ); }
+    { glMultiTexCoord3s( texture, s, t, p ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLfloat s, GLfloat t, GLfloat p )
-    { glad_glMultiTexCoord3f( texture, s, t, p ); }
+    { glMultiTexCoord3f( texture, s, t, p ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLdouble s, GLdouble t, GLdouble p )
-    { glad_glMultiTexCoord3d( texture, s, t, p ); }
+    { glMultiTexCoord3d( texture, s, t, p ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLint s, GLint t, GLint p, GLint q )
-    { glad_glMultiTexCoord4i( texture, s, t, p, q ); }
+    { glMultiTexCoord4i( texture, s, t, p, q ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLshort s, GLshort t, GLshort p, GLshort q )
-    { glad_glMultiTexCoord4s( texture, s, t, p, q ); }
+    { glMultiTexCoord4s( texture, s, t, p, q ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLfloat s, GLfloat t, GLfloat p, GLfloat q )
-    { glad_glMultiTexCoord4f( texture, s, t, p, q ); }
+    { glMultiTexCoord4f( texture, s, t, p, q ); }
     SON8_OVERGLAD_DEPR multi_tex_coord( GLenum texture, GLdouble s, GLdouble t, GLdouble p, GLdouble q )
-    { glad_glMultiTexCoord4d( texture, s, t, p, q ); }
+    { glMultiTexCoord4d( texture, s, t, p, q ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_1( GLenum texture, GLint const *coords )
-    { glad_glMultiTexCoord1iv( texture, coords ); }
+    { glMultiTexCoord1iv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_1( GLenum texture, GLshort const *coords )
-    { glad_glMultiTexCoord1sv( texture, coords ); }
+    { glMultiTexCoord1sv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_1( GLenum texture, GLfloat const *coords )
-    { glad_glMultiTexCoord1fv( texture, coords ); }
+    { glMultiTexCoord1fv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_1( GLenum texture, GLdouble const *coords )
-    { glad_glMultiTexCoord1dv( texture, coords ); }
+    { glMultiTexCoord1dv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_2( GLenum texture, GLint const *coords )
-    { glad_glMultiTexCoord2iv( texture, coords ); }
+    { glMultiTexCoord2iv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_2( GLenum texture, GLshort const *coords )
-    { glad_glMultiTexCoord2sv( texture, coords ); }
+    { glMultiTexCoord2sv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_2( GLenum texture, GLfloat const *coords )
-    { glad_glMultiTexCoord2fv( texture, coords ); }
+    { glMultiTexCoord2fv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_2( GLenum texture, GLdouble const *coords )
-    { glad_glMultiTexCoord2dv( texture, coords ); }
+    { glMultiTexCoord2dv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_3( GLenum texture, GLint const *coords )
-    { glad_glMultiTexCoord3iv( texture, coords ); }
+    { glMultiTexCoord3iv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_3( GLenum texture, GLshort const *coords )
-    { glad_glMultiTexCoord3sv( texture, coords ); }
+    { glMultiTexCoord3sv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_3( GLenum texture, GLfloat const *coords )
-    { glad_glMultiTexCoord3fv( texture, coords ); }
+    { glMultiTexCoord3fv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_3( GLenum texture, GLdouble const *coords )
-    { glad_glMultiTexCoord3dv( texture, coords ); }
+    { glMultiTexCoord3dv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_4( GLenum texture, GLint const *coords )
-    { glad_glMultiTexCoord4iv( texture, coords ); }
+    { glMultiTexCoord4iv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_4( GLenum texture, GLshort const *coords )
-    { glad_glMultiTexCoord4sv( texture, coords ); }
+    { glMultiTexCoord4sv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_4( GLenum texture, GLfloat const *coords )
-    { glad_glMultiTexCoord4fv( texture, coords ); }
+    { glMultiTexCoord4fv( texture, coords ); }
     SON8_OVERGLAD_DEPR multi_tex_coord_4( GLenum texture, GLdouble const *coords )
-    { glad_glMultiTexCoord4dv( texture, coords ); }
+    { glMultiTexCoord4dv( texture, coords ); }
     SON8_OVERGLAD_DEPR fog_coord( GLfloat const *coord )
-    { glad_glFogCoordfv( coord ); }
+    { glFogCoordfv( coord ); }
     SON8_OVERGLAD_DEPR fog_coord( GLdouble const *coord )
-    { glad_glFogCoorddv( coord ); }
+    { glFogCoorddv( coord ); }
     SON8_OVERGLAD_DEPR secondary_color( GLint const *components )
-    { glad_glSecondaryColor3iv( components ); }
+    { glSecondaryColor3iv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLbyte const *components )
-    { glad_glSecondaryColor3bv( components ); }
+    { glSecondaryColor3bv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLshort const *components)
-    { glad_glSecondaryColor3sv( components ); }
+    { glSecondaryColor3sv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLfloat const *components )
-    { glad_glSecondaryColor3fv( components ); }
+    { glSecondaryColor3fv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLdouble const *components )
-    { glad_glSecondaryColor3dv( components ); }
+    { glSecondaryColor3dv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLuint const *components )
-    { glad_glSecondaryColor3uiv( components ); }
+    { glSecondaryColor3uiv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLubyte const *components )
-    { glad_glSecondaryColor3ubv( components ); }
+    { glSecondaryColor3ubv( components ); }
     SON8_OVERGLAD_DEPR secondary_color( GLushort const *components )
-    { glad_glSecondaryColor3usv( components ); }
+    { glSecondaryColor3usv( components ); }
     SON8_OVERGLAD_DEPR secondary_color_pointer( GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
-    { glad_glSecondaryColorPointer( size, type, stride, pointer ); }
+    { glSecondaryColorPointer( size, type, stride, pointer ); }
     SON8_OVERGLAD_DEPR fog_coord_pointer( GLenum type, GLsizei stride, GLvoid const *pointer )
-    { glad_glFogCoordPointer( type, stride, pointer ); }
+    { glFogCoordPointer( type, stride, pointer ); }
     SON8_OVERGLAD_DEPR client_active_texture( GLenum texture )
-    { glad_glClientActiveTexture( texture ); }
+    { glClientActiveTexture( texture ); }
     SON8_OVERGLAD_DEPR multi_draw_arrays( GLenum mode, GLint const *first, GLsizei const *count, GLsizei drawcount )
-    { glad_glMultiDrawArrays( mode, first, count, drawcount ); }
+    { glMultiDrawArrays( mode, first, count, drawcount ); }
     SON8_OVERGLAD_DEPR multi_draw_elements( GLenum mode, GLsizei const *count, GLenum type, GLvoid *const *indices, GLsizei drawcount )
-    { glad_glMultiDrawElements( mode, count, type, indices, drawcount ); }
+    { glMultiDrawElements( mode, count, type, indices, drawcount ); }
     SON8_OVERGLAD_DEPR draw_range_elements( GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, GLvoid const *indices )
-    { glad_glDrawRangeElements( mode, start, end, count, type, indices ); }
+    { glDrawRangeElements( mode, start, end, count, type, indices ); }
     SON8_OVERGLAD_DEPR bind_buffer( GLenum target, GLuint buffer )
-    { glad_glBindBuffer( target, buffer ); }
+    { glBindBuffer( target, buffer ); }
     SON8_OVERGLAD_DEPR delete_buffers( GLsizei n, GLuint const *buffers )
-    { glad_glDeleteBuffers( n, buffers ); }
+    { glDeleteBuffers( n, buffers ); }
     SON8_OVERGLAD_DEPR gen_buffers( GLsizei n, GLuint *buffers )
-    { glad_glGenBuffers( n, buffers ); }
+    { glGenBuffers( n, buffers ); }
     SON8_OVERGLAD_DEPR buffer_data( GLenum target, GLsizeiptr size, void const *data, GLenum usage )
-    { glad_glBufferData( target, size, data, usage ); }
+    { glBufferData( target, size, data, usage ); }
     SON8_OVERGLAD_DEPR buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, void const *data )
-    { glad_glBufferSubData( target, offset, size, data ); }
+    { glBufferSubData( target, offset, size, data ); }
     SON8_OVERGLAD_DEPR map_buffer( GLenum target, GLenum access ) -> GLvoid *
-    { return glad_glMapBuffer( target, access ); }
+    { return glMapBuffer( target, access ); }
     SON8_OVERGLAD_DEPR unmap_buffer( GLenum target )
-    { return glad_glUnmapBuffer( target ); }
+    { return glUnmapBuffer( target ); }
     SON8_OVERGLAD_DEPR load_transpose_matrix( GLfloat const *m )
-    { glad_glLoadTransposeMatrixf( m ); }
+    { glLoadTransposeMatrixf( m ); }
     SON8_OVERGLAD_DEPR load_transpose_matrix( GLdouble const *m )
-    { glad_glLoadTransposeMatrixd( m ); }
+    { glLoadTransposeMatrixd( m ); }
     SON8_OVERGLAD_DEPR mult_transpose_matrix( GLfloat const *m )
-    { glad_glMultTransposeMatrixf( m ); }
+    { glMultTransposeMatrixf( m ); }
     SON8_OVERGLAD_DEPR mult_transpose_matrix( GLdouble const *m )
-    { glad_glMultTransposeMatrixd( m ); }
+    { glMultTransposeMatrixd( m ); }
     SON8_OVERGLAD_DEPR active_texture( GLenum texture )
-    { glad_glActiveTexture( texture ); }
+    { glActiveTexture( texture ); }
     SON8_OVERGLAD_DEPR window_pos_2( GLint const *coords)
-    { glad_glWindowPos2iv( coords ); }
+    { glWindowPos2iv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_2( GLshort const *coords )
-    { glad_glWindowPos2sv( coords ); }
+    { glWindowPos2sv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_2( GLfloat const *coords )
-    { glad_glWindowPos2fv( coords ); }
+    { glWindowPos2fv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_2( GLdouble const *coords )
-    { glad_glWindowPos2dv( coords ); }
+    { glWindowPos2dv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_3( GLint const *coords )
-    { glad_glWindowPos3iv( coords ); }
+    { glWindowPos3iv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_3( GLshort const *coords )
-    { glad_glWindowPos3sv( coords ); }
+    { glWindowPos3sv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_3( GLfloat const *coords )
-    { glad_glWindowPos3fv( coords ); }
+    { glWindowPos3fv( coords ); }
     SON8_OVERGLAD_DEPR window_pos_3( GLdouble const *coords )
-    { glad_glWindowPos3dv( coords ); }
+    { glWindowPos3dv( coords ); }
     SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLint param )
     { glPointParameteri( pname, param ); }
     SON8_OVERGLAD_DEPR point_parameter( GLenum pname, GLfloat param )
