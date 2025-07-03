@@ -33,6 +33,8 @@ namespace son8::overglad {
     template< enums::Buffer T >
     SON8_OVERGLAD_FUNC unmap( types::Buffer< T > buffer )
     { return glad_glUnmapBuffer( static_cast< GLenum >( buffer.type( ) ) ); }
+    SON8_OVERGLAD_PROC active_texture( enums::Multi texture )
+    { glad_glActiveTexture( static_cast< GLenum >( texture ) ); }
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
@@ -77,7 +79,49 @@ namespace son8::overglad {
     { glad_glSecondaryColor3ubv( components.data( ) ); }
     SON8_OVERGLAD_PROC secondary_color( types::array3us const &components )
     { glad_glSecondaryColor3usv( components.data( ) ); }
-    // TODO: SecondaryColorPointer,FogCoordPointer,ClientActiveTexture
+    // TODO: SecondaryColorPointer,FogCoordPointer
+    SON8_OVERGLAD_PROC client_active_texture( enums::Multi texture )
+    { glad_glClientActiveTexture( static_cast< GLenum >( texture ) ); }
+    SON8_OVERGLAD_PROC load_transpose_matrix( types::array16f const &matrix )
+    { glad_glLoadTransposeMatrixf( matrix.data( ) ); }
+    SON8_OVERGLAD_PROC load_transpose_matrix( types::array16d const &matrix )
+    { glad_glLoadTransposeMatrixd( matrix.data( ) ); }
+    SON8_OVERGLAD_PROC mult_transpose_matrix( types::array16f const &matrix )
+    { glad_glMultTransposeMatrixf( matrix.data( ) ); }
+    SON8_OVERGLAD_PROC mult_transpose_matrix( types::array16d const &matrix )
+    { glad_glMultTransposeMatrixd( matrix.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( GLint x, GLint y )
+    { glad_glWindowPos2i( x, y ); }
+    SON8_OVERGLAD_PROC window_pos( GLshort x, GLshort y )
+    { glad_glWindowPos2s( x, y ); }
+    SON8_OVERGLAD_PROC window_pos( GLfloat x, GLfloat y )
+    { glad_glWindowPos2f( x, y ); }
+    SON8_OVERGLAD_PROC window_pos( GLdouble x, GLdouble y )
+    { glad_glWindowPos2d( x, y ); }
+    SON8_OVERGLAD_PROC window_pos( GLint x, GLint y, GLint z )
+    { glad_glWindowPos3i( x, y, z ); }
+    SON8_OVERGLAD_PROC window_pos( GLshort x, GLshort y, GLshort z )
+    { glad_glWindowPos3s( x, y, z ); }
+    SON8_OVERGLAD_PROC window_pos( GLfloat x, GLfloat y, GLfloat z )
+    { glad_glWindowPos3f( x, y, z ); }
+    SON8_OVERGLAD_PROC window_pos( GLdouble x, GLdouble y, GLdouble z )
+    { glad_glWindowPos3d( x, y, z ); }
+    SON8_OVERGLAD_PROC window_pos( types::array2i const &coords )
+    { glad_glWindowPos2iv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array2s const &coords )
+    { glad_glWindowPos2sv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array2f const &coords )
+    { glad_glWindowPos2fv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array2d const &coords )
+    { glad_glWindowPos2dv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array3i const &coords )
+    { glad_glWindowPos3iv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array3s const &coords )
+    { glad_glWindowPos3sv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array3f const &coords )
+    { glad_glWindowPos3fv( coords.data( ) ); }
+    SON8_OVERGLAD_PROC window_pos( types::array3d const &coords )
+    { glad_glWindowPos3dv( coords.data( ) ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
 #ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // deprecated
@@ -184,8 +228,6 @@ namespace son8::overglad {
     { glad_glDeleteBuffers( n, buffers ); }
     SON8_OVERGLAD_DEPR gen_buffers( GLsizei n, GLuint *buffers )
     { glad_glGenBuffers( n, buffers ); }
-
-
     SON8_OVERGLAD_DEPR buffer_data( GLenum target, GLsizeiptr size, void const *data, GLenum usage )
     { glad_glBufferData( target, size, data, usage ); }
     SON8_OVERGLAD_DEPR buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, void const *data )
@@ -194,6 +236,32 @@ namespace son8::overglad {
     { return glad_glMapBuffer( target, access ); }
     SON8_OVERGLAD_DEPR unmap_buffer( GLenum target )
     { return glad_glUnmapBuffer( target ); }
+    SON8_OVERGLAD_DEPR load_transpose_matrix( GLfloat const *m )
+    { glad_glLoadTransposeMatrixf( m ); }
+    SON8_OVERGLAD_DEPR load_transpose_matrix( GLdouble const *m )
+    { glad_glLoadTransposeMatrixd( m ); }
+    SON8_OVERGLAD_DEPR mult_transpose_matrix( GLfloat const *m )
+    { glad_glMultTransposeMatrixf( m ); }
+    SON8_OVERGLAD_DEPR mult_transpose_matrix( GLdouble const *m )
+    { glad_glMultTransposeMatrixd( m ); }
+    SON8_OVERGLAD_DEPR active_texture( GLenum texture )
+    { glad_glActiveTexture( texture ); }
+    SON8_OVERGLAD_DEPR window_pos_2( GLint const *coords)
+    { glad_glWindowPos2iv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_2( GLshort const *coords )
+    { glad_glWindowPos2sv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_2( GLfloat const *coords )
+    { glad_glWindowPos2fv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_2( GLdouble const *coords )
+    { glad_glWindowPos2dv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_3( GLint const *coords )
+    { glad_glWindowPos3iv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_3( GLshort const *coords )
+    { glad_glWindowPos3sv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_3( GLfloat const *coords )
+    { glad_glWindowPos3fv( coords ); }
+    SON8_OVERGLAD_DEPR window_pos_3( GLdouble const *coords )
+    { glad_glWindowPos3dv( coords ); }
 
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad

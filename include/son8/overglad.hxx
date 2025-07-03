@@ -252,6 +252,45 @@ namespace son8::overglad::enums {
         Texture     = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // ActiveTexture,ClientActiveTexture,MultTexCoord
+    enum class Multi : GLenum {
+        Texture_0   = 0x84C0,
+        Texture_1   = 0x84C1,
+        Texture_2   = 0x84C2,
+        Texture_3   = 0x84C3,
+        Texture_4   = 0x84C4,
+        Texture_5   = 0x84C5,
+        Texture_6   = 0x84C6,
+        Texture_7   = 0x84C7,
+        Texture_8   = 0x84C8,
+        Texture_9   = 0x84C9,
+        Texture_10  = 0x84CA,
+        Texture_11  = 0x84CB,
+        Texture_12  = 0x84CC,
+        Texture_13  = 0x84CD,
+        Texture_14  = 0x84CE,
+        Texture_15  = 0x84CF,
+        Texture_16  = 0x84D0,
+        Texture_17  = 0x84D1,
+        Texture_18  = 0x84D2,
+        Texture_19  = 0x84D3,
+        Texture_20  = 0x84D4,
+        Texture_21  = 0x84D5,
+        Texture_22  = 0x84D6,
+        Texture_23  = 0x84D7,
+        Texture_24  = 0x84D8,
+        Texture_25  = 0x84D9,
+        Texture_26  = 0x84DA,
+        Texture_27  = 0x84DB,
+        Texture_28  = 0x84DC,
+        Texture_29  = 0x84DD,
+        Texture_30  = 0x84DE,
+        Texture_31  = 0x84DF,
+    }; // enum class Multi
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // LogicOp
     enum class Op : GLenum {
         Clear           = 0x1500,
