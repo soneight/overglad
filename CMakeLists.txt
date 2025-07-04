@@ -1,5 +1,5 @@
 cmake_minimum_required( VERSION 3.14...3.27 )
-project( overglad VERSION 0.1.0 LANGUAGES CXX )
+project( overglad VERSION 0.2.0 LANGUAGES CXX )
 
 set( SON8PROJ son8__${PROJECT_NAME} )
 
@@ -17,6 +17,6 @@ if ( SON8_OVERGLAD_INCLUDE_DEPRECATED )
     target_compile_definitions( ${SON8PROJ} INTERFACE SON8_OVERGLAD_INCLUDE_DEPRECATED )
 endif( )
 
-if ( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/temp/CMakeLists.txt" )
+if ( CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/temp/CMakeLists.txt" )
     add_subdirectory(temp)
 endif( )
