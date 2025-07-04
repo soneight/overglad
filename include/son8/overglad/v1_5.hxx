@@ -16,13 +16,13 @@ namespace son8::overglad {
     // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
     template< enums::Buffer T >
     SON8_OVERGLAD_PROC bind( types::Buf< T > buffer )
-    { glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }
+    { assert( buffer != 0 ); glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }
     template< enums::Buffer T >
     SON8_OVERGLAD_PROC free( types::Buf< T > &buffer )
-    { GLuint b = buffer; glad_glDeleteBuffers( 1, &b ); }
+    { GLuint b = buffer; glad_glDeleteBuffers( 1, &b ); buffer = { 0 }; }
     template< enums::Buffer T >
     SON8_OVERGLAD_PROC free( types::Bufs< T > &buffers )
-    { glad_glDeleteBuffers( buffers.size( ), buffers.data( ) ); }
+    { glad_glDeleteBuffers( buffers.size( ), buffers.data( ) ); buffers.zero( ); }
     template< enums::Buffer T >
     SON8_OVERGLAD_PROC gens( types::Buf< T > &buffer )
     { GLuint b; glad_glGenBuffers( 1, &b ); buffer = { b }; }
@@ -55,7 +55,70 @@ namespace son8::overglad {
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // compatibility
     // Chapter 2: OpenGL Operation
-    // TODO: MultiTexCoord
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLint s )
+    { glad_glMultiTexCoord1i( static_cast< GLenum >( texture ), s ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLshort s )
+    { glad_glMultiTexCoord1s( static_cast< GLenum >( texture ), s ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLfloat s )
+    { glad_glMultiTexCoord1f( static_cast< GLenum >( texture ), s ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLdouble s )
+    { glad_glMultiTexCoord1d( static_cast< GLenum >( texture ), s ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLint s, GLint t )
+    { glad_glMultiTexCoord2i( static_cast< GLenum >( texture ), s, t ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLshort s, GLshort t )
+    { glad_glMultiTexCoord2s( static_cast< GLenum >( texture ), s, t ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLfloat s, GLfloat t )
+    { glad_glMultiTexCoord2f( static_cast< GLenum >( texture ), s, t ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLdouble s, GLdouble t )
+    { glad_glMultiTexCoord2d( static_cast< GLenum >( texture ), s, t ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLint s, GLint t, GLint p )
+    { glad_glMultiTexCoord3i( static_cast< GLenum >( texture ), s, t, p ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLshort s, GLshort t, GLshort p )
+    { glad_glMultiTexCoord3s( static_cast< GLenum >( texture ), s, t, p ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLfloat s, GLfloat t, GLfloat p )
+    { glad_glMultiTexCoord3f( static_cast< GLenum >( texture ), s, t, p ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLdouble s, GLdouble t, GLdouble p )
+    { glad_glMultiTexCoord3d( static_cast< GLenum >( texture ), s, t, p ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLint s, GLint t, GLint p, GLint q )
+    { glad_glMultiTexCoord4i( static_cast< GLenum >( texture ), s, t, p, q ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLshort s, GLshort t, GLshort p, GLshort q )
+    { glad_glMultiTexCoord4s( static_cast< GLenum >( texture ), s, t, p, q ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLfloat s, GLfloat t, GLfloat p, GLfloat q )
+    { glad_glMultiTexCoord4f( static_cast< GLenum >( texture ), s, t, p, q ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, GLdouble s, GLdouble t, GLdouble p, GLdouble q )
+    { glad_glMultiTexCoord4d( static_cast< GLenum >( texture ), s, t, p, q ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array1i const &coords )
+    { glad_glMultiTexCoord1iv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array1s const &coords )
+    { glad_glMultiTexCoord1sv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array1f const &coords )
+    { glad_glMultiTexCoord1fv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array1d const &coords )
+    { glad_glMultiTexCoord1dv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array2i const &coords )
+    { glad_glMultiTexCoord2iv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array2s const &coords )
+    { glad_glMultiTexCoord2sv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array2f const &coords )
+    { glad_glMultiTexCoord2fv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array2d const &coords )
+    { glad_glMultiTexCoord2dv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array3i const &coords )
+    { glad_glMultiTexCoord3iv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array3s const &coords )
+    { glad_glMultiTexCoord3sv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array3f const &coords )
+    { glad_glMultiTexCoord3fv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array3d const &coords )
+    { glad_glMultiTexCoord3dv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array4i const &coords )
+    { glad_glMultiTexCoord4iv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array4s const &coords )
+    { glad_glMultiTexCoord4sv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array4f const &coords )
+    { glad_glMultiTexCoord4fv( static_cast< GLenum >( texture ), coords.data( ) ); }
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::array4d const &coords )
+    { glad_glMultiTexCoord4dv( static_cast< GLenum >( texture ), coords.data( ) ); }
     SON8_OVERGLAD_PROC fog_coord( GLfloat coord )
     { glad_glFogCoordf( coord ); }
     SON8_OVERGLAD_PROC fog_coord( GLdouble coord )

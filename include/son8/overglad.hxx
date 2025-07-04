@@ -22,6 +22,7 @@
 
 // for v functions
 #include <array>
+#include <cassert>
 
 namespace son8::overglad::enums {
 #ifdef SON8_OVERGLAD_VERSION_1_5
@@ -158,6 +159,10 @@ namespace son8::overglad::enums {
         Index   = 0x8077,
         Texture = 0x8078,
         Edge    = 0x8079,
+#   ifdef SON8_OVERGLAD_VERSION_1_5
+        Fog     = 0x8457,
+        Color2  = 0x845E,
+#   endif
     }; // enum class ClientState
 #endif//SON8_OVERGLAD_PROFILE_CORE
     // FrontFace
@@ -448,7 +453,7 @@ namespace son8::overglad::types {
         GLuint *data_;
         GLsizei size_;
     public:
-        Bufs( GLsizei size ) : data_{ new GLuint[size] }, size_{ size } { }
+        Bufs( GLsizei size = 8 ) : data_{ new GLuint[size] }, size_{ size } { zero( ); }
         ~Bufs( ) { delete [] data_; }
         Bufs( Bufs && ) = delete;
         Bufs( Bufs const & ) = delete;
@@ -460,6 +465,7 @@ namespace son8::overglad::types {
         auto data( ) noexcept { return data_; }
         auto data( ) const noexcept -> GLuint const * { return data_; }
         auto size( ) const noexcept { return size_; }
+        void zero( ) noexcept { for ( int i = 0; i < size_; ++i ) data_[i] = 0; }
     };
 
     using buf_array = Buf< enums::Buffer::Array >;
