@@ -22,13 +22,30 @@
 
 // for v functions
 #include <array>
+#include <cassert>
 
 namespace son8::overglad::enums {
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // MapBuffer
+    enum class Access : GLenum {
+        Read_Only   = 0x88B8,
+        Write_Only  = 0x88B9,
+        Read_Write  = 0x88BA,
+    }; // enum class Access
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // Boolean
     enum class Boolean : GLboolean {
         False   = 0x0,
         True    = 0x1,
     }; // enum class Boolean
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    enum class Buffer : GLenum {
+        Array   = 0x8892,
+        Element = 0x8893,
+    };
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // Enable, Disable, IsEnabled
     enum class Capability : GLenum {
         Polygon_Smooth          = 0x0B41,
@@ -142,8 +159,12 @@ namespace son8::overglad::enums {
         Index   = 0x8077,
         Texture = 0x8078,
         Edge    = 0x8079,
+#   ifdef SON8_OVERGLAD_VERSION_1_5
+        Fog     = 0x8457,
+        Color2  = 0x845E,
+#   endif
     }; // enum class ClientState
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif//!SON8_OVERGLAD_PROFILE_CORE
     // FrontFace
     enum class Dir : GLenum {
         CW  = 0x0900,
@@ -163,7 +184,7 @@ namespace son8::overglad::enums {
         Quads           = 0x0007,
         Quad_S          = 0x0008,
         Polygon         = 0x0009,
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif
 #ifdef SON8_OVERGLAD_VERSION_3_3
         Lines_A         = 0x000A,
         Lines_SA        = 0x000B,
@@ -174,6 +195,18 @@ namespace son8::overglad::enums {
         Patches         = 0x000E,
 #endif
     }; // enum class Draw
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // BlendEquation
+    enum class Equation : GLenum {
+        Add         = 0x8006,
+        Subtract    = 0x800A,
+        Reverse     = 0x800B,
+        Min         = 0x8007,
+        Max         = 0x8008,
+    }; // enum class Equation
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // GetError
     enum class Error : GLenum {
         No          = 0x0,
@@ -223,9 +256,9 @@ namespace son8::overglad::enums {
         Perspective = 0x0C50,
         Point       = 0x0C51,
         Fog         = 0x0C54,
-#ifdef SON8_OVERGLAD_VERSION_1_5
+#   ifdef SON8_OVERGLAD_VERSION_1_5
         Mipmap      = 0x8192,
-#endif//v1_5
+#   endif
 #endif//!CORE
     }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -236,6 +269,45 @@ namespace son8::overglad::enums {
         Texture     = 0x1702,
     }; // enum class MatrixMode
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // ActiveTexture,ClientActiveTexture,MultTexCoord
+    enum class Multi : GLenum {
+        Texture_0   = 0x84C0,
+        Texture_1   = 0x84C1,
+        Texture_2   = 0x84C2,
+        Texture_3   = 0x84C3,
+        Texture_4   = 0x84C4,
+        Texture_5   = 0x84C5,
+        Texture_6   = 0x84C6,
+        Texture_7   = 0x84C7,
+        Texture_8   = 0x84C8,
+        Texture_9   = 0x84C9,
+        Texture_10  = 0x84CA,
+        Texture_11  = 0x84CB,
+        Texture_12  = 0x84CC,
+        Texture_13  = 0x84CD,
+        Texture_14  = 0x84CE,
+        Texture_15  = 0x84CF,
+        Texture_16  = 0x84D0,
+        Texture_17  = 0x84D1,
+        Texture_18  = 0x84D2,
+        Texture_19  = 0x84D3,
+        Texture_20  = 0x84D4,
+        Texture_21  = 0x84D5,
+        Texture_22  = 0x84D6,
+        Texture_23  = 0x84D7,
+        Texture_24  = 0x84D8,
+        Texture_25  = 0x84D9,
+        Texture_26  = 0x84DA,
+        Texture_27  = 0x84DB,
+        Texture_28  = 0x84DC,
+        Texture_29  = 0x84DD,
+        Texture_30  = 0x84DE,
+        Texture_31  = 0x84DF,
+    }; // enum class Multi
+#endif//SON8_OVERGLAD_VERSION_1_5
+
     // LogicOp
     enum class Op : GLenum {
         Clear           = 0x1500,
@@ -266,7 +338,7 @@ namespace son8::overglad::enums {
         Num_4   = 0x3004,
         Num_5   = 0x3005,
     }; // enum class Plane
-#endif
+#endif//SON8_OVERGLAD_PROFILE_CORE
 
     // PolygonMode
     enum class Polygon : GLenum {
@@ -281,7 +353,7 @@ namespace son8::overglad::enums {
         Feedback    = 0x1C01,
         Select      = 0x1C02,
     }; // enum class Render
-#endif
+#endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     enum class Server : GLbitfield {
@@ -305,12 +377,27 @@ namespace son8::overglad::enums {
         List        = 0x00020000,
         Texture     = 0x00040000,
         Scissor     = 0x00080000,
-#ifdef SON8_OVERGLAD_VERSION_1_5
+#   ifdef SON8_OVERGLAD_VERSION_1_5
         Multisample = 0x20000000,
-#endif
+#   endif
         All         = 0xFFFFFFFF,
     }; // enum class Server
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // BufferData
+    enum class Usage : GLenum {
+        Stream_Draw     = 0x88E0,
+        Stream_Read     = 0x88E1,
+        Stream_Copy     = 0x88E2,
+        Static_Draw     = 0x88E4,
+        Static_Read     = 0x88E5,
+        Static_Copy     = 0x88E6,
+        Dynamic_Draw    = 0x88E8,
+        Dynamic_Read    = 0x88E9,
+        Dynamic_Copy    = 0x88EA,
+    }; // enum class Usage
+#endif//SON8_OVERGLAD_VERSION_1_5
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -347,6 +434,45 @@ namespace son8::overglad::types {
     using array16f      = std::array< GLfloat, 16 >;
     using array16d      = std::array< GLdouble, 16 >;
 #endif//SON8_OVERGLAD_PROFILE_CORE
+
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    // TODO: for future use Buffer as NamedBuffer
+    // (similar to Tex and Texture in original opengl spec)
+    template< enums::Buffer T >
+    class Buf final {
+        GLuint index_;
+    public:
+        Buf( GLuint index = 0 ) : index_{ index } { };
+        operator GLuint( ) const noexcept { return index_; }
+        auto index( ) const noexcept { return index_; }
+        auto type( ) const noexcept { return T; }
+    };
+
+    template< enums::Buffer T >
+    class Bufs final {
+        GLuint *data_;
+        GLsizei size_;
+    public:
+        Bufs( GLsizei size = 8 ) : data_{ new GLuint[size] }, size_{ size } { zero( ); }
+        ~Bufs( ) { delete [] data_; }
+        Bufs( Bufs && ) = delete;
+        Bufs( Bufs const & ) = delete;
+        Bufs &operator=( Bufs && ) = delete;
+        Bufs &operator=( Bufs const & ) = delete;
+
+        auto operator[]( GLsizei index ) const { return Buf< T >{ data_[index] }; }
+
+        auto data( ) noexcept { return data_; }
+        auto data( ) const noexcept -> GLuint const * { return data_; }
+        auto size( ) const noexcept { return size_; }
+        void zero( ) noexcept { for ( int i = 0; i < size_; ++i ) data_[i] = 0; }
+    };
+
+    using buf_array = Buf< enums::Buffer::Array >;
+    using buf_element = Buf< enums::Buffer::Element >;
+    using bufs_array = Bufs< enums::Buffer::Array >;
+    using bufs_element = Bufs< enums::Buffer::Element >;
+#endif//SON8_OVERGLAD_VERSION_1_5
 } // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
