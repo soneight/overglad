@@ -14,6 +14,8 @@ namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Operation
     // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
+    SON8_OVERGLAD_PROC unbind( enums::Buffer target )
+    { glad_glBindBuffer( static_cast< GLenum >( target ), 0 ); }
     template< enums::Buffer T >
     SON8_OVERGLAD_PROC bind( types::Buf< T > buffer )
     { assert( buffer != 0 ); glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }

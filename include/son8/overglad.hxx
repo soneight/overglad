@@ -164,7 +164,7 @@ namespace son8::overglad::enums {
         Color2  = 0x845E,
 #   endif
     }; // enum class ClientState
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif//!SON8_OVERGLAD_PROFILE_CORE
     // FrontFace
     enum class Dir : GLenum {
         CW  = 0x0900,
@@ -184,7 +184,7 @@ namespace son8::overglad::enums {
         Quads           = 0x0007,
         Quad_S          = 0x0008,
         Polygon         = 0x0009,
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif
 #ifdef SON8_OVERGLAD_VERSION_3_3
         Lines_A         = 0x000A,
         Lines_SA        = 0x000B,
@@ -256,9 +256,9 @@ namespace son8::overglad::enums {
         Perspective = 0x0C50,
         Point       = 0x0C51,
         Fog         = 0x0C54,
-#ifdef SON8_OVERGLAD_VERSION_1_5
+#   ifdef SON8_OVERGLAD_VERSION_1_5
         Mipmap      = 0x8192,
-#endif//v1_5
+#   endif
 #endif//!CORE
     }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -377,9 +377,9 @@ namespace son8::overglad::enums {
         List        = 0x00020000,
         Texture     = 0x00040000,
         Scissor     = 0x00080000,
-#ifdef SON8_OVERGLAD_VERSION_1_5
+#   ifdef SON8_OVERGLAD_VERSION_1_5
         Multisample = 0x20000000,
-#endif
+#   endif
         All         = 0xFFFFFFFF,
     }; // enum class Server
 #endif//SON8_OVERGLAD_PROFILE_CORE
@@ -490,8 +490,3 @@ namespace son8::overglad::types {
 
 #endif//SON8_OVERGLAD_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
-// REMINDER:
-//     in deprecated section add functions that use GLenum, GLbitfield, pointers
-//     if function contains simple types like int, float, double, etc.
-//     then put it in corresponding core or compatibility section
-//     functions are added in the specification appearance order
