@@ -22,7 +22,9 @@
 
 // for v functions
 #include <array>
+
 #include <cassert>
+#include <type_traits>
 
 namespace son8::overglad::enums {
 #ifdef SON8_OVERGLAD_VERSION_1_5
@@ -473,6 +475,45 @@ namespace son8::overglad::types {
     using bufs_array = Bufs< enums::Buffer::Array >;
     using bufs_element = Bufs< enums::Buffer::Element >;
 #endif//SON8_OVERGLAD_VERSION_1_5
+
+#ifdef SON8_OVERGLAD_VERSION_2_1
+    template< typename T, unsigned Size = 0u, bool Norm = false >
+    class Attrib final {
+        static_assert( Size < 5, "Attrib Size must be less than 5" );
+        GLuint index_;
+    public:
+        using Type = T;
+        constexpr Attrib( GLuint index = 0 ) : index_{ index } { };
+        constexpr auto index( ) const noexcept { return index_; }
+        constexpr bool norm( ) const noexcept { return Norm; }
+    };
+    // coord attribs
+    using attrib0s      = Attrib< GLshort >;
+    using attrib0f      = Attrib< GLfloat >;
+    using attrib0d      = Attrib< GLdouble >;
+    // array attribs
+    using attrib1s      = Attrib< GLshort, 1 >;
+    using attrib2s      = Attrib< GLshort, 2 >;
+    using attrib3s      = Attrib< GLshort, 3 >;
+    using attrib4s      = Attrib< GLshort, 4 >;
+    using attrib1f      = Attrib< GLfloat, 1 >;
+    using attrib2f      = Attrib< GLfloat, 2 >;
+    using attrib3f      = Attrib< GLfloat, 3 >;
+    using attrib4f      = Attrib< GLfloat, 4 >;
+    using attrib1d      = Attrib< GLdouble, 1 >;
+    using attrib2d      = Attrib< GLdouble, 2 >;
+    using attrib3d      = Attrib< GLdouble, 3 >;
+    using attrib4d      = Attrib< GLdouble, 4 >;
+    // coord attribs normalized
+    using attrib0Nub    = Attrib< GLubyte, 0, true >;
+    // array attribs normalized
+    using attrib4Ni     = Attrib< GLint, 4, true >;
+    using attrib4Nb     = Attrib< GLbyte, 4, true >;
+    using attrib4Ns     = Attrib< GLshort, 4, true >;
+    using attrib4Nui    = Attrib< GLuint, 4, true >;
+    using attrib4Nub    = Attrib< GLubyte, 4, true >;
+    using attrib4Nus    = Attrib< GLushort, 4, true >;
+#endif//SON8_OVERGLAD_VERSION_2_1
 } // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
