@@ -89,6 +89,28 @@ namespace son8::overglad {
             }
         } else static_assert( false, "Invalid Size for vertex_attrib" );
     }
+    // TODO: VertexAttribPointer,EnableVertexAttribArray,DisableVertexAttribArray
+    SON8_OVERGLAD_FUNC shader( enums::Shader type )
+    { return types::Shader{ glad_glCreateShader( static_cast< GLenum >( type ) ) }; }
+    // TODO: ShaderSource
+    SON8_OVERGLAD_PROC compile( types::Shader shader )
+    { glad_glCompileShader( shader.index( ) ); }
+    SON8_OVERGLAD_PROC free( types::Shader shader )
+    { glad_glDeleteShader( shader.index( ) ); }
+    SON8_OVERGLAD_FUNC program( )
+    { return types::Program{ glad_glCreateProgram( ) }; }
+    SON8_OVERGLAD_PROC attach( types::Program program, types::Shader shader )
+    { glad_glAttachShader( program.index( ), shader.index( ) ); }
+    SON8_OVERGLAD_PROC detach( types::Program program, types::Shader shader )
+    { glad_glDetachShader( program.index( ), shader.index( ) ); }
+    SON8_OVERGLAD_PROC link( types::Program program )
+    { glad_glLinkProgram( program.index( ) ); }
+    SON8_OVERGLAD_PROC bind( types::Program program )
+    { glad_glUseProgram( program.index( ) ); }
+    SON8_OVERGLAD_PROC unbind( enums::Program unused )
+    { glad_glUseProgram( static_cast< GLuint >( unused ) ); }
+    SON8_OVERGLAD_PROC free( types::Program program )
+    { glad_glDeleteProgram( program.index( ) ); }
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
 #endif//SON8_OVERGLAD_PROFILE_CORE
@@ -167,6 +189,32 @@ namespace son8::overglad {
     { glVertexAttrib4Nusv( index, values ); }
     SON8_OVERGLAD_DEPR vertex_attrib_N( GLuint index, GLuint const *values )
     { glVertexAttrib4Nuiv( index, values ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_pointer( GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void const *pointer )
+    { glVertexAttribPointer( index, size, type, normalized, stride, pointer ); }
+    SON8_OVERGLAD_DEPR enable_vertex_attrib_array( GLuint index)
+    { glEnableVertexAttribArray( index ); }
+    SON8_OVERGLAD_DEPR disable_vertex_attrib_array( GLuint index)
+    { glDisableVertexAttribArray( index ); }
+    SON8_OVERGLAD_DEPR create_shader( GLenum type )
+    { return glCreateShader( type ); }
+    SON8_OVERGLAD_DEPR shader_source( GLuint shader, GLsizei count, GLchar const *const *string, GLint const *length )
+    { glShaderSource( shader, count, string, length ); }
+    SON8_OVERGLAD_DEPR compile_shader( GLuint shader )
+    { glCompileShader( shader ); }
+    SON8_OVERGLAD_DEPR delete_shader( GLuint shader )
+    { glDeleteShader( shader ); }
+    SON8_OVERGLAD_DEPR create_program( )
+    { return glCreateProgram( ); }
+    SON8_OVERGLAD_DEPR attach_shader( GLuint program, GLuint shader )
+    { glAttachShader( program, shader ); }
+    SON8_OVERGLAD_DEPR detach_shader( GLuint program, GLuint shader )
+    { glDetachShader( program, shader ); }
+    SON8_OVERGLAD_DEPR link_program( GLuint program )
+    { glLinkProgram( program ); }
+    SON8_OVERGLAD_DEPR use_program( GLuint program )
+    { glUseProgram( program ); }
+    SON8_OVERGLAD_DEPR delete_program( GLuint program )
+    { glDeleteProgram( program ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
