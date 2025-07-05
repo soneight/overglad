@@ -47,7 +47,7 @@ namespace son8::overglad {
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib4d( attrib.index( ), x, y, z, w );
         else static_assert( false, "Invalid Type for vertex_attrib" );
     }
-    SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< GLubyte > attrib, GLubyte x, GLubyte y, GLubyte z, GLubyte w )
+    SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< GLubyte, 0, true > attrib, GLubyte x, GLubyte y, GLubyte z, GLubyte w )
     { glad_glVertexAttrib4Nub( attrib.index( ), x, y, z, w ); }
     template< typename Type, unsigned Size, bool Norm >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type, Size, Norm > attrib, std::array< Type, Size > const &values )

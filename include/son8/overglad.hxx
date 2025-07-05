@@ -504,6 +504,11 @@ namespace son8::overglad::types {
     using attrib2d      = Attrib< GLdouble, 2 >;
     using attrib3d      = Attrib< GLdouble, 3 >;
     using attrib4d      = Attrib< GLdouble, 4 >;
+    using attrib4b      = Attrib< GLbyte, 4 >;
+    using attrib4i      = Attrib< GLint, 4 >;
+    using attrib4ub     = Attrib< GLubyte, 4 >;
+    using attrib4us     = Attrib< GLushort, 4 >;
+    using attrib4ui     = Attrib< GLuint, 4 >;
     // coord attribs normalized
     using attrib0Nub    = Attrib< GLubyte, 0, true >;
     // array attribs normalized
