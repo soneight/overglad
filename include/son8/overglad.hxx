@@ -492,15 +492,16 @@ namespace son8::overglad::types {
 #endif//SON8_OVERGLAD_VERSION_1_5
 
 #ifdef SON8_OVERGLAD_VERSION_2_1
-    template< typename T, unsigned Size = 0u, bool Norm = false >
+    template< typename Type, unsigned Size = 0u, bool Norm = false >
     class Attrib final {
         static_assert( Size < 5, "Attrib Size must be less than 5" );
         GLuint index_;
     public:
-        using Type = T;
+        using type = Type;
         constexpr Attrib( GLuint index = 0 ) : index_{ index } { };
-        constexpr auto index( ) const noexcept { return index_; }
+        constexpr auto size( ) const noexcept { return Size; }
         constexpr bool norm( ) const noexcept { return Norm; }
+        constexpr auto index( ) const noexcept { return index_; }
     };
     // coord attribs
     using attrib0s      = Attrib< GLshort >;

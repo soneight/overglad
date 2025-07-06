@@ -21,7 +21,7 @@ namespace son8::overglad {
         /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1s( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib1f( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib1d( attrib.index( ), x );
-        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0" );
+        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 1 argument" );
     }
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y )
@@ -29,7 +29,7 @@ namespace son8::overglad {
         /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib2s( attrib.index( ), x, y );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib2f( attrib.index( ), x, y );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib2d( attrib.index( ), x, y );
-        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0" );
+        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 2 arguments" );
     }
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y, Type z )
@@ -37,7 +37,7 @@ namespace son8::overglad {
         /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib3s( attrib.index( ), x, y, z );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib3f( attrib.index( ), x, y, z );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib3d( attrib.index( ), x, y, z );
-        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0" );
+        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 3 arguments" );
     }
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y, Type z, Type w )
@@ -45,7 +45,7 @@ namespace son8::overglad {
         /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib4s( attrib.index( ), x, y, z, w );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib4f( attrib.index( ), x, y, z, w );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib4d( attrib.index( ), x, y, z, w );
-        else static_assert( false, "Invalid Type for vertex_attrib" );
+        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 4 arguments" );
     }
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< GLubyte, 0, true > attrib, GLubyte x, GLubyte y, GLubyte z, GLubyte w )
     { glad_glVertexAttrib4Nub( attrib.index( ), x, y, z, w ); }
