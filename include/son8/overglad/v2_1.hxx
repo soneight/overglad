@@ -21,7 +21,7 @@ namespace son8::overglad {
         /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1s( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib1f( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib1d( attrib.index( ), x );
-        else static_assert( false, "Invalid T for vertex_attrib with Size equal 0" );
+        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0" );
     }
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y )
@@ -85,7 +85,7 @@ namespace son8::overglad {
                 else if constexpr ( std::is_same_v< Type, GLubyte > ) glad_glVertexAttrib4Nubv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLushort > ) glad_glVertexAttrib4Nusv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLuint > ) glad_glVertexAttrib4Nuiv( attrib.index( ), values.data( ) );
-                else static_assert( false, "Invalid Normalize Type for vertex_attrib with Size equal 4" );
+                else static_assert( false, "Invalid Type for Normalize vertex_attrib with Size equal 4" );
             }
         } else static_assert( false, "Invalid Size for vertex_attrib" );
     }
@@ -204,7 +204,7 @@ namespace son8::overglad {
     { glVertexAttrib4Nusv( index, values ); }
     SON8_OVERGLAD_DEPR vertex_attrib_N( GLuint index, GLuint const *values )
     { glVertexAttrib4Nuiv( index, values ); }
-    SON8_OVERGLAD_DEPR vertex_attrib_pointer( GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void const *pointer )
+    SON8_OVERGLAD_DEPR vertex_attrib_pointer( GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLvoid const *pointer )
     { glVertexAttribPointer( index, size, type, normalized, stride, pointer ); }
     SON8_OVERGLAD_DEPR enable_vertex_attrib_array( GLuint index)
     { glEnableVertexAttribArray( index ); }
