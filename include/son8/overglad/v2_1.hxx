@@ -111,6 +111,21 @@ namespace son8::overglad {
     { glad_glUseProgram( static_cast< GLuint >( unused ) ); }
     SON8_OVERGLAD_PROC free( types::Program program )
     { glad_glDeleteProgram( program.index( ) ); }
+    // TODO: GetActiveAttrib,GetAttribLocation,BindAttribLocation,GetUniformLocation,GetActiveUniform,Uniform*,UniformMatrix*
+    SON8_OVERGLAD_PROC validate( types::Program program )
+    { glad_glValidateProgram( program.index( ) ); }
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    // TODO: StencilFuncSeparate,StencilOpSeparate
+    SON8_OVERGLAD_PROC blend( enums::Equation separateRGB, enums::Equation separateAlpha )
+    { glad_glBlendEquationSeparate( static_cast< GLenum >( separateRGB ), static_cast< GLenum >( separateAlpha ) ); }
+    // TODO: DrawBuffers,StencilMaskSeparate
+    // Chapter 6: State and State Requests
+    SON8_OVERGLAD_FUNC is_shader( GLuint shader )
+    { return glIsShader( shader ); }
+    // TODO: GetShaderiv
+    SON8_OVERGLAD_FUNC is_program( GLuint program )
+    { return glIsProgram( program ); }
+    // TODO: GetProgramiv,GetAttachedShaders,GetShaderInfoLog,GetProgramInfoLog,GetShaderSource,GetVertexAttrib*,GetVertexAttribPointerv,GetUniform*
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
 #endif//SON8_OVERGLAD_PROFILE_CORE
@@ -215,6 +230,104 @@ namespace son8::overglad {
     { glUseProgram( program ); }
     SON8_OVERGLAD_DEPR delete_program( GLuint program )
     { glDeleteProgram( program ); }
+    SON8_OVERGLAD_DEPR get_active_attrib( GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name )
+    { glGetActiveAttrib( program, index, bufSize, length, size, type, name ); }
+    SON8_OVERGLAD_DEPR get_attrib_location( GLuint program, GLchar const *name )
+    { return glGetAttribLocation( program, name ); }
+    SON8_OVERGLAD_DEPR bind_attrib_location( GLuint program, GLuint index, GLchar const *name )
+    { glBindAttribLocation( program, index, name ); }
+    SON8_OVERGLAD_DEPR get_uniform_location(  GLuint program, GLchar const *name )
+    { return glGetUniformLocation( program, name ); }
+    SON8_OVERGLAD_DEPR get_active_uniform( GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name )
+    { glGetActiveUniform( program, index, bufSize, length, size, type, name ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLint x )
+    { glUniform1i( location, x ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLfloat x )
+    { glUniform1f( location, x ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLint x, GLint y )
+    { glUniform2i( location, x, y ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLfloat x, GLfloat y )
+    { glUniform2f( location, x, y ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLint x, GLint y, GLint z )
+    { glUniform3i( location, x, y, z ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLfloat x, GLfloat y, GLfloat z )
+    { glUniform3f( location, x, y, z ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLint x, GLint y, GLint z, GLint w )
+    { glUniform4i( location, x, y, z, w ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLfloat x, GLfloat y, GLfloat z, GLfloat w )
+    { glUniform4f( location, x, y, z, w ); }
+    SON8_OVERGLAD_DEPR uniform_1( GLint location, GLsizei count, GLint const *value )
+    { glUniform1iv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_1( GLint location, GLsizei count, GLfloat const *value )
+    { glUniform1fv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_2( GLint location, GLsizei count, GLint const *value )
+    { glUniform2iv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_2( GLint location, GLsizei count, GLfloat const *value )
+    { glUniform2fv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_3( GLint location, GLsizei count, GLint const *value )
+    { glUniform3iv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_3( GLint location, GLsizei count, GLfloat const *value )
+    { glUniform3fv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_4( GLint location, GLsizei count, GLint const *value )
+    { glUniform4iv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_4( GLint location, GLsizei count, GLfloat const *value )
+    { glUniform4fv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_2( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix2fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_3( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix3fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_4( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix4fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_2x3( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix2x3fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_2x4( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix2x4fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_3x2( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix3x2fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_3x4( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix3x4fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_4x2( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix4x2fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR uniform_matrix_4x3( GLint location, GLsizei count, GLboolean transpose, GLfloat const *value )
+    { glUniformMatrix4x3fv( location, count, transpose, value ); }
+    SON8_OVERGLAD_DEPR validate_program( GLuint program )
+    { glValidateProgram( program ); }
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    SON8_OVERGLAD_DEPR stencil_func_separate( GLenum face, GLenum func, GLint ref, GLuint mask )
+    { glStencilFuncSeparate( face, func, ref, mask ); }
+    SON8_OVERGLAD_DEPR stencil_op_separate( GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass )
+    { glStencilOpSeparate( face, sfail, dpfail, dppass ); }
+    SON8_OVERGLAD_DEPR blend_equation_separate( GLenum modeRGB, GLenum modeAlpha )
+    { glBlendEquationSeparate( modeRGB, modeAlpha ); }
+    SON8_OVERGLAD_DEPR draw_buffers( GLsizei n, GLenum const *buffers )
+    { glDrawBuffers( n, buffers ); }
+    SON8_OVERGLAD_DEPR stencil_mask_separate( GLenum face, GLuint mask )
+    { glStencilMaskSeparate( face, mask ); }
+    // Chapter 6: State and State Requests
+    SON8_OVERGLAD_DEPR get_shader( GLuint shader, GLenum pname, GLint *params )
+    { glGetShaderiv( shader, pname, params ); }
+    SON8_OVERGLAD_DEPR get_program( GLuint program, GLenum pname, GLint *params )
+    { glGetProgramiv( program, pname, params ); }
+    SON8_OVERGLAD_DEPR get_attached_shaders( GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders )
+    { glGetAttachedShaders( program, maxCount, count, shaders ); }
+    SON8_OVERGLAD_DEPR get_shader_info_log( GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog )
+    { glGetShaderInfoLog( shader, bufSize, length, infoLog ); }
+    SON8_OVERGLAD_DEPR get_program_info_log( GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog )
+    { glGetProgramInfoLog( program, bufSize, length, infoLog ); }
+    SON8_OVERGLAD_DEPR get_shader_source( GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source )
+    { glGetShaderSource( shader, bufSize, length, source ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib( GLuint index, GLenum pname, GLdouble *params )
+    { glGetVertexAttribdv( index, pname, params ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib( GLuint index, GLenum pname, GLfloat *params )
+    { glGetVertexAttribfv( index, pname, params ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib( GLuint index, GLenum pname, GLint *params )
+    { glGetVertexAttribiv( index, pname, params ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib_pointer( GLuint index, GLenum pname, GLvoid **pointer )
+    { glGetVertexAttribPointerv( index, pname, pointer ); }
+    SON8_OVERGLAD_DEPR get_uniform( GLuint program, GLint location, GLfloat *params )
+    { glGetUniformfv( program, location, params ); }
+    SON8_OVERGLAD_DEPR get_uniform( GLuint program, GLint location, GLint *params )
+    { glGetUniformiv( program, location, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
