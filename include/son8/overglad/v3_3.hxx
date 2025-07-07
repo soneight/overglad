@@ -17,9 +17,31 @@
 namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Operation
-    // TODO: VertexAttribI*,VertexAttribP*
+    // TODO: VertexAttribI*,VertexAttribP*,VertexAttribIPointer,VertexAttribDivisor,PrimitiveRestartIndex
+    // ,DrawArraysInstanced,DrawElementsInstanced,DrawElementsBaseVertex,DrawRangeElementsBaseVertex,DrawElementsInstancedBaseVertex
+    // ,MultiDrawElementsBaseVertex,BindBufferRange,BindBufferBase,MapBufferRange,FlushMappedBufferRange,CopyBufferSubData
+    // ,GenVertexArrays,DeleteVertexArrays,BindVertexArray,GetUniformBlockIndex,GetActiveUniformBlockName,GetActiveUniformBlockiv
+    // ,GetUniformIndices,GetActiveUniformName,GetActiveUniformsiv,Uniform*,UniformBlockBinding,TransformFeedbackVaryings
+    // ,GetTransformFeedbackVarying,BeginConditionalRender,EndConditionalRender,BeginTransformFeedback,EndTransformFeedback,ProvokingVertex
+    // Chapter 3: Rasterization
+    // TODO: GetMultisamplefv,GenSamplers,BindSampler,SamplerParameter*,DeleteSamplers,TexImage2DMultisample,TexImage3DMultisample,TexBuffer,TexParameterI*,GenerateMipmap,BindFragDataLocationIndexed,BindFragDataLocation,GetFragDataLocation,GetFragDataIndex
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    // TODO: SampleMaski,Enablei,Disablei,ColorMaski,ClearBuffer*,BlitFramebuffer,BindFramebuffer,DeleteFramebuffers,GenFramebuffers
+    // ,BindRenderbuffer,DeleteRenderbuffers,GenRenderbuffers,RenderbufferStorageMultisample,RenderbufferStorage
+    // ,FramebufferRenderbuffer,FramebufferTexture,FramebufferTexture1D,FramebufferTexture2D,FramebufferTexture3D
+    // ,FramebufferTextureLayer,CheckFramebufferStatus
+    // Chapter 5: Special Functions
+    // TODO: QueryCounter,FenceSync,DeleteSync,ClientWaitSync,WaitSync
+    // Chapter 6: State and State Requests
+    // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v,IsEnabledi,GetTexParameterI*,IsSampler,GetSamplerParameter
+    // ,GetStringi,GetQueryObjecti64v,GetQueryObjectui64v,GetSynciv,IsSync,IsVertexArray,GetVertexAttribI*,IsFramebuffer
+    // ,GetFramebufferAttachmentParameteriv,IsRenderbuffer,GetRenderbufferParameteriv
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
+    // Chapter 2: OpenGL Operation
+    // TODO: VertexP*,TexCoordP*,MultiTexCoordP*,NormalP3uiv*,ColorP*,SecondaryColorP3uiv*
+    // Chapter 3: Rasterization
+    // TODO: ClampColor
 #endif//SON8_OVERGLAD_PROFILE_CORE
     // deprecated
 #ifdef SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -80,7 +102,6 @@ namespace son8::overglad {
     { glVertexAttribP3uiv( index, type, normalized, value ); }
     SON8_OVERGLAD_DEPR vertex_attrib_P_4( GLuint index, GLenum type, GLboolean normalized, GLuint const *value )
     { glVertexAttribP4uiv( index, type, normalized, value ); }
-
     SON8_OVERGLAD_DEPR vertex_attrib_I_pointer( GLuint index, GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
     { glVertexAttribIPointer( index, size, type, stride, pointer ); }
     SON8_OVERGLAD_DEPR vertex_attrib_divisor( GLuint index, GLuint divisor )
@@ -139,6 +160,202 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR get_active_uniforms( GLuint program,
         GLsizei uniformCount, GLuint const *uniformIndices, GLenum pname, GLint *params )
     { glGetActiveUniformsiv( program, uniformCount, uniformIndices, pname, params ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLuint x )
+    { glUniform1ui( location, x ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLuint x, GLuint y )
+    { glUniform2ui( location, x, y ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLuint x, GLuint y, GLuint z )
+    { glUniform3ui( location, x, y, z ); }
+    SON8_OVERGLAD_DEPR uniform( GLint location, GLuint x, GLuint y, GLuint z, GLuint w )
+    { glUniform4ui( location, x, y, z, w ); }
+    SON8_OVERGLAD_DEPR uniform_1( GLint location, GLsizei count, GLuint const *value )
+    { glUniform1uiv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_2( GLint location, GLsizei count, GLuint const *value )
+    { glUniform2uiv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_3( GLint location, GLsizei count, GLuint const *value )
+    { glUniform3uiv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_4( GLint location, GLsizei count, GLuint const *value )
+    { glUniform4uiv( location, count, value ); }
+    SON8_OVERGLAD_DEPR uniform_block_binding( GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding )
+    { glUniformBlockBinding( program, uniformBlockIndex, uniformBlockBinding ); }
+    SON8_OVERGLAD_DEPR transform_feedback_varyings( GLuint program, GLsizei count,
+        GLchar const *const *varyings, GLenum bufferMode )
+    { glTransformFeedbackVaryings( program, count, varyings, bufferMode ); }
+    SON8_OVERGLAD_DEPR get_transform_feedback_varying( GLuint program, GLuint index,
+        GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name )
+    { glGetTransformFeedbackVarying( program, index, bufSize, length, size, type, name ); }
+    SON8_OVERGLAD_DEPR begin_conditional_render( GLuint id, GLenum mode )
+    { glBeginConditionalRender( id, mode ); }
+    SON8_OVERGLAD_DEPR end_conditional_render( )
+    { glEndConditionalRender( ); }
+    SON8_OVERGLAD_DEPR begin_transform_feedback( GLenum primitiveMode )
+    { glBeginTransformFeedback( primitiveMode ); }
+    SON8_OVERGLAD_DEPR end_transform_feedback( )
+    { glEndTransformFeedback( ); }
+    SON8_OVERGLAD_DEPR provoking_vertex( GLuint id )
+    { glProvokingVertex( id ); }
+    // Chapter 3: Rasterization
+    SON8_OVERGLAD_DEPR get_multisamle( GLenum pname, GLuint index, GLfloat *val )
+    { glGetMultisamplefv( pname, index, val ); }
+    SON8_OVERGLAD_DEPR gen_samplers( GLsizei count, GLuint *samplers )
+    { glGenSamplers( count, samplers ); }
+    SON8_OVERGLAD_DEPR bind_sampler( GLuint unit, GLuint sampler )
+    { glBindSampler( unit, sampler ); }
+    SON8_OVERGLAD_DEPR sampler_parameter( GLuint sampler, GLenum pname, GLint const *param )
+    { glSamplerParameteriv( sampler, pname, param ); }
+    SON8_OVERGLAD_DEPR sampler_parameter( GLuint sampler, GLenum pname, GLfloat const *param )
+    { glSamplerParameterfv( sampler, pname, param ); }
+    SON8_OVERGLAD_DEPR sampler_parameter_I( GLuint sampler, GLenum pname, GLint const *param )
+    { glSamplerParameterIiv( sampler, pname, param ); }
+    SON8_OVERGLAD_DEPR sampler_parameter_I( GLuint sampler, GLenum pname, GLuint const *param )
+    { glSamplerParameterIuiv( sampler, pname, param ); }
+    SON8_OVERGLAD_DEPR delete_samplers( GLsizei count, GLuint const *samplers )
+    { glDeleteSamplers( count, samplers ); }
+    SON8_OVERGLAD_DEPR tex_image_multisample( GLenum target, GLsizei samples,
+        GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations )
+    { glTexImage2DMultisample( target, samples, internalformat, width, height, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR tex_image_multisample( GLenum target, GLsizei samples,
+        GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations )
+    { glTexImage3DMultisample( target, samples, internalformat, width, height, depth, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR tex_buffer( GLenum target, GLenum internalformat, GLuint buffer )
+    { glTexBuffer( target, internalformat, buffer ); }
+    SON8_OVERGLAD_DEPR tex_parameter_I( GLenum target, GLenum pname, GLint const *params )
+    { glTexParameterIiv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR tex_parameter_I( GLenum target, GLenum pname, GLuint const *params )
+    { glTexParameterIuiv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR generate_mipmap( GLenum target )
+    { glGenerateMipmap( target ); }
+    SON8_OVERGLAD_DEPR bind_frag_data_location( GLuint program, GLuint colorNumber, GLint index, GLchar const *name )
+    { glBindFragDataLocationIndexed( program, colorNumber, index, name ); }
+    SON8_OVERGLAD_DEPR bind_frag_data_location( GLuint program, GLuint colorNumber, GLchar const *name )
+    { glBindFragDataLocation( program, colorNumber, name ); }
+    SON8_OVERGLAD_DEPR get_frag_data_location( GLuint program, GLchar const *name )
+    { return glGetFragDataLocation( program, name ); }
+    SON8_OVERGLAD_DEPR get_frag_data_index( GLuint program, GLchar const *name )
+    { return glGetFragDataIndex( program, name ); }
+    // Chapter 4: Per-Fragment Operations and the Framebuffer
+    SON8_OVERGLAD_DEPR sample_mask( GLuint maskNumber, GLbitfield mask )
+    { glSampleMaski( maskNumber, mask ); }
+    SON8_OVERGLAD_DEPR enable( GLenum target, GLuint index )
+    { glEnablei( target, index ); }
+    SON8_OVERGLAD_DEPR disable( GLenum target, GLuint index )
+    { glDisablei( target, index ); }
+    SON8_OVERGLAD_DEPR color_mask( GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a )
+    { glColorMaski( index, r, g, b, a ); }
+    SON8_OVERGLAD_DEPR clear_buffer( GLenum buffer, GLint drawbuffer, GLint const *value )
+    { glClearBufferiv( buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_buffer( GLenum buffer, GLint drawbuffer, GLfloat const *value )
+    { glClearBufferfv( buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_buffer( GLenum buffer, GLint drawbuffer, GLuint const *value )
+    { glClearBufferuiv( buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_buffer( GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil )
+    { glClearBufferfi( buffer, drawbuffer, depth, stencil ); }
+    SON8_OVERGLAD_DEPR blit_framebuffer( GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1,
+        GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1,
+        GLbitfield mask, GLenum filter )
+    { glBlitFramebuffer( srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter ); }
+    SON8_OVERGLAD_DEPR bind_framebuffer( GLenum target, GLuint framebuffer )
+    { glBindFramebuffer( target, framebuffer ); }
+    SON8_OVERGLAD_DEPR delete_framebuffers( GLsizei n, GLuint const *framebuffers )
+    { glDeleteFramebuffers( n, framebuffers ); }
+    SON8_OVERGLAD_DEPR gen_framebuffers( GLsizei n, GLuint *framebuffers )
+    { glGenFramebuffers( n, framebuffers ); }
+    SON8_OVERGLAD_DEPR bind_renderbuffer( GLenum target, GLuint renderbuffer )
+    { glBindRenderbuffer( target, renderbuffer ); }
+    SON8_OVERGLAD_DEPR delete_renderbuffers( GLsizei n, GLuint const *renderbuffers )
+    { glDeleteRenderbuffers( n, renderbuffers ); }
+    SON8_OVERGLAD_DEPR gen_renderbuffers( GLsizei n, GLuint *renderbuffers )
+    { glGenRenderbuffers( n, renderbuffers ); }
+    SON8_OVERGLAD_DEPR renderbuffer_storage_multisample( GLenum target, GLsizei samples,
+        GLenum internalformat, GLsizei width, GLsizei height )
+    { glRenderbufferStorageMultisample( target, samples, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR renderbuffer_storage( GLenum target, GLenum internalformat,
+        GLsizei width, GLsizei height )
+    { glRenderbufferStorage( target, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR framebuffer_renderbuffer( GLenum target, GLenum attachment,
+        GLenum renderbuffertarget, GLuint renderbuffer )
+    { glFramebufferRenderbuffer( target, attachment, renderbuffertarget, renderbuffer ); }
+    SON8_OVERGLAD_DEPR framebuffer_texture( GLenum target, GLenum attachment,
+        GLuint texture, GLint level )
+    { glFramebufferTexture( target, attachment, texture, level ); }
+    SON8_OVERGLAD_DEPR framebuffer_texture_1D( GLenum target, GLenum attachment,
+        GLenum textarget, GLuint texture, GLint level )
+    { glFramebufferTexture1D( target, attachment, textarget, texture, level ); }
+    SON8_OVERGLAD_DEPR framebuffer_texture_2D( GLenum target, GLenum attachment,
+        GLenum textarget, GLuint texture, GLint level )
+    { glFramebufferTexture2D( target, attachment, textarget, texture, level ); }
+    SON8_OVERGLAD_DEPR framebuffer_texture_3D( GLenum target, GLenum attachment,
+        GLenum textarget, GLuint texture, GLint level, GLint layer )
+    { glFramebufferTexture3D( target, attachment, textarget, texture, level, layer ); }
+    SON8_OVERGLAD_DEPR framebuffer_texture_layer( GLenum target, GLenum attachment,
+        GLuint texture, GLint level, GLint layer )
+    { glFramebufferTextureLayer( target, attachment, texture, level, layer ); }
+    SON8_OVERGLAD_DEPR check_framebuffer_status( GLenum target )
+    { return glCheckFramebufferStatus( target ); }
+    // Chapter 5: Special Functions
+    SON8_OVERGLAD_DEPR query_counter( GLuint id, GLenum target )
+    { glQueryCounter( id, target ); }
+    SON8_OVERGLAD_DEPR fence_sync( GLenum condition, GLbitfield flags )
+    { return glFenceSync( condition, flags ); }
+    SON8_OVERGLAD_DEPR delete_sync( GLsync sync )
+    { glDeleteSync( sync ); }
+    SON8_OVERGLAD_DEPR client_wait_sync( GLsync sync, GLbitfield flags, GLuint64 timeout )
+    { return glClientWaitSync( sync, flags, timeout ); }
+    SON8_OVERGLAD_DEPR wait_sync( GLsync sync, GLbitfield flags, GLuint64 timeout )
+    { glWaitSync( sync, flags, timeout ); }
+    // Chapter 6: State and State Requests
+    SON8_OVERGLAD_DEPR get_integer( GLenum pname, GLint64 *data )
+    { glGetInteger64v( pname, data ); }
+    SON8_OVERGLAD_DEPR get_boolean( GLenum target, GLuint index, GLboolean *data )
+    { glGetBooleani_v( target, index, data ); }
+    SON8_OVERGLAD_DEPR get_integer( GLenum target, GLuint index, GLint *data )
+    { glGetIntegeri_v( target, index, data ); }
+    SON8_OVERGLAD_DEPR get_integer( GLenum target, GLuint index, GLint64 *data )
+    { glGetInteger64i_v( target, index, data ); }
+    SON8_OVERGLAD_DEPR is_enabled( GLenum target, GLuint index )
+    { return glIsEnabledi( target, index ); }
+    SON8_OVERGLAD_DEPR get_tex_parameter_I( GLenum target, GLenum pname, GLint *params )
+    { glGetTexParameterIiv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR get_tex_parameter_I( GLenum target, GLenum pname, GLuint *params )
+    { glGetTexParameterIuiv( target, pname, params ); }
+    SON8_OVERGLAD_DEPR is_sampler( GLuint sampler )
+    { return glIsSampler( sampler ); }
+    SON8_OVERGLAD_DEPR get_sampler_parameter( GLuint sampler, GLenum pname, GLint *params )
+    { glGetSamplerParameteriv( sampler, pname, params ); }
+    SON8_OVERGLAD_DEPR get_sampler_parameter( GLuint sampler, GLenum pname, GLfloat *params )
+    { glGetSamplerParameterfv( sampler, pname, params ); }
+    SON8_OVERGLAD_DEPR get_sampler_parameter_I( GLuint sampler, GLenum pname, GLint *params )
+    { glGetSamplerParameterIiv( sampler, pname, params ); }
+    SON8_OVERGLAD_DEPR get_sampler_parameter_I( GLuint sampler, GLenum pname, GLuint *params )
+    { glGetSamplerParameterIuiv( sampler, pname, params ); }
+    SON8_OVERGLAD_DEPR get_string( GLenum name, GLuint index )
+    { return glGetStringi( name, index ); }
+    SON8_OVERGLAD_DEPR get_query_object( GLuint id, GLenum pname, GLint64 *params )
+    { glGetQueryObjecti64v( id, pname, params ); }
+    SON8_OVERGLAD_DEPR get_query_object( GLuint id, GLenum pname, GLuint64 *params )
+    { glGetQueryObjectui64v( id, pname, params ); }
+    SON8_OVERGLAD_DEPR get_sync( GLsync sync, GLenum pname, GLsizei bufSize, GLsizei *length, GLint *values )
+    { glGetSynciv( sync, pname, bufSize, length, values ); }
+    SON8_OVERGLAD_DEPR is_sync( GLsync sync )
+    { return glIsSync( sync ); }
+    SON8_OVERGLAD_DEPR get_buffer_parameter( GLenum target, GLenum pname, GLint64 *params )
+    { glGetBufferParameteri64v( target, pname, params ); }
+    SON8_OVERGLAD_DEPR is_vertex_array( GLuint array )
+    { return glIsVertexArray( array ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib_I( GLuint index, GLenum pname, GLint *params )
+    { glGetVertexAttribIiv( index, pname, params ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib_I( GLuint index, GLenum pname, GLuint *params )
+    { glGetVertexAttribIuiv( index, pname, params ); }
+    SON8_OVERGLAD_DEPR get_uniform( GLuint program, GLint location, GLuint *params )
+    { glGetUniformuiv( program, location, params ); }
+    SON8_OVERGLAD_DEPR is_framebuffer( GLuint framebuffer )
+    { return glIsFramebuffer( framebuffer ); }
+    SON8_OVERGLAD_DEPR get_framebuffer_attachment_parameter( GLenum target, GLenum attachment, GLenum pname, GLint *params )
+    { glGetFramebufferAttachmentParameteriv( target, attachment, pname, params ); }
+    SON8_OVERGLAD_DEPR is_renderbuffer( GLuint renderbuffer )
+    { return glIsRenderbuffer( renderbuffer ); }
+    SON8_OVERGLAD_DEPR get_renderbuffer_parameter( GLenum target, GLenum pname, GLint *params )
+    { glGetRenderbufferParameteriv( target, pname, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
