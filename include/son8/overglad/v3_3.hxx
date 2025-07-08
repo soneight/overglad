@@ -33,9 +33,22 @@ namespace son8::overglad {
     // Chapter 5: Special Functions
     // TODO: QueryCounter,FenceSync,DeleteSync,ClientWaitSync,WaitSync
     // Chapter 6: State and State Requests
-    // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v,IsEnabledi,GetTexParameterI*,IsSampler,GetSamplerParameter
-    // ,GetStringi,GetQueryObjecti64v,GetQueryObjectui64v,GetSynciv,IsSync,IsVertexArray,GetVertexAttribI*,IsFramebuffer
-    // ,GetFramebufferAttachmentParameteriv,IsRenderbuffer,GetRenderbufferParameteriv
+    // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v,IsEnabledi,GetTexParameterI*
+    SON8_OVERGLAD_FUNC is_sampler( GLuint sampler )
+    { return glIsSampler( sampler ); }
+    // TODO: GetSamplerParameter,GetStringi,GetQueryObjecti64v,GetQueryObjectui64v,GetSynciv
+    SON8_OVERGLAD_FUNC is_sync( GLsync sync )
+    { return glIsSync( sync ); }
+    // GetBufferParameteri64v
+    SON8_OVERGLAD_FUNC is_vertex_array( GLuint array )
+    { return glIsVertexArray( array ); }
+    // TODO: GetVertexAttribI*
+    SON8_OVERGLAD_FUNC is_framebuffer( GLuint framebuffer )
+    { return glIsFramebuffer( framebuffer ); }
+    // TODO: GetFramebufferAttachmentParameteriv
+    SON8_OVERGLAD_FUNC is_renderbuffer( GLuint renderbuffer )
+    { return glIsRenderbuffer( renderbuffer ); }
+    // TODO: GetRenderbufferParameteriv
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
@@ -318,8 +331,6 @@ namespace son8::overglad {
     { glGetTexParameterIiv( target, pname, params ); }
     SON8_OVERGLAD_DEPR get_tex_parameter_I( GLenum target, GLenum pname, GLuint *params )
     { glGetTexParameterIuiv( target, pname, params ); }
-    SON8_OVERGLAD_DEPR is_sampler( GLuint sampler )
-    { return glIsSampler( sampler ); }
     SON8_OVERGLAD_DEPR get_sampler_parameter( GLuint sampler, GLenum pname, GLint *params )
     { glGetSamplerParameteriv( sampler, pname, params ); }
     SON8_OVERGLAD_DEPR get_sampler_parameter( GLuint sampler, GLenum pname, GLfloat *params )
@@ -336,24 +347,16 @@ namespace son8::overglad {
     { glGetQueryObjectui64v( id, pname, params ); }
     SON8_OVERGLAD_DEPR get_sync( GLsync sync, GLenum pname, GLsizei bufSize, GLsizei *length, GLint *values )
     { glGetSynciv( sync, pname, bufSize, length, values ); }
-    SON8_OVERGLAD_DEPR is_sync( GLsync sync )
-    { return glIsSync( sync ); }
     SON8_OVERGLAD_DEPR get_buffer_parameter( GLenum target, GLenum pname, GLint64 *params )
     { glGetBufferParameteri64v( target, pname, params ); }
-    SON8_OVERGLAD_DEPR is_vertex_array( GLuint array )
-    { return glIsVertexArray( array ); }
     SON8_OVERGLAD_DEPR get_vertex_attrib_I( GLuint index, GLenum pname, GLint *params )
     { glGetVertexAttribIiv( index, pname, params ); }
     SON8_OVERGLAD_DEPR get_vertex_attrib_I( GLuint index, GLenum pname, GLuint *params )
     { glGetVertexAttribIuiv( index, pname, params ); }
     SON8_OVERGLAD_DEPR get_uniform( GLuint program, GLint location, GLuint *params )
     { glGetUniformuiv( program, location, params ); }
-    SON8_OVERGLAD_DEPR is_framebuffer( GLuint framebuffer )
-    { return glIsFramebuffer( framebuffer ); }
     SON8_OVERGLAD_DEPR get_framebuffer_attachment_parameter( GLenum target, GLenum attachment, GLenum pname, GLint *params )
     { glGetFramebufferAttachmentParameteriv( target, attachment, pname, params ); }
-    SON8_OVERGLAD_DEPR is_renderbuffer( GLuint renderbuffer )
-    { return glIsRenderbuffer( renderbuffer ); }
     SON8_OVERGLAD_DEPR get_renderbuffer_parameter( GLenum target, GLenum pname, GLint *params )
     { glGetRenderbufferParameteriv( target, pname, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
