@@ -26,7 +26,12 @@ namespace son8::overglad {
     // Chapter 3: Rasterization
     // TODO: GetMultisamplefv,GenSamplers,BindSampler,SamplerParameter*,DeleteSamplers,TexImage2DMultisample,TexImage3DMultisample,TexBuffer,TexParameterI*,GenerateMipmap,BindFragDataLocationIndexed,BindFragDataLocation,GetFragDataLocation,GetFragDataIndex
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    // TODO: SampleMaski,Enablei,Disablei,ColorMaski,ClearBuffer*,BlitFramebuffer,BindFramebuffer,DeleteFramebuffers,GenFramebuffers
+    // TODO: SampleMaski,Enablei,Disablei,ColorMaski,ClearBuffer*
+
+    // glClampColor: in core has only one target (use compatibility for multiple targets)
+    SON8_OVERGLAD_PROC mode( enums::Clamp clamp )
+    { glad_glClampColor( static_cast< GLenum >( enums::ClampColor::Read ), static_cast< GLenum >( clamp ) ); }
+    // TODO: BlitFramebuffer,BindFramebuffer,DeleteFramebuffers,GenFramebuffers
     // ,BindRenderbuffer,DeleteRenderbuffers,GenRenderbuffers,RenderbufferStorageMultisample,RenderbufferStorage
     // ,FramebufferRenderbuffer,FramebufferTexture,FramebufferTexture1D,FramebufferTexture2D,FramebufferTexture3D
     // ,FramebufferTextureLayer,CheckFramebufferStatus
@@ -54,7 +59,10 @@ namespace son8::overglad {
     // Chapter 2: OpenGL Operation
     // TODO: VertexP*,TexCoordP*,MultiTexCoordP*,NormalP3uiv*,ColorP*,SecondaryColorP3uiv*
     // Chapter 3: Rasterization
-    // TODO: ClampColor
+
+    // glClampColor
+    SON8_OVERGLAD_PROC mode( enums::ClampColor target, enums::Clamp clamp )
+    { glad_glClampColor( static_cast< GLenum >( target ), static_cast< GLenum >( clamp ) ); }
 #endif//SON8_OVERGLAD_PROFILE_CORE
     // deprecated
 #ifdef SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -210,6 +218,8 @@ namespace son8::overglad {
     // Chapter 3: Rasterization
     SON8_OVERGLAD_DEPR get_multisamle( GLenum pname, GLuint index, GLfloat *val )
     { glGetMultisamplefv( pname, index, val ); }
+    SON8_OVERGLAD_DEPR clamp_color( GLenum target, GLenum clamp )
+    { glClampColor( target, clamp ); }
     SON8_OVERGLAD_DEPR gen_samplers( GLsizei count, GLuint *samplers )
     { glGenSamplers( count, samplers ); }
     SON8_OVERGLAD_DEPR bind_sampler( GLuint unit, GLuint sampler )

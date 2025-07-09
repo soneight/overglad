@@ -127,6 +127,23 @@ namespace son8::overglad::enums {
         Fast    = 0x1101,
         Nice    = 0x1102,
     }; // enum class Care
+
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    // ClampColor
+    enum class Clamp : GLenum {
+        False   = 0x0000,
+        True    = 0x0001,
+        Fixed   = 0x891D,
+    }; // enum class Clamp
+#   ifndef SON8_OVERGLAD_PROFILE_CORE
+    enum class ClampColor : GLenum {
+        Vertex = 0x891A,
+        Fragment = 0x891B,
+        Read  = 0x891C, // Only this target are available in core profile
+    }; // enum class ClampTarget
+#   endif
+#endif//SON8_OVERGLAD_VERSION_3_3
+
     // Clear
     enum class Clearbit : GLbitfield {
         Depth   = 0x00000100,
