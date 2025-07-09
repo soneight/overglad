@@ -67,6 +67,66 @@ namespace son8::overglad {
     // deprecated
 #ifdef SON8_OVERGLAD_INCLUDE_DEPRECATED
     // Chapter 2: OpenGL Operation
+    SON8_OVERGLAD_DEPR vertex_P_2( GLenum type, GLuint coords )
+    { glVertexP2ui( type, coords ); }
+    SON8_OVERGLAD_DEPR vertex_P_3( GLenum type, GLuint coords )
+    { glVertexP3ui( type, coords ); }
+    SON8_OVERGLAD_DEPR vertex_P_4( GLenum type, GLuint coords )
+    { glVertexP4ui( type, coords ); }
+    SON8_OVERGLAD_DEPR vertex_P_2( GLenum type, GLuint const *coords )
+    { glVertexP2uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR vertex_P_3( GLenum type, GLuint const *coords )
+    { glVertexP3uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR vertex_P_4( GLenum type, GLuint const *coords )
+    { glVertexP4uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_1( GLenum type, GLuint coords )
+    { glTexCoordP1ui( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_2( GLenum type, GLuint coords )
+    { glTexCoordP2ui( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_3( GLenum type, GLuint coords )
+    { glTexCoordP3ui( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_4( GLenum type, GLuint coords )
+    { glTexCoordP4ui( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_1( GLenum type, GLuint const *coords )
+    { glTexCoordP1uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_2( GLenum type, GLuint const *coords )
+    { glTexCoordP2uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_3( GLenum type, GLuint const *coords )
+    { glTexCoordP3uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_4( GLenum type, GLuint const *coords )
+    { glTexCoordP4uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_1( GLenum texture, GLenum type, GLuint coords )
+    { glMultiTexCoordP1ui( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_2( GLenum texture, GLenum type, GLuint coords )
+    { glMultiTexCoordP2ui( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_3( GLenum texture, GLenum type, GLuint coords )
+    { glMultiTexCoordP3ui( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_4( GLenum texture, GLenum type, GLuint coords )
+    { glMultiTexCoordP4ui( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_1( GLenum texture, GLenum type, GLuint const *coords )
+    { glMultiTexCoordP1uiv( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_2( GLenum texture, GLenum type, GLuint const *coords )
+    { glMultiTexCoordP2uiv( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_3( GLenum texture, GLenum type, GLuint const *coords )
+    { glMultiTexCoordP3uiv( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR tex_coord_P_4( GLenum texture, GLenum type, GLuint const *coords )
+    { glMultiTexCoordP4uiv( texture, type, coords ); }
+    SON8_OVERGLAD_DEPR normal_P( GLenum type, GLuint coords )
+    { glNormalP3ui( type, coords ); }
+    SON8_OVERGLAD_DEPR normal_P( GLenum type, GLuint const *coords )
+    { glNormalP3uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR color_P_3( GLenum type, GLuint coords )
+    { glColorP3ui( type, coords ); }
+    SON8_OVERGLAD_DEPR color_P_4( GLenum type, GLuint coords )
+    { glColorP4ui( type, coords ); }
+    SON8_OVERGLAD_DEPR color_P_3( GLenum type, GLuint const *coords )
+    { glColorP3uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR color_P_4( GLenum type, GLuint const *coords )
+    { glColorP4uiv( type, coords ); }
+    SON8_OVERGLAD_DEPR secondary_color_P( GLenum type, GLuint coords )
+    { glSecondaryColorP3ui( type, coords ); }
+    SON8_OVERGLAD_DEPR secondary_color_P( GLenum type, GLuint const *coords )
+    { glSecondaryColorP3uiv( type, coords ); }
     SON8_OVERGLAD_DEPR vertex_attrib_I( GLuint index, GLint x )
     { glVertexAttribI1i( index, x ); }
     SON8_OVERGLAD_DEPR vertex_attrib_I( GLuint index, GLuint x )
