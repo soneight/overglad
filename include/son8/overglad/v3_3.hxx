@@ -57,7 +57,84 @@ namespace son8::overglad {
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
-    // TODO: VertexP*,TexCoordP*,MultiTexCoordP*,NormalP3uiv*,ColorP*,SecondaryColorP3uiv*
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC vertex( types::Packed< Pack, Size > type, GLuint coords ) {
+        /*_*/if constexpr ( Size == 2 ) glad_glVertexP2ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 3 ) glad_glVertexP3ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 4 ) glad_glVertexP4ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed vertex" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC vertex( types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        /*_*/if constexpr ( Size == 2 ) glad_glVertexP2uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 3 ) glad_glVertexP3uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 4 ) glad_glVertexP4uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed vertex" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC tex_coord( types::Packed< Pack, Size > type, GLuint coords ) {
+        /*_*/if constexpr ( Size == 1 ) glad_glTexCoordP1ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 2 ) glad_glTexCoordP2ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 3 ) glad_glTexCoordP3ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 4 ) glad_glTexCoordP4ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed tex_coord" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC tex_coord( types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        /*_*/if constexpr ( Size == 1 ) glad_glTexCoordP1uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 2 ) glad_glTexCoordP2uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 3 ) glad_glTexCoordP3uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 4 ) glad_glTexCoordP4uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed tex_coord" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::Packed< Pack, Size > type, GLuint coords ) {
+        /*_*/if constexpr ( Size == 1 ) glad_glMultiTexCoordP1ui( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 2 ) glad_glMultiTexCoordP2ui( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 3 ) glad_glMultiTexCoordP3ui( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 4 ) glad_glMultiTexCoordP4ui( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed Multi tex_coord" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC tex_coord( enums::Multi texture, types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        /*_*/if constexpr ( Size == 1 ) glad_glMultiTexCoordP1uiv( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 2 ) glad_glMultiTexCoordP2uiv( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 3 ) glad_glMultiTexCoordP3uiv( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 4 ) glad_glMultiTexCoordP4uiv( static_cast< GLenum >( texture ), static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed Multi tex_coord" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC normal( types::Packed< Pack, Size > type, GLuint coords ) {
+        if constexpr ( Size == 3 ) glad_glNormalP3ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed normal" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC normal( types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        if constexpr ( Size == 3 ) glad_glNormalP3uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed normal" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC color( types::Packed< Pack, Size > type, GLuint coords ) {
+        /*_*/if constexpr ( Size == 3 ) glad_glColorP3ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else if constexpr ( Size == 4 ) glad_glColorP4ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed color" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC color( types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        /*_*/if constexpr ( Size == 3 ) glad_glColorP3uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else if constexpr ( Size == 4 ) glad_glColorP4uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed color" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC secondary_color( types::Packed< Pack, Size > type, GLuint coords ) {
+        if constexpr ( Size == 3 ) glad_glSecondaryColorP3ui( static_cast< GLenum >( type.pack( ) ), coords );
+        else static_assert( false, "Invalid Size for Packed secondary_color" );
+    }
+    template< enums::Packed Pack, unsigned Size >
+    SON8_OVERGLAD_PROC secondary_color( types::Packed< Pack, Size > type, types::array1ui const &coords ) {
+        if constexpr ( Size == 3 ) glad_glSecondaryColorP3uiv( static_cast< GLenum >( type.pack( ) ), coords.data( ) );
+        else static_assert( false, "Invalid Size for Packed secondary_color" );
+    }
     // Chapter 3: Rasterization
 
     // glClampColor

@@ -347,6 +347,20 @@ namespace son8::overglad::enums {
         Set             = 0x150F,
     }; // enum class Op
 
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    // VertexAttribP*,VetexP*,TexCoordP*,NormalP*,ColorP*,SecondaryColorP*
+    enum class Packed : GLenum {
+        Unsign  = 0x8368,
+        Signed  = 0x8D9F,
+    }; // enum class Packed
+
+    constexpr bool Packed_is_enum( GLenum packed ) noexcept
+    {
+        return packed == static_cast< GLenum >( Packed::Unsign )
+            || packed == static_cast< GLenum >( Packed::Signed );
+    } // constexpr enum_is_packed
+#endif//SON8_OVERGLAD_VERSION_3_3
+
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // ClipPlane
     enum class Plane : GLenum {
@@ -467,6 +481,9 @@ namespace son8::overglad::types {
 
     using array16f      = std::array< GLfloat, 16 >;
     using array16d      = std::array< GLdouble, 16 >;
+#   ifdef SON8_OVERGLAD_VERSION_3_3
+    using array1ui     = std::array< GLuint, 1 >;
+#   endif//SON8_OVERGLAD_VERSION_3_3
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
@@ -568,6 +585,26 @@ namespace son8::overglad::types {
         auto index( ) const noexcept { return index_; }
     };
 #endif//SON8_OVERGLAD_VERSION_2_1
+
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    template< enums::Packed Pack, unsigned Size >
+    struct Packed final {
+        static_assert( 0 < Size && Size < 5, "Packed Size must be in range [1,4]" );
+        static_assert( enums::Packed_is_enum( static_cast< GLenum >( Pack ) ), "Packed Type must be Packed::Unsign or Packed::Signed" );
+        constexpr auto size( ) const noexcept { return Size; }
+        constexpr auto pack( ) const noexcept { return Pack; }
+    };
+
+    using packed1u  = Packed< enums::Packed::Unsign, 1 >;
+    using packed1s  = Packed< enums::Packed::Signed, 1 >;
+    using packed2u  = Packed< enums::Packed::Unsign, 2 >;
+    using packed2s  = Packed< enums::Packed::Signed, 2 >;
+    using packed3u  = Packed< enums::Packed::Unsign, 3 >;
+    using packed3s  = Packed< enums::Packed::Signed, 3 >;
+    using packed4u  = Packed< enums::Packed::Unsign, 4 >;
+    using packed4s  = Packed< enums::Packed::Signed, 4 >;
+
+#endif//SON8_OVERGLAD_VERSION_3_3
 } // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto
