@@ -644,5 +644,18 @@ namespace son8::overglad::types {
 #include <son8/overglad/v4_3.hxx>
 #endif    //SON8_OVERGLAD_INCLUDE
 
+#ifdef  SON8_OVERGLAD_VERSION_4_6
+namespace son8::overglad {
+    // core
+
+    // compatibility
+#   ifndef SON8_OVERGLAD_PROFILE_CORE
+#   endif//SON8_OVERGLAD_PROFILE_CORE
+    // deprecated
+#   ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
+#   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
+} // namespace son8::overglad
+#endif//SON8_OVERGLAD_VERSION_4_6
+
 #endif//SON8_OVERGLAD_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
