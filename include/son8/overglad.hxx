@@ -121,6 +121,22 @@ namespace son8::overglad::enums {
         Edge_Flag_Array         = 0x8079,
 #endif//SON8_OVERGLAD_PROFILE_CORE
     }; // enum class Capability
+
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    // Enablei, Disablei, IsEnabledi
+    enum class Capi : GLenum {
+        Blend = 0x0BE2,
+    }; // enum class Capi
+
+    template< bool IsEnable >
+    struct Capi_ {
+        Capi value;
+        constexpr static inline Capi_ const Blend{ Capi::Blend };
+    };
+    using Enablei = Capi_< true >;
+    using Disablei = Capi_< false >;
+#endif//SON8_OVERGLAD_VERSION_3_3
+
     // Hint
     enum class Care : GLenum {
         Dont    = 0x1100,
@@ -379,6 +395,14 @@ namespace son8::overglad::enums {
         Line    = 0x1B01,
         Fill    = 0x1B02,
     }; // enum class Polygon
+
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    enum class Provoke : GLenum {
+        First   = 0x8E4D,
+        Last    = 0x8E4E,
+    };
+#endif//SON8_OVERGLAD_VERSION_3_3
+
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // RenderMode
     enum class Render : GLenum {

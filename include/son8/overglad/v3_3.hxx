@@ -22,11 +22,23 @@ namespace son8::overglad {
     // ,MultiDrawElementsBaseVertex,BindBufferRange,BindBufferBase,MapBufferRange,FlushMappedBufferRange,CopyBufferSubData
     // ,GenVertexArrays,DeleteVertexArrays,BindVertexArray,GetUniformBlockIndex,GetActiveUniformBlockName,GetActiveUniformBlockiv
     // ,GetUniformIndices,GetActiveUniformName,GetActiveUniformsiv,Uniform*,UniformBlockBinding,TransformFeedbackVaryings
-    // ,GetTransformFeedbackVarying,BeginConditionalRender,EndConditionalRender,BeginTransformFeedback,EndTransformFeedback,ProvokingVertex
+    // ,GetTransformFeedbackVarying,BeginConditionalRender,EndConditionalRender,BeginTransformFeedback,EndTransformFeedback
+
+    // ProvokingVertex
+    SON8_OVERGLAD_PROC mode( enums::Provoke provoke )
+    { glad_glProvokingVertex( static_cast< GLenum >( provoke ) ); }
     // Chapter 3: Rasterization
     // TODO: GetMultisamplefv,GenSamplers,BindSampler,SamplerParameter*,DeleteSamplers,TexImage2DMultisample,TexImage3DMultisample,TexBuffer,TexParameterI*,GenerateMipmap,BindFragDataLocationIndexed,BindFragDataLocation,GetFragDataLocation,GetFragDataIndex
     // Chapter 4: Per-Fragment Operations and the Framebuffer
-    // TODO: SampleMaski,Enablei,Disablei,ColorMaski,ClearBuffer*
+    // TODO: SampleMaski
+
+    // Enablei
+    SON8_OVERGLAD_PROC mode( enums::Enablei enablei, GLuint index )
+    { glad_glEnablei( static_cast< GLenum >( enablei.value ), index ); }
+    // Disablei
+    SON8_OVERGLAD_PROC mode( enums::Disablei disablei, GLuint index )
+    { glad_glDisablei( static_cast< GLenum >( disablei.value ), index ); }
+    // TODO: ColorMaski,ClearBuffer*
 
     // glClampColor: in core has only one target (use compatibility for multiple targets)
     SON8_OVERGLAD_PROC mode( enums::Clamp clamp )
@@ -38,21 +50,31 @@ namespace son8::overglad {
     // Chapter 5: Special Functions
     // TODO: QueryCounter,FenceSync,DeleteSync,ClientWaitSync,WaitSync
     // Chapter 6: State and State Requests
-    // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v,IsEnabledi,GetTexParameterI*
+    // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v
+
+    // IsEnabledi
+    SON8_OVERGLAD_FUNC get( enums::Capi, GLuint index )
+    { return glad_glIsEnabledi( static_cast< GLenum >( enums::Capi::Blend ), index ); }
+    // TODO: GetTexParameterI*
+
     SON8_OVERGLAD_FUNC is_sampler( GLuint sampler )
-    { return glIsSampler( sampler ); }
+    { return glad_glIsSampler( sampler ); }
     // TODO: GetSamplerParameter,GetStringi,GetQueryObjecti64v,GetQueryObjectui64v,GetSynciv
+
     SON8_OVERGLAD_FUNC is_sync( GLsync sync )
-    { return glIsSync( sync ); }
-    // GetBufferParameteri64v
+    { return glad_glIsSync( sync ); }
+    // TODO: GetBufferParameteri64v
+
     SON8_OVERGLAD_FUNC is_vertex_array( GLuint array )
-    { return glIsVertexArray( array ); }
+    { return glad_glIsVertexArray( array ); }
     // TODO: GetVertexAttribI*
+
     SON8_OVERGLAD_FUNC is_framebuffer( GLuint framebuffer )
-    { return glIsFramebuffer( framebuffer ); }
+    { return glad_glIsFramebuffer( framebuffer ); }
     // TODO: GetFramebufferAttachmentParameteriv
+
     SON8_OVERGLAD_FUNC is_renderbuffer( GLuint renderbuffer )
-    { return glIsRenderbuffer( renderbuffer ); }
+    { return glad_glIsRenderbuffer( renderbuffer ); }
     // TODO: GetRenderbufferParameteriv
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -350,10 +372,10 @@ namespace son8::overglad {
     { glBeginTransformFeedback( primitiveMode ); }
     SON8_OVERGLAD_DEPR end_transform_feedback( )
     { glEndTransformFeedback( ); }
-    SON8_OVERGLAD_DEPR provoking_vertex( GLuint id )
-    { glProvokingVertex( id ); }
+    SON8_OVERGLAD_DEPR provoking_vertex( GLenum provokeMode )
+    { glProvokingVertex( provokeMode ); }
     // Chapter 3: Rasterization
-    SON8_OVERGLAD_DEPR get_multisamle( GLenum pname, GLuint index, GLfloat *val )
+    SON8_OVERGLAD_DEPR get_multisample( GLenum pname, GLuint index, GLfloat *val )
     { glGetMultisamplefv( pname, index, val ); }
     SON8_OVERGLAD_DEPR clamp_color( GLenum target, GLenum clamp )
     { glClampColor( target, clamp ); }
