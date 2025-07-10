@@ -1,5 +1,5 @@
 cmake_minimum_required( VERSION 3.14...3.27 )
-project( overglad VERSION 0.3.1 LANGUAGES CXX )
+project( overglad VERSION 0.4.0 LANGUAGES CXX )
 
 set( SON8PROJ son8__${PROJECT_NAME} )
 
