@@ -53,8 +53,8 @@ namespace son8::overglad {
     // TODO: GetInteger64v,GetBooleani_v,GetIntegeri_v,GetInteger64i_v
 
     // IsEnabledi
-    SON8_OVERGLAD_FUNC get( enums::Capi, GLuint index )
-    { return glad_glIsEnabledi( static_cast< GLenum >( enums::Capi::Blend ), index ); }
+    SON8_OVERGLAD_FUNC get( enums::Capi target, GLuint index )
+    { return glad_glIsEnabledi( static_cast< GLenum >( target ), index ); }
     // TODO: GetTexParameterI*
 
     SON8_OVERGLAD_FUNC is_sampler( GLuint sampler )
