@@ -121,10 +121,10 @@ namespace son8::overglad {
     // TODO: DrawBuffers,StencilMaskSeparate
     // Chapter 6: State and State Requests
     SON8_OVERGLAD_FUNC is_shader( GLuint shader )
-    { return glIsShader( shader ); }
+    { return glad_glIsShader( shader ); }
     // TODO: GetShaderiv
     SON8_OVERGLAD_FUNC is_program( GLuint program )
-    { return glIsProgram( program ); }
+    { return glad_glIsProgram( program ); }
     // TODO: GetProgramiv,GetAttachedShaders,GetShaderInfoLog,GetProgramInfoLog,GetShaderSource,GetVertexAttrib*,GetVertexAttribPointerv,GetUniform*
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
