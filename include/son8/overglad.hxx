@@ -153,9 +153,9 @@ namespace son8::overglad::enums {
     }; // enum class Clamp
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
     enum class ClampColor : GLenum {
-        Vertex = 0x891A,
-        Fragment = 0x891B,
-        Read  = 0x891C, // Only this target are available in core profile
+        Vertex      = 0x891A,
+        Fragment    = 0x891B,
+        Read        = 0x891C, // Only this target are available in core profile
     }; // enum class ClampColor
 #   endif
 #endif//SON8_OVERGLAD_VERSION_3_3

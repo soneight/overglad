@@ -42,7 +42,7 @@ namespace son8::overglad {
 
     // glClampColor: in core has only one target (use compatibility for multiple targets)
     SON8_OVERGLAD_PROC mode( enums::Clamp clamp )
-    { glad_glClampColor( static_cast< GLenum >( enums::ClampColor::Read ), static_cast< GLenum >( clamp ) ); }
+    { glad_glClampColor( static_cast< GLenum >( 0x891C ), static_cast< GLenum >( clamp ) ); }
     // TODO: BlitFramebuffer,BindFramebuffer,DeleteFramebuffers,GenFramebuffers
     // ,BindRenderbuffer,DeleteRenderbuffers,GenRenderbuffers,RenderbufferStorageMultisample,RenderbufferStorage
     // ,FramebufferRenderbuffer,FramebufferTexture,FramebufferTexture1D,FramebufferTexture2D,FramebufferTexture3D
