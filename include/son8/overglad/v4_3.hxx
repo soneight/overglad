@@ -250,6 +250,34 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR get_program_stage( GLuint program, GLenum shadertype, GLenum pname, GLint *params )
     { glGetProgramStageiv( program, shadertype, pname, params ); }
     // Chapter 8: Textures and Samplers
+    SON8_OVERGLAD_DEPR tex_buffer_range( GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size )
+    { glTexBufferRange( target, internalformat, buffer, offset, size ); }
+    SON8_OVERGLAD_DEPR texture_view( GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat,
+        GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers )
+    { glTextureView( texture, target, origtexture, internalformat, minlayer, numlayers, minlevel, numlevels ); }
+    SON8_OVERGLAD_DEPR tex_storage( GLenum target, GLsizei levels, GLenum internalformat,
+        GLsizei width )
+    { glTexStorage1D( target, levels, internalformat, width ); }
+    SON8_OVERGLAD_DEPR tex_storage( GLenum target, GLsizei levels, GLenum internalformat,
+        GLsizei width, GLsizei height )
+    { glTexStorage2D( target, levels, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR tex_storage( GLenum target, GLsizei levels, GLenum internalformat,
+        GLsizei width, GLsizei height, GLsizei depth )
+    { glTexStorage3D( target, levels, internalformat, width, height, depth ); }
+    SON8_OVERGLAD_DEPR tex_storage_multisample( GLenum target, GLsizei samples, GLenum internalformat,
+        GLsizei width, GLsizei height, GLboolean fixedsamplelocations )
+    { glTexStorage2DMultisample( target, samples, internalformat, width, height, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR tex_storage_multisample( GLenum target, GLsizei samples, GLenum internalformat,
+        GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations )
+    { glTexStorage3DMultisample( target, samples, internalformat, width, height, depth, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR invalidate_tex_sub_image( GLuint texture, GLint level,
+        GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth )
+    { glInvalidateTexSubImage( texture, level, xoffset, yoffset, zoffset, width, height, depth ); }
+    SON8_OVERGLAD_DEPR invalidate_tex_image( GLuint texture, GLint level )
+    { glInvalidateTexImage( texture, level ); }
+    SON8_OVERGLAD_DEPR bind_image_texture( GLuint unit, GLuint texture, GLint level,
+        GLboolean layered, GLint layer, GLenum access, GLenum format )
+    { glBindImageTexture( unit, texture, level, layered, layer, access, format ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
