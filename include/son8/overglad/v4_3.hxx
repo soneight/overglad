@@ -278,6 +278,68 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR bind_image_texture( GLuint unit, GLuint texture, GLint level,
         GLboolean layered, GLint layer, GLenum access, GLenum format )
     { glBindImageTexture( unit, texture, level, layered, layer, access, format ); }
+    // Chapter 9: Framebuffer Objects
+    SON8_OVERGLAD_DEPR framebuffer_parameter( GLenum target, GLenum pname, GLint param )
+    { glFramebufferParameteri( target, pname, param ); }
+    SON8_OVERGLAD_DEPR get_framebuffer_parameter( GLenum target, GLenum pname, GLint *params )
+    { glGetFramebufferParameteriv( target, pname, params ); }
+    // Chapter 10: Vertex Specification and Drawing Commands
+    SON8_OVERGLAD_DEPR patch_parameter( GLenum pname, GLint value )
+    { glPatchParameteri( pname, value ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L( GLuint index, GLdouble x )
+    { glVertexAttribL1d( index, x ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L( GLuint index, GLdouble x, GLdouble y )
+    { glVertexAttribL2d( index, x, y ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L( GLuint index, GLdouble x, GLdouble y, GLdouble z )
+    { glVertexAttribL3d( index, x, y, z ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L( GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w )
+    { glVertexAttribL4d( index, x, y, z, w ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_1( GLuint index, GLdouble const *v )
+    { glVertexAttribL1dv( index, v ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_2( GLuint index, GLdouble const *v )
+    { glVertexAttribL2dv( index, v ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_3( GLuint index, GLdouble const *v )
+    { glVertexAttribL3dv( index, v ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_4( GLuint index, GLdouble const *v )
+    { glVertexAttribL4dv( index, v ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_format( GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset )
+    { glVertexAttribFormat( attribindex, size, type, normalized, relativeoffset ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_I_format( GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset )
+    { glVertexAttribIFormat( attribindex, size, type, relativeoffset ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_format( GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset )
+    { glVertexAttribLFormat( attribindex, size, type, relativeoffset ); }
+    SON8_OVERGLAD_DEPR bind_vertex_buffer( GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride )
+    { glBindVertexBuffer( bindingindex, buffer, offset, stride ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_binding( GLuint attribindex, GLuint bindingindex )
+    { glVertexAttribBinding( attribindex, bindingindex ); }
+    SON8_OVERGLAD_DEPR vertex_attrib_L_pointer( GLuint index, GLint size, GLenum type, GLsizei stride, GLvoid const *pointer )
+    { glVertexAttribLPointer( index, size, type, stride, pointer ); }
+    SON8_OVERGLAD_DEPR vertex_binding_divisor( GLuint bindingindex, GLuint divisor )
+    { glVertexBindingDivisor( bindingindex, divisor ); }
+    SON8_OVERGLAD_DEPR draw_arrays_instanced_base_instance( GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance )
+    { glDrawArraysInstancedBaseInstance( mode, first, count, instancecount, baseinstance ); }
+    SON8_OVERGLAD_DEPR draw_arrays_indirect( GLenum mode, GLvoid const *indirect )
+    { glDrawArraysIndirect( mode, indirect ); }
+    SON8_OVERGLAD_DEPR multi_draw_arrays_indirect( GLenum mode, GLvoid const *indirect, GLsizei drawcount, GLsizei stride )
+    { glMultiDrawArraysIndirect( mode, indirect, drawcount, stride ); }
+    SON8_OVERGLAD_DEPR draw_elements_instanced_base_instance( GLenum mode, GLsizei count, GLenum type,
+        GLvoid const *indices, GLsizei instancecount, GLuint baseinstance )
+    { glDrawElementsInstancedBaseInstance( mode, count, type, indices, instancecount, baseinstance ); }
+    SON8_OVERGLAD_DEPR draw_elements_instanced_base_vertex_base_instance( GLenum mode, GLsizei count, GLenum type,
+        GLvoid const *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance )
+    { glDrawElementsInstancedBaseVertexBaseInstance( mode, count, type, indices, instancecount, basevertex, baseinstance ); }
+    SON8_OVERGLAD_DEPR draw_elements_indirect( GLenum mode, GLenum type, GLvoid const *indirect )
+    { glDrawElementsIndirect( mode, type, indirect ); }
+    SON8_OVERGLAD_DEPR multi_draw_elements_indirect( GLenum mode, GLenum type, GLvoid const *indirect,
+        GLsizei drawcount, GLsizei stride )
+    { glMultiDrawElementsIndirect( mode, type, indirect, drawcount, stride ); }
+    SON8_OVERGLAD_DEPR get_vertex_attrib_L( GLuint index, GLenum pname, GLdouble *params )
+    { glGetVertexAttribLdv( index, pname, params ); }
+    // Chapter 11: Programmable Vertex Processing
+    SON8_OVERGLAD_DEPR validate_program_pipeline( GLuint pipeline )
+    { glValidateProgramPipeline( pipeline ); }
+    SON8_OVERGLAD_DEPR patch_parameter( GLenum pname, GLfloat const *values )
+    { glPatchParameterfv( pname, values ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
