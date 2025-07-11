@@ -403,6 +403,43 @@ namespace son8::overglad {
         GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ,
         GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth )
     { glCopyImageSubData( srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth ); }
+    // Chapter 19: Compute Shaders
+    SON8_OVERGLAD_DEPR dispatch_compute( GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z )
+    { glDispatchCompute( num_groups_x, num_groups_y, num_groups_z ); }
+    SON8_OVERGLAD_DEPR dispatch_compute_indirect( GLintptr indirect )
+    { glDispatchComputeIndirect( indirect ); }
+    // Chapter 20: Debug Output
+    SON8_OVERGLAD_DEPR debug_message_callback( GLDEBUGPROC callback, GLvoid *userParam )
+    { glDebugMessageCallback( callback, userParam ); }
+    SON8_OVERGLAD_DEPR debug_message_control( GLenum source, GLenum type, GLenum severity, GLsizei count,
+        GLuint const *ids, GLboolean enabled )
+    { glDebugMessageControl( source, type, severity, count, ids, enabled ); }
+    SON8_OVERGLAD_DEPR debug_message_insert( GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, GLchar const *buf )
+    { glDebugMessageInsert( source, type, id, severity, length, buf ); }
+    SON8_OVERGLAD_DEPR push_debug_group( GLenum source, GLuint id, GLsizei length, GLchar const *message )
+    { glPushDebugGroup( source, id, length, message ); }
+    SON8_OVERGLAD_DEPR pop_debug_group( )
+    { glPopDebugGroup( ); }
+    SON8_OVERGLAD_DEPR object_label( GLenum identifier, GLuint name, GLsizei length, GLchar const *label )
+    { glObjectLabel( identifier, name, length, label ); }
+    SON8_OVERGLAD_DEPR object_ptr_label( GLvoid *ptr, GLsizei length, GLchar const *label )
+    { glObjectPtrLabel( ptr, length, label ); }
+    SON8_OVERGLAD_DEPR get_debug_message_log( GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types,
+        GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog )
+    { glGetDebugMessageLog( count, bufSize, sources, types, ids, severities, lengths, messageLog ); }
+    SON8_OVERGLAD_DEPR get_object_label( GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label )
+    { glGetObjectLabel( identifier, name, bufSize, length, label ); }
+    SON8_OVERGLAD_DEPR get_object_ptr_label( GLvoid *ptr, GLsizei bufSize, GLsizei *length, GLchar *label )
+    { glGetObjectPtrLabel( ptr, bufSize, length, label ); }
+    // Chapter 22: Context State Queries
+    SON8_OVERGLAD_DEPR get_float( GLenum target, GLuint index, GLfloat *data )
+    { glGetFloati_v( target, index, data ); }
+    SON8_OVERGLAD_DEPR get_double( GLenum target, GLuint index, GLdouble *data )
+    { glGetDoublei_v( target, index, data ); }
+    SON8_OVERGLAD_DEPR get_internal_format( GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint *params )
+    { glGetInternalformativ( target, internalformat, pname, bufSize, params ); }
+    SON8_OVERGLAD_DEPR get_internal_format( GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 *params )
+    { glGetInternalformati64v( target, internalformat, pname, bufSize, params ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
