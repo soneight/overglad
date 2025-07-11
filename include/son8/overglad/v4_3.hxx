@@ -340,6 +340,69 @@ namespace son8::overglad {
     { glValidateProgramPipeline( pipeline ); }
     SON8_OVERGLAD_DEPR patch_parameter( GLenum pname, GLfloat const *values )
     { glPatchParameterfv( pname, values ); }
+    // Chapter 13: Fixed-Function Vertex Post-Processing
+    SON8_OVERGLAD_DEPR gen_transform_feedbacks( GLsizei n, GLuint *ids )
+    { glGenTransformFeedbacks( n, ids ); }
+    SON8_OVERGLAD_DEPR delete_transform_feedbacks( GLsizei n, GLuint const *ids )
+    { glDeleteTransformFeedbacks( n, ids ); }
+    SON8_OVERGLAD_DEPR is_transform_feedback( GLuint id )
+    { return glIsTransformFeedback( id ); }
+    SON8_OVERGLAD_DEPR bind_transform_feedback( GLenum target, GLuint id )
+    { glBindTransformFeedback( target, id ); }
+    SON8_OVERGLAD_DEPR pause_transform_feedback( )
+    { glPauseTransformFeedback( ); }
+    SON8_OVERGLAD_DEPR resume_transform_feedback( )
+    { glResumeTransformFeedback( ); }
+    SON8_OVERGLAD_DEPR draw_transform_feedback( GLenum mode, GLuint id )
+    { glDrawTransformFeedback( mode, id ); }
+    SON8_OVERGLAD_DEPR draw_transform_feedback_instanced( GLenum mode, GLuint id, GLsizei instancecount )
+    { glDrawTransformFeedbackInstanced( mode, id, instancecount ); }
+    SON8_OVERGLAD_DEPR draw_transform_feedback_stream( GLenum mode, GLuint id, GLuint stream )
+    { glDrawTransformFeedbackStream( mode, id, stream ); }
+    SON8_OVERGLAD_DEPR draw_transform_feedback_stream_instanced( GLenum mode, GLuint id, GLuint stream, GLsizei instancecount )
+    { glDrawTransformFeedbackStreamInstanced( mode, id, stream, instancecount ); }
+    SON8_OVERGLAD_DEPR depth_range_array( GLuint first, GLsizei count, GLdouble const *v )
+    { glDepthRangeArrayv( first, count, v ); }
+    SON8_OVERGLAD_DEPR depth_range_indexed( GLuint index, GLdouble n, GLdouble f )
+    { glDepthRangeIndexed( index, n, f ); }
+    SON8_OVERGLAD_DEPR depth_range( GLfloat n, GLfloat f )
+    { glDepthRangef( n, f ); }
+    SON8_OVERGLAD_DEPR viewport_array( GLuint first, GLsizei count, GLfloat const *v )
+    { glViewportArrayv( first, count, v ); }
+    SON8_OVERGLAD_DEPR viewport_indexed( GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h )
+    { glViewportIndexedf( index, x, y, w, h ); }
+    SON8_OVERGLAD_DEPR viewport_indexed( GLuint index, GLfloat const *v )
+    { glViewportIndexedfv( index, v ); }
+    // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
+    SON8_OVERGLAD_DEPR min_sample_shading( GLfloat value )
+    { glMinSampleShading( value ); }
+    // Chapter 17: Writing Fragments and Samples to the Framebuffer
+    SON8_OVERGLAD_DEPR scissor_array( GLuint first, GLsizei count, GLint const *v )
+    { glScissorArrayv( first, count, v ); }
+    SON8_OVERGLAD_DEPR scissor_indexed( GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height )
+    { glScissorIndexed( index, left, bottom, width, height ); }
+    SON8_OVERGLAD_DEPR scissor_indexed( GLuint index, GLint const *v )
+    { glScissorIndexedv( index, v ); }
+    SON8_OVERGLAD_DEPR blend_equation( GLuint buf, GLenum mode )
+    { glBlendEquationi( buf, mode ); }
+    SON8_OVERGLAD_DEPR blend_equation_separate( GLuint buf, GLenum modeRGB, GLenum modeAlpha )
+    { glBlendEquationSeparatei( buf, modeRGB, modeAlpha ); }
+    SON8_OVERGLAD_DEPR blend_func( GLuint buf, GLenum src, GLenum dst )
+    { glBlendFunci( buf, src, dst ); }
+    SON8_OVERGLAD_DEPR blend_func_separate( GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha )
+    { glBlendFuncSeparatei( buf, srcRGB, dstRGB, srcAlpha, dstAlpha ); }
+    SON8_OVERGLAD_DEPR clear_depth( GLfloat depth )
+    { glClearDepthf( depth ); }
+    SON8_OVERGLAD_DEPR invalidate_sub_framebuffer( GLenum target, GLsizei numAttachments, GLenum const *attachments,
+        GLint x, GLint y, GLsizei width, GLsizei height )
+    { glInvalidateSubFramebuffer( target, numAttachments, attachments, x, y, width, height ); }
+    SON8_OVERGLAD_DEPR invalidate_framebuffer( GLenum target, GLsizei numAttachments, GLenum const *attachments )
+    { glInvalidateFramebuffer( target, numAttachments, attachments ); }
+    // Chapter 18: Reading and Copying Pixels
+    SON8_OVERGLAD_DEPR copy_image_sub_data( uint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ,
+        GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ,
+        GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth )
+    { glCopyImageSubData( srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth ); }
 #endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 
