@@ -23,14 +23,24 @@ namespace son8::overglad {
     // Chapter 6: Buffer Objects
     // TODO: ClearBufferSubData,ClearBufferData,InvalidateBufferSubData,InvalidateBufferData
     // Chapter 7: Programs and Shaders
-    // TODO: ReleaseShaderCompiler,ShaderBinary,ProgramParameteri,CreateShaderProgramv
+
+    SON8_OVERGLAD_PROC release_shader_compiler( )
+    { glad_glReleaseShaderCompiler( ); }
+    // TODO: ShaderBinary,ProgramParameteri,CreateShaderProgramv
     // ,GetProgramInterfaceiv,GetProgramResourceIndex,GetProgramResourceName,GetProgramResourceiv,GetProgramResourceLocation
-    // ,GetProgramResourceLocationIndex,GenProgramPipelines,DeleteProgramPipelines,IsProgramPipeline,BindProgramPipeline
+    // ,GetProgramResourceLocationIndex,GenProgramPipelines,DeleteProgramPipelines
+
+    SON8_OVERGLAD_FUNC is_pipeline( GLuint pipeline )
+    { return glad_glIsProgramPipeline( pipeline ); }
+    // TODO: BindProgramPipeline
     // ,UseProgramStages,ActiveShaderProgram,GetProgramBinary,ProgramBinary,GetActiveAtomicCounterBufferiv
     // ,Uniform*dv,UniformMatrix*dv,ProgramUniform*,ProgramUniformMatrix*,ShaderStorageBlockBinding
     // ,GetSubroutineIndex,GetActiveSubroutineName,GetSubroutineUniformLocation,GetActiveSubroutineUniformName
-    // ,GetActiveSubroutineUniformiv,UniformSubroutinesuiv,MemoryBarrier,GetProgramPipelineiv,GetProgramPipelineInfoLog
-    // ,GetShaderPrecisionFormat,GetUniformdv,GetUniformSubroutineuiv,GetProgramStageiv
+    // ,GetActiveSubroutineUniformiv,UniformSubroutinesuiv
+
+    SON8_OVERGLAD_PROC memory_barrier( enums::Barrier barriers )
+    { glad_glMemoryBarrier( static_cast< GLenum >( barriers ) ); }
+    // TODO: GetProgramPipelineiv,GetProgramPipelineInfoLog,GetShaderPrecisionFormat,GetUniformdv,GetUniformSubroutineuiv,GetProgramStageiv
     // Chapter 8: Textures and Samplers
     // TODO: TexBufferRange,TextureView,TexStorage1D,TexStorage2D,TexStorage3D,TexStorage2DMultisample,TexStorage3DMultisample
     // ,InvalidateTexSubImage,InvalidateTexImage,BindImageTexture
@@ -46,6 +56,7 @@ namespace son8::overglad {
     // TODO: ValidateProgramPipeline,PatchParameterfv
     // Chapter 13: Fixed-Function Vertex Post-Processing
     // TODO: GenTransformFeedbacks,DeleteTransformFeedbacks
+
     SON8_OVERGLAD_FUNC is_transform_feedback( GLuint id )
     { return glad_glIsTransformFeedback( id ); }
     // TODO: BindTransformFeedback,PauseTransformFeedback,ResumeTransformFeedback,DrawTransformFeedback
@@ -54,7 +65,11 @@ namespace son8::overglad {
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
     // TODO: MinSampleShading
     // Chapter 17: Writing Fragments and Samples to the Framebuffer
-    // TODO: ScissorArrayv,ScissorIndexed,ScissorIndexedv,BlendEquationi,BlendEquationSeparatei,BlendFunci,BlendFuncSeperatei,ClearDepthf,InvalidateSubFramebuffer,InvalidateFramebuffer
+    // TODO: ScissorArrayv,ScissorIndexed,ScissorIndexedv,BlendEquationi,BlendEquationSeparatei,BlendFunci,BlendFuncSeperatei
+
+    SON8_OVERGLAD_PROC clear_depth( GLfloat depth )
+    { glad_glClearDepthf( depth ); }
+    // TODO: ,InvalidateSubFramebuffer,InvalidateFramebuffer
     // Chapter 18: Reading and Copying Pixels
     // TODO: CopyImageSubData
     // Chapter 19: Compute Shaders
@@ -88,8 +103,6 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR invalidate_buffer_data( GLuint buffer )
     { glInvalidateBufferData( buffer ); }
     // Chapter 7: Programs and Shaders
-    SON8_OVERGLAD_DEPR release_shader_compiler( )
-    { glReleaseShaderCompiler( ); }
     SON8_OVERGLAD_DEPR shader_binary( GLsizei count, GLuint const *shaders, GLenum binaryformat,
         GLvoid const *binary, GLsizei length )
     { glShaderBinary( count, shaders, binaryformat, binary, length ); }
@@ -115,8 +128,6 @@ namespace son8::overglad {
     { glGenProgramPipelines( n, pipelines ); }
     SON8_OVERGLAD_DEPR delete_pipelines( GLsizei n, GLuint const *pipelines )
     { glDeleteProgramPipelines( n, pipelines ); }
-    SON8_OVERGLAD_DEPR is_pipeline( GLuint pipeline )
-    { return glIsProgramPipeline( pipeline ); }
     SON8_OVERGLAD_DEPR bind_pipeline( GLuint pipeline )
     { glBindProgramPipeline( pipeline ); }
     SON8_OVERGLAD_DEPR use_program_stages( GLuint pipeline, GLenum stages, GLuint program )
@@ -434,8 +445,6 @@ namespace son8::overglad {
     { glBlendFunci( buf, src, dst ); }
     SON8_OVERGLAD_DEPR blend_func_separate( GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha )
     { glBlendFuncSeparatei( buf, srcRGB, dstRGB, srcAlpha, dstAlpha ); }
-    SON8_OVERGLAD_DEPR clear_depth( GLfloat depth )
-    { glClearDepthf( depth ); }
     SON8_OVERGLAD_DEPR invalidate_sub_framebuffer( GLenum target, GLsizei numAttachments, GLenum const *attachments,
         GLint x, GLint y, GLsizei width, GLsizei height )
     { glInvalidateSubFramebuffer( target, numAttachments, attachments, x, y, width, height ); }
