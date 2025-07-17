@@ -60,12 +60,12 @@ namespace son8::overglad {
     SON8_OVERGLAD_FUNC is_transform_feedback( GLuint id )
     { return glad_glIsTransformFeedback( id ); }
     // TODO: BindTransformFeedback,PauseTransformFeedback,ResumeTransformFeedback,DrawTransformFeedback
-    // ,DrawTransformFeedbackInstanced,DrawTransformFeedbackStream,DrawTransformFeedbackSreamInstanced
+    // ,DrawTransformFeedbackInstanced,DrawTransformFeedbackStream,DrawTransformFeedbackStreamInstanced
     // ,DepthRangeArrayv,DepthRangeIndexed,DepthRangef,ViewportArrayv,ViewportIndexedf,ViewportIndexedfv
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
     // TODO: MinSampleShading
     // Chapter 17: Writing Fragments and Samples to the Framebuffer
-    // TODO: ScissorArrayv,ScissorIndexed,ScissorIndexedv,BlendEquationi,BlendEquationSeparatei,BlendFunci,BlendFuncSeperatei
+    // TODO: ScissorArrayv,ScissorIndexed,ScissorIndexedv,BlendEquationi,BlendEquationSeparatei,BlendFunci,BlendFuncSeparatei
 
     SON8_OVERGLAD_PROC clear_depth( GLfloat depth )
     { glad_glClearDepthf( depth ); }
@@ -451,7 +451,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR invalidate_framebuffer( GLenum target, GLsizei numAttachments, GLenum const *attachments )
     { glInvalidateFramebuffer( target, numAttachments, attachments ); }
     // Chapter 18: Reading and Copying Pixels
-    SON8_OVERGLAD_DEPR copy_image_sub_data( uint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ,
+    SON8_OVERGLAD_DEPR copy_image_sub_data( GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ,
         GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ,
         GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth )
     { glCopyImageSubData( srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth ); }
