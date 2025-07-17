@@ -18,7 +18,52 @@
 
 namespace son8::overglad {
     // core
-
+    // Chapter 4: Event Model
+    // TODO: BeginQueryIndexed,EndQueryIndexed,GetQueryIndexediv
+    // Chapter 6: Buffer Objects
+    // TODO: ClearBufferSubData,ClearBufferData,InvalidateBufferSubData,InvalidateBufferData
+    // Chapter 7: Programs and Shaders
+    // TODO: ReleaseShaderCompiler,ShaderBinary,ProgramParameteri,CreateShaderProgramv
+    // ,GetProgramInterfaceiv,GetProgramResourceIndex,GetProgramResourceName,GetProgramResourceiv,GetProgramResourceLocation
+    // ,GetProgramResourceLocationIndex,GenProgramPipelines,DeleteProgramPipelines,IsProgramPipeline,BindProgramPipeline
+    // ,UseProgramStages,ActiveShaderProgram,GetProgramBinary,ProgramBinary,GetActiveAtomicCounterBufferiv
+    // ,Uniform*dv,UniformMatrix*dv,ProgramUniform*,ProgramUniformMatrix*,ShaderStorageBlockBinding
+    // ,GetSubroutineIndex,GetActiveSubroutineName,GetSubroutineUniformLocation,GetActiveSubroutineUniformName
+    // ,GetActiveSubroutineUniformiv,UniformSubroutinesuiv,MemoryBarrier,GetProgramPipelineiv,GetProgramPipelineInfoLog
+    // ,GetShaderPrecisionFormat,GetUniformdv,GetUniformSubroutineuiv,GetProgramStageiv
+    // Chapter 8: Textures and Samplers
+    // TODO: TexBufferRange,TextureView,TexStorage1D,TexStorage2D,TexStorage3D,TexStorage2DMultisample,TexStorage3DMultisample
+    // ,InvalidateTexSubImage,InvalidateTexImage,BindImageTexture
+    // Chapter 9: Framebuffers and Framebuffer Objects
+    // TODO: FramebufferParameteri,GetFramebufferParameteriv
+    // Chapter 10: Vertex Specification and Drawing Commands
+    // TODO: PatchParameteri,VertexAttribL*dv,VertexAttrib*Format,BindVertexBuffer
+    // ,VertexAttribBinding,VertexAttribLPointer,VertexBindingDivisor
+    // ,DrawArraysInstancedBaseInstance,DrawArraysIndirect,MultiDrawArraysIndirect
+    // ,DrawElementsInstancedBaseInstance,DrawElementsInstancedBaseVertexBaseInstance
+    // ,DrawElementsIndirect,MultiDrawElementsIndirect,GetVertexAttribLdv
+    // Chapter 11: Programmable Vertex Processing
+    // TODO: ValidateProgramPipeline,PatchParameterfv
+    // Chapter 13: Fixed-Function Vertex Post-Processing
+    // TODO: GenTransformFeedbacks,DeleteTransformFeedbacks
+    SON8_OVERGLAD_FUNC is_transform_feedback( GLuint id )
+    { return glad_glIsTransformFeedback( id ); }
+    // TODO: BindTransformFeedback,PauseTransformFeedback,ResumeTransformFeedback,DrawTransformFeedback
+    // ,DrawTransformFeedbackInstanced,DrawTransformFeedbackStream,DrawTransformFeedbackSreamInstanced
+    // ,DepthRangeArrayv,DepthRangeIndexed,DepthRangef,ViewportArrayv,ViewportIndexedf,ViewportIndexedfv
+    // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
+    // TODO: MinSampleShading
+    // Chapter 17: Writing Fragments and Samples to the Framebuffer
+    // TODO: ScissorArrayv,ScissorIndexed,ScissorIndexedv,BlendEquationi,BlendEquationSeparatei,BlendFunci,BlendFuncSeperatei,ClearDepthf,InvalidateSubFramebuffer,InvalidateFramebuffer
+    // Chapter 18: Reading and Copying Pixels
+    // TODO: CopyImageSubData
+    // Chapter 19: Compute Shaders
+    // TODO: DispatchCompute,DispatchComputeIndirect
+    // Chapter 20: Debug Output
+    // TODO: DebugMessageCallback,DebugMessageControl,DebugMessageInsert,PushDebugGroup,PopDebugGroup
+    // ,ObjectLabel,ObjectPtrLabel,GetDebugMessageLog,GetObjectLabel,GetObjectPtrLabel
+    // Chapter 22: Context State Queries
+    // TODO: GetFloati_v,GetDoublei_v,GetInternalformat
     // compatibility
 #ifndef SON8_OVERGLAD_PROFILE_CORE
 #endif//SON8_OVERGLAD_PROFILE_CORE
@@ -345,8 +390,6 @@ namespace son8::overglad {
     { glGenTransformFeedbacks( n, ids ); }
     SON8_OVERGLAD_DEPR delete_transform_feedbacks( GLsizei n, GLuint const *ids )
     { glDeleteTransformFeedbacks( n, ids ); }
-    SON8_OVERGLAD_DEPR is_transform_feedback( GLuint id )
-    { return glIsTransformFeedback( id ); }
     SON8_OVERGLAD_DEPR bind_transform_feedback( GLenum target, GLuint id )
     { glBindTransformFeedback( target, id ); }
     SON8_OVERGLAD_DEPR pause_transform_feedback( )
