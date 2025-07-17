@@ -278,7 +278,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR bind_image_texture( GLuint unit, GLuint texture, GLint level,
         GLboolean layered, GLint layer, GLenum access, GLenum format )
     { glBindImageTexture( unit, texture, level, layered, layer, access, format ); }
-    // Chapter 9: Framebuffer Objects
+    // Chapter 9: Framebuffers and Framebuffer Objects
     SON8_OVERGLAD_DEPR framebuffer_parameter( GLenum target, GLenum pname, GLint param )
     { glFramebufferParameteri( target, pname, param ); }
     SON8_OVERGLAD_DEPR get_framebuffer_parameter( GLenum target, GLenum pname, GLint *params )
