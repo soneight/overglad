@@ -48,6 +48,26 @@ namespace son8::overglad::enums {
     };
 #endif//SON8_OVERGLAD_VERSION_1_5
 
+#ifdef SON8_OVERGLAD_VERSION_4_3
+    // MemoryBarrier
+    enum class Barrier : GLbitfield {
+        Attrib      = 0x00000001,
+        Element     = 0x00000002,
+        Uniform     = 0x00000004,
+        Fetch       = 0x00000008,
+        Image       = 0x00000020,
+        Command     = 0x00000040,
+        Pixel       = 0x00000080,
+        Texture     = 0x00000100,
+        Buffer      = 0x00000200,
+        Frame       = 0x00000400,
+        Feedback    = 0x00000800,
+        Counter     = 0x00001000,
+        Storage     = 0x00002000,
+        All         = 0xFFFFFFFF,
+    };
+#endif//SON8_OVERGLAD_VERSION_4_3
+
     // Enable, Disable, IsEnabled
     enum class Capability : GLenum {
         Polygon_Smooth          = 0x0B41,
@@ -643,6 +663,19 @@ namespace son8::overglad::types {
 #include <son8/overglad/v3_3.hxx>
 #include <son8/overglad/v4_3.hxx>
 #endif    //SON8_OVERGLAD_INCLUDE
+
+#ifdef  SON8_OVERGLAD_VERSION_4_6
+namespace son8::overglad {
+    // core
+
+    // compatibility
+#   ifndef SON8_OVERGLAD_PROFILE_CORE
+#   endif//SON8_OVERGLAD_PROFILE_CORE
+    // deprecated
+#   ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
+#   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
+} // namespace son8::overglad
+#endif//SON8_OVERGLAD_VERSION_4_6
 
 #endif//SON8_OVERGLAD_HXX
 // Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
