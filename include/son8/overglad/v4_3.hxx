@@ -111,13 +111,13 @@ namespace son8::overglad {
     { return glGetProgramResourceLocation( program, programInterface, name ); }
     SON8_OVERGLAD_DEPR get_program_resource_location_index( GLuint program, GLenum programInterface, GLchar const *name )
     { return glGetProgramResourceLocationIndex( program, programInterface, name ); }
-    SON8_OVERGLAD_DEPR gen_program_pipelines( GLsizei n, GLuint *pipelines )
+    SON8_OVERGLAD_DEPR gen_pipelines( GLsizei n, GLuint *pipelines )
     { glGenProgramPipelines( n, pipelines ); }
-    SON8_OVERGLAD_DEPR delete_program_pipelines( GLsizei n, GLuint const *pipelines )
+    SON8_OVERGLAD_DEPR delete_pipelines( GLsizei n, GLuint const *pipelines )
     { glDeleteProgramPipelines( n, pipelines ); }
-    SON8_OVERGLAD_DEPR is_program_pipeline( GLuint pipeline )
+    SON8_OVERGLAD_DEPR is_pipeline( GLuint pipeline )
     { return glIsProgramPipeline( pipeline ); }
-    SON8_OVERGLAD_DEPR bind_program_pipeline( GLuint pipeline )
+    SON8_OVERGLAD_DEPR bind_pipeline( GLuint pipeline )
     { glBindProgramPipeline( pipeline ); }
     SON8_OVERGLAD_DEPR use_program_stages( GLuint pipeline, GLenum stages, GLuint program )
     { glUseProgramStages( pipeline, stages, program ); }
@@ -282,9 +282,9 @@ namespace son8::overglad {
     { glUniformSubroutinesuiv( shadertype, count, indices ); }
     SON8_OVERGLAD_DEPR memory_barrier( GLbitfield barriers )
     { glMemoryBarrier( barriers ); }
-    SON8_OVERGLAD_DEPR get_program_pipeline( GLuint pipeline, GLenum pname, GLint *params )
+    SON8_OVERGLAD_DEPR get_pipeline( GLuint pipeline, GLenum pname, GLint *params )
     { glGetProgramPipelineiv( pipeline, pname, params ); }
-    SON8_OVERGLAD_DEPR get_program_pipeline_info_log( GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog )
+    SON8_OVERGLAD_DEPR get_pipeline_info_log( GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog )
     { glGetProgramPipelineInfoLog( pipeline, bufSize, length, infoLog ); }
     SON8_OVERGLAD_DEPR get_shader_precision_format( GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision )
     { glGetShaderPrecisionFormat( shadertype, precisiontype, range, precision ); }
@@ -381,7 +381,7 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR get_vertex_attrib_L( GLuint index, GLenum pname, GLdouble *params )
     { glGetVertexAttribLdv( index, pname, params ); }
     // Chapter 11: Programmable Vertex Processing
-    SON8_OVERGLAD_DEPR validate_program_pipeline( GLuint pipeline )
+    SON8_OVERGLAD_DEPR validate_pipeline( GLuint pipeline )
     { glValidateProgramPipeline( pipeline ); }
     SON8_OVERGLAD_DEPR patch_parameter( GLenum pname, GLfloat const *values )
     { glPatchParameterfv( pname, values ); }
