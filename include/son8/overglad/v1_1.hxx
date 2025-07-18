@@ -11,6 +11,117 @@
 #include <son8/overglad.hxx>
 
 namespace son8::overglad {
+    // Special, object type generation
+    template< types::Object_::Type Type, bool Named >
+    SON8_OVERGLAD_PROC gen( types::Object< Type, Named > &object )
+    {
+        using obj = types::Object_;
+        static_assert( false
+            || obj::is_texture( Type )
+            || obj::is_buffer( Type )
+            || obj::is_vertex( Type )
+            || obj::is_pipeline( Type )
+            , "Unsupported object type for generation"
+        );
+        if constexpr ( Named ) {
+            /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glCreateTextures( object.type( ), 1, object.data( ) );
+            else if constexpr ( obj::is_buffer( Type ) ) glad_glGenBuffers( 1, object.data( ) );
+            else if constexpr ( obj::is_vertex( Type ) ) glad_glGenVertexArrays( 1, object.data( ) );
+            else if constexpr ( obj::is_pipeline( Type ) ) glad_glCreateProgramPipelines( 1, object.data( ) );
+            else static_assert( false, "Unsupported object type for named generation" );
+        } else {
+            /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glGenTextures( 1, object.data( ) );
+            else if constexpr ( obj::is_buffer( Type ) ) glad_glGenBuffers( 1, object.data( ) );
+            else if constexpr ( obj::is_vertex( Type ) ) glad_glGenVertexArrays( 1, object.data( ) );
+            else if constexpr ( obj::is_pipeline( Type ) ) glad_glGenProgramPipelines( 1, object.data( ) );
+            else static_assert( false, "Unsupported object type for generation" );
+        }
+    }
+
+    template< types::Object_::Type Type, bool Named >
+    SON8_OVERGLAD_PROC gen( types::Objects< Type, Named > &objects )
+    {
+        using obj = types::Object_;
+        static_assert( false
+            || obj::is_texture( Type )
+            || obj::is_buffer( Type )
+            || obj::is_vertex( Type )
+            || obj::is_pipeline( Type )
+            , "Unsupported object type for generation"
+        );
+        if constexpr ( Named ) {
+            /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glCreateTextures( objects.type( ), objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_buffer( Type ) ) glad_glGenBuffers( objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_vertex( Type ) ) glad_glGenVertexArrays( objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_pipeline( Type ) ) glad_glCreateProgramPipelines( objects.size( ), objects.data( ) );
+            else static_assert( false, "Unsupported object type for named generation" );
+        } else {
+            /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glGenTextures( objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_buffer( Type ) ) glad_glGenBuffers( objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_vertex( Type ) ) glad_glGenVertexArrays( objects.size( ), objects.data( ) );
+            else if constexpr ( obj::is_pipeline( Type ) ) glad_glGenProgramPipelines( objects.size( ), objects.data( ) );
+            else static_assert( false, "Unsupported object type for generation" );
+        }
+    }
+
+    template< types::Object_::Type Type, bool Named >
+    SON8_OVERGLAD_PROC del( types::Object< Type, Named > &object )
+    {
+        using obj = types::Object_;
+        static_assert( false
+            || obj::is_texture( Type )
+            || obj::is_buffer( Type )
+            || obj::is_vertex( Type )
+            || obj::is_pipeline( Type )
+            , "Unsupported object type for deletion"
+        );
+        /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glDeleteTextures( 1, object.data( ) );
+        else if constexpr ( obj::is_buffer( Type ) ) glad_glDeleteBuffers( 1, object.data( ) );
+        else if constexpr ( obj::is_vertex( Type ) ) glad_glDeleteVertexArrays( 1, object.data( ) );
+        else if constexpr ( obj::is_pipeline( Type ) ) glad_glDeleteProgramPipelines( 1, object.data( ) );
+        else static_assert( false, "Unsupported object type for deletion" );
+        object.zero( );
+    }
+
+    template< types::Object_::Type Type, bool Named >
+    SON8_OVERGLAD_PROC del( types::Objects< Type, Named > &objects )
+    {
+        using obj = types::Object_;
+        static_assert( false
+            || obj::is_texture( Type )
+            || obj::is_buffer( Type )
+            || obj::is_vertex( Type )
+            || obj::is_pipeline( Type )
+            , "Unsupported object type for deletion"
+        );
+        /*_*/if constexpr ( obj::is_texture( Type ) ) glad_glDeleteTextures( objects.size( ), objects.data( ) );
+        else if constexpr ( obj::is_buffer( Type ) ) glad_glDeleteBuffers( objects.size( ), objects.data( ) );
+        else if constexpr ( obj::is_vertex( Type ) ) glad_glDeleteVertexArrays( objects.size( ), objects.data( ) );
+        else if constexpr ( obj::is_pipeline( Type ) ) glad_glDeleteProgramPipelines( objects.size( ), objects.data( ) );
+        else static_assert( false, "Unsupported object type for deletion" );
+        objects.zero( );
+    }
+
+    template< types::Object_::Type Type, bool Named >
+    SON8_OVERGLAD_PROC bind( types::Object< Type, Named > object )
+    {
+        assert( object.index( ) != 0 );
+        using obj = types::Object_;
+        static_assert( false
+            || obj::is_texture( Type )
+            || obj::is_buffer( Type )
+            || obj::is_vertex( Type )
+            || obj::is_pipeline( Type )
+            , "Unsupported object type for binding"
+        );
+
+        if constexpr ( false );
+        else if constexpr ( obj::is_texture( Type ) ) glad_glBindTexture( object.type( ), object );
+        else if constexpr ( obj::is_buffer( Type ) ) glad_glBindBuffer( object.type( ), object );
+        else if constexpr ( obj::is_vertex( Type ) ) glad_glBindVertexArray( object );
+        else if constexpr ( obj::is_pipeline( Type ) ) glad_glBindProgramPipeline( object );
+        else static_assert( false, "Unsupported object type for binding" );
+    }
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_FUNC get( ) noexcept
     { return static_cast< enums::Error >( glad_glGetError( ) ); }
@@ -43,7 +154,7 @@ namespace son8::overglad {
     { glad_glPolygonMode( static_cast< GLenum >( enums::Face::Front_Back ), static_cast< GLenum >( m ) ); }
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units ) noexcept
     { glad_glPolygonOffset( factor, units ); }
-    // TODO: PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter, BindTexture, DeleteTextures, GenTextures
+    // TODO: PixelStore, TexImage, CopyTexImage, TexSubImage, CopyTexSubImage, TexParameter
     // Chapter 4: Per-Fragment Operations and the Framebuffer
     SON8_OVERGLAD_PROC scissor( GLint left, GLint bottom, GLsizei width, GLsizei height ) noexcept
     { glad_glScissor( left, bottom, width, height ); }

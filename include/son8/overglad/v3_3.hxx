@@ -20,7 +20,7 @@ namespace son8::overglad {
     // TODO: VertexAttribI*,VertexAttribP*,VertexAttribIPointer,VertexAttribDivisor,PrimitiveRestartIndex
     // ,DrawArraysInstanced,DrawElementsInstanced,DrawElementsBaseVertex,DrawRangeElementsBaseVertex,DrawElementsInstancedBaseVertex
     // ,MultiDrawElementsBaseVertex,BindBufferRange,BindBufferBase,MapBufferRange,FlushMappedBufferRange,CopyBufferSubData
-    // ,GenVertexArrays,DeleteVertexArrays,BindVertexArray,GetUniformBlockIndex,GetActiveUniformBlockName,GetActiveUniformBlockiv
+    // ,GetUniformBlockIndex,GetActiveUniformBlockName,GetActiveUniformBlockiv
     // ,GetUniformIndices,GetActiveUniformName,GetActiveUniformsiv,Uniform*,UniformBlockBinding,TransformFeedbackVaryings
     // ,GetTransformFeedbackVarying,BeginConditionalRender,EndConditionalRender,BeginTransformFeedback,EndTransformFeedback
 

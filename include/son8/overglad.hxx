@@ -530,44 +530,126 @@ namespace son8::overglad::types {
 #   endif//SON8_OVERGLAD_VERSION_3_3
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
+    // object
+    struct Object_ final {
+        enum class Type : GLenum {
+            None        = 0x0u,
+            Texture_1D = 0x0DE0,
+            Texture_2D = 0x0DE1,
 #ifdef SON8_OVERGLAD_VERSION_1_5
-    // TODO: for future use Buffer as NamedBuffer
-    // (similar to Tex and Texture in original opengl spec)
-    template< enums::Buffer T >
-    class Buf final {
+            Buffer_Array = static_cast< GLenum >( enums::Buffer::Array ),
+            Buffer_Element = static_cast< GLenum >( enums::Buffer::Element ),
+#endif
+#ifdef SON8_OVERGLAD_VERSION_3_3
+            Vertex_Array,
+#endif
+#ifdef SON8_OVERGLAD_VERSION_4_3
+            Program_Pipeline,
+#endif
+        };
+
+        static constexpr auto is_texture( Type type ) noexcept {
+            return type == Type::Texture_1D || type == Type::Texture_2D;
+        }
+
+        static constexpr auto is_buffer( Type type ) noexcept {
+#ifdef SON8_OVERGLAD_VERSION_1_5
+            return type == Type::Buffer_Array || type == Type::Buffer_Element;
+#else
+            return type == Type::None;
+#endif
+        } // is_buffer
+
+        static constexpr auto is_vertex( Type type ) noexcept {
+#ifdef SON8_OVERGLAD_VERSION_3_3
+            return type == Type::Vertex_Array;
+#else
+            return type == Type::None;
+#endif
+        } // is_vertex
+
+        static constexpr auto is_pipeline( Type type ) noexcept
+        {
+#ifdef SON8_OVERGLAD_VERSION_4_3
+            return type == Type::Program_Pipeline;
+#else
+            return type == Type::None;
+#endif
+        } // is_pipeline
+    }; // class Object_
+
+    template< Object_::Type Type, bool Name = false >
+    class Object final {
+#ifndef SON8_OVERGLAD_VERSION_4_6
+        static_assert( Name == false, "Named object only available from OpenGL 4.5" );
+#endif
         GLuint index_;
     public:
-        Buf( GLuint index = 0 ) : index_{ index } { };
-        operator GLuint( ) const noexcept { return index_; }
-        auto index( ) const noexcept { return index_; }
-        auto type( ) const noexcept { return T; }
-    };
+        Object( GLuint index = 0 ) : index_{ index } { }
+        operator GLuint( ) const { return index_; }
+        auto index( ) const { return index_; }
+        auto data( ) -> GLuint * { return &index_; }
+        constexpr auto type( ) const { return static_cast< GLenum >( Type ); }
+        constexpr auto is_named( ) const noexcept { return Name; }
+        void zero( ) { index_ = 0; }
+    }; // class Object
 
-    template< enums::Buffer T >
-    class Bufs final {
+    template< Object_::Type Type, bool Name = false >
+    class Objects final {
         GLuint *data_;
         GLsizei size_;
     public:
-        Bufs( GLsizei size = 8 ) : data_{ new GLuint[size] }, size_{ size } { zero( ); }
-        ~Bufs( ) { delete [] data_; }
-        Bufs( Bufs && ) = delete;
-        Bufs( Bufs const & ) = delete;
-        Bufs &operator=( Bufs && ) = delete;
-        Bufs &operator=( Bufs const & ) = delete;
+        Objects( GLsizei size = 8 ) : data_{ new GLuint[size] }, size_{ size } { zero( ); }
+        ~Objects( ) { delete [] data_; }
+        Objects( Objects && ) = delete;
+        Objects( Objects const & ) = delete;
+        Objects &operator=( Objects && ) = delete;
+        Objects &operator=( Objects const & ) = delete;
+        auto operator[]( GLsizei index ) const { return Object< Type, Name >{ data_[index] }; }
+        auto data( ) -> GLuint * { return data_; }
+        auto data( ) const -> GLuint const * { return data_; }
+        auto size( ) const { return size_; }
+        void zero( ) { for ( GLsizei i = 0u; i < size_; ++i ) data_[i] = 0; }
+        constexpr auto type( ) const { return static_cast< GLenum >( Type ); }
+        constexpr auto is_named( ) const noexcept { return Name; }
+    }; // class Objects
 
-        auto operator[]( GLsizei index ) const { return Buf< T >{ data_[index] }; }
+    using Texture1D = Object< Object_::Type::Texture_1D >;
+    using Texture2D = Object< Object_::Type::Texture_2D >;
+    using Textures1D = Objects< Object_::Type::Texture_1D >;
+    using Textures2D = Objects< Object_::Type::Texture_2D >;
 
-        auto data( ) noexcept { return data_; }
-        auto data( ) const noexcept -> GLuint const * { return data_; }
-        auto size( ) const noexcept { return size_; }
-        void zero( ) noexcept { for ( int i = 0; i < size_; ++i ) data_[i] = 0; }
-    };
-
-    using buf_array = Buf< enums::Buffer::Array >;
-    using buf_element = Buf< enums::Buffer::Element >;
-    using bufs_array = Bufs< enums::Buffer::Array >;
-    using bufs_element = Bufs< enums::Buffer::Element >;
+#ifdef SON8_OVERGLAD_VERSION_1_5
+    using BufferArray = Object< Object_::Type::Buffer_Array >;
+    using BufferElement = Object< Object_::Type::Buffer_Element >;
+    using BuffersArray = Objects< Object_::Type::Buffer_Array >;
+    using BuffersElement = Objects< Object_::Type::Buffer_Element >;
 #endif//SON8_OVERGLAD_VERSION_1_5
+
+#ifdef SON8_OVERGLAD_VERSION_3_3
+    using VertexArray = Object< Object_::Type::Vertex_Array >;
+    using VertexArrays = Objects< Object_::Type::Vertex_Array >;
+#endif//SON8_OVERGLAD_VERSION_3_3
+
+#ifdef SON8_OVERGLAD_VERSION_4_3
+    using ProgramPipeline = Object< Object_::Type::Program_Pipeline >;
+    using ProgramPipelines = Objects< Object_::Type::Program_Pipeline >;
+#endif
+#ifdef SON8_OVERGLAD_VERSION_4_6
+    using NamedTexture1D = Object< Object_::Type::Texture_1D, true >;
+    using NamedTexture2D = Object< Object_::Type::Texture_2D, true >;
+    using NamedBufferArray = Object< Object_::Type::Buffer_Array, true >;
+    using NamedBufferElement = Object< Object_::Type::Buffer_Element, true >;
+    using NamedVertexArray = Object< Object_::Type::Vertex_Array, true >;
+    using NamedProgramPipeline = Object< Object_::Type::Program_Pipeline, true >;
+
+    using NamedTextures1D = Objects< Object_::Type::Texture_1D, true >;
+    using NamedTextures2D = Objects< Object_::Type::Texture_2D, true >;
+    using NamedBuffersArray = Objects< Object_::Type::Buffer_Array, true >;
+    using NamedBuffersElement = Objects< Object_::Type::Buffer_Element, true >;
+    using NamedVertexArrays = Objects< Object_::Type::Vertex_Array, true >;
+    using NamedProgramPipelines = Objects< Object_::Type::Program_Pipeline, true >;
+#endif
 
 #ifdef SON8_OVERGLAD_VERSION_2_1
     template< typename Type, unsigned Size = 0u, bool Norm = false >
@@ -649,6 +731,7 @@ namespace son8::overglad::types {
     using packed4s  = Packed< enums::Packed::Signed, 4 >;
 
 #endif//SON8_OVERGLAD_VERSION_3_3
+
 } // namespace son8::overglad::types
 
 #define SON8_OVERGLAD_DEPR [[deprecated]] inline auto

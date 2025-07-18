@@ -28,12 +28,11 @@ namespace son8::overglad {
     { glad_glReleaseShaderCompiler( ); }
     // TODO: ShaderBinary,ProgramParameteri,CreateShaderProgramv
     // ,GetProgramInterfaceiv,GetProgramResourceIndex,GetProgramResourceName,GetProgramResourceiv,GetProgramResourceLocation
-    // ,GetProgramResourceLocationIndex,GenProgramPipelines,DeleteProgramPipelines
+    // ,GetProgramResourceLocationIndex
 
     SON8_OVERGLAD_FUNC is_pipeline( GLuint pipeline )
     { return glad_glIsProgramPipeline( pipeline ); }
-    // TODO: BindProgramPipeline
-    // ,UseProgramStages,ActiveShaderProgram,GetProgramBinary,ProgramBinary,GetActiveAtomicCounterBufferiv
+    // TODO: UseProgramStages,ActiveShaderProgram,GetProgramBinary,ProgramBinary,GetActiveAtomicCounterBufferiv
     // ,Uniform*dv,UniformMatrix*dv,ProgramUniform*,ProgramUniformMatrix*,ShaderStorageBlockBinding
     // ,GetSubroutineIndex,GetActiveSubroutineName,GetSubroutineUniformLocation,GetActiveSubroutineUniformName
     // ,GetActiveSubroutineUniformiv,UniformSubroutinesuiv
