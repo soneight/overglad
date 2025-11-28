@@ -759,6 +759,10 @@ namespace son8::overglad {
     // TODO: GetGraphicsResetStatus
     // Chapter 4: Event Model
     // TODO: CreateQueries
+    // Chapter 6: Buffer Objects
+    // TODO: CreateBuffers,BindBuffersRange,BindBuffersBase,BufferStorage,NamedBufferStorage,NamedBufferData,NamedBufferSubData,ClearNamedBufferSubData,ClearNamedBufferData,MapNamedBufferRange,MapNamedBuffer,FlushMappedNamedBufferRange,UnmapNamedBuffer,CopyNamedBufferSubData,GetNamedBufferParameteriv,GetNamedBufferParameteri64v,GetNamedBufferSubData,GetNamedBufferPointerv
+    // Chapter 7
+    // TODO: SpecializeShader,CreateProgramPipelines
     // compatibility
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
 #   endif//SON8_OVERGLAD_PROFILE_CORE
@@ -768,6 +772,51 @@ namespace son8::overglad {
     { return glGetGraphicsResetStatus( ); }
     SON8_OVERGLAD_DEPR create_queries( GLenum target, GLsizei n, GLuint *ids )
     { glCreateQueries( target, n, ids ); }
+    SON8_OVERGLAD_DEPR create_buffers( GLsizei n, GLuint *buffers )
+    { glCreateBuffers( n, buffers ); }
+    SON8_OVERGLAD_DEPR bind_buffers_range( GLenum target, GLuint first, GLsizei count
+        , GLuint const *buffers, GLintptr const *offsets, GLsizeiptr const *sizes )
+    { glBindBuffersRange( target, first, count, buffers, offsets, sizes ); }
+    SON8_OVERGLAD_DEPR bind_buffers_base( GLenum target, GLuint first, GLsizei count, GLuint const *buffers )
+    { glBindBuffersBase( target, first, count, buffers ); }
+    SON8_OVERGLAD_DEPR buffer_storage( GLenum target, GLsizeiptr size, void const *data, GLbitfield flags )
+    { glBufferStorage( target, size, data, flags ); }
+    SON8_OVERGLAD_DEPR named_buffer_storage( GLuint buffer, GLsizeiptr size, void const *data, GLbitfield flags )
+    { glNamedBufferStorage( buffer, size, data, flags ); }
+    SON8_OVERGLAD_DEPR named_buffer_data( GLuint buffer, GLsizeiptr size, void const *data, GLenum usage )
+    { glNamedBufferData( buffer, size, data, usage ); }
+    SON8_OVERGLAD_DEPR named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, void const *data )
+    { glNamedBufferSubData( buffer, offset, size, data ); }
+    SON8_OVERGLAD_DEPR clear_named_buffer_sub_data( GLuint buffer, GLenum internalformat
+        , GLintptr offset, GLsizeiptr size
+        , GLenum format, GLenum type, void const *data )
+    { glClearNamedBufferSubData( buffer, internalformat, offset, size, format, type, data ); }
+    SON8_OVERGLAD_DEPR clear_named_buffer_data( GLuint buffer, GLenum internalformat
+        , GLenum format, GLenum type, void const *data )
+    { glClearNamedBufferData( buffer, internalformat, format, type, data ); }
+    SON8_OVERGLAD_DEPR map_named_buffer_range( GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access )
+    { return glMapNamedBufferRange( buffer, offset, length, access ); }
+    SON8_OVERGLAD_DEPR map_named_buffer( GLuint buffer, GLenum access )
+    { return  glMapNamedBuffer( buffer, access ); }
+    SON8_OVERGLAD_DEPR flush_mapped_named_buffer_range( GLuint buffer, GLintptr offset, GLsizeiptr length )
+    { glFlushMappedNamedBufferRange( buffer, offset, length ); }
+    SON8_OVERGLAD_DEPR unmap_named_buffer( GLuint buffer )
+    { return glUnmapNamedBuffer( buffer ); }
+    SON8_OVERGLAD_DEPR copy_named_buffer_sub_data( GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size )
+    { glCopyNamedBufferSubData( readBuffer, writeBuffer, readOffset, writeOffset, size ); }
+    SON8_OVERGLAD_DEPR get_named_buffer_parameter( GLuint buffer, GLenum pname, GLint *data )
+    { glGetNamedBufferParameteriv( buffer, pname, data ); }
+    SON8_OVERGLAD_DEPR get_named_buffer_parameter( GLuint buffer, GLenum pname, GLint64 *data )
+    { glGetNamedBufferParameteri64v( buffer, pname, data ); }
+    SON8_OVERGLAD_DEPR get_named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, void *data )
+    { glGetNamedBufferSubData( buffer, offset, size, data ); }
+    SON8_OVERGLAD_DEPR get_named_buffer_pointer( GLuint buffer, GLenum pname, void **data ) // TODO verify void const ** in specification
+    { glGetNamedBufferPointerv( buffer, pname, data ); }
+    SON8_OVERGLAD_DEPR specialize_shader( GLuint shader, char const *pEntryPoint, GLuint numSpecializationConstants
+        , GLuint const *pConstantIndex, GLuint const *pConstantValue )
+    { glSpecializeShader( shader, pEntryPoint, numSpecializationConstants, pConstantIndex, pConstantValue ); }
+    SON8_OVERGLAD_DEPR create_program_pipelines( GLsizei n, GLuint *pipelines )
+    { glCreateProgramPipelines( n, pipelines ); }
 #   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 #endif//SON8_OVERGLAD_VERSION_4_6
