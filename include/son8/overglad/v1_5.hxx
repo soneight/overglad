@@ -14,27 +14,13 @@ namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Operation
     // TODO: MultiDrawArrays,MultiDrawElements,DrawRangeElements
-    SON8_OVERGLAD_PROC unbind( enums::Buffer target )
-    { glad_glBindBuffer( static_cast< GLenum >( target ), 0 ); }
-    template< enums::Buffer T >
-    SON8_OVERGLAD_PROC bind( types::Buf< T > buffer )
-    { assert( buffer != 0 ); glad_glBindBuffer( static_cast< GLenum >( buffer.type( ) ), buffer ); }
-    template< enums::Buffer T >
-    SON8_OVERGLAD_PROC free( types::Buf< T > &buffer )
-    { GLuint b = buffer; glad_glDeleteBuffers( 1, &b ); buffer = { 0 }; }
-    template< enums::Buffer T >
-    SON8_OVERGLAD_PROC free( types::Bufs< T > &buffers )
-    { glad_glDeleteBuffers( buffers.size( ), buffers.data( ) ); buffers.zero( ); }
-    template< enums::Buffer T >
-    SON8_OVERGLAD_PROC gens( types::Buf< T > &buffer )
-    { GLuint b; glad_glGenBuffers( 1, &b ); buffer = { b }; }
-    template< enums::Buffer T >
-    SON8_OVERGLAD_PROC gens( types::Bufs< T > &buffers )
-    { glad_glGenBuffers( buffers.size( ), buffers.data( ) ); }
     // TODO: BufferData,BufferSubData,MapBuffer
-    template< enums::Buffer T >
-    SON8_OVERGLAD_FUNC unmap( types::Buf< T > buffer )
-    { return glad_glUnmapBuffer( static_cast< GLenum >( buffer.type( ) ) ); }
+    template< types::Object_::Type Type, bool Name >
+    SON8_OVERGLAD_FUNC unmap( types::Object< Type, Name > buffer )
+    {
+        static_assert( types::Object_::is_buffer( Type ), "Unmapping is only available for buffer objects" );
+        return glad_glUnmapBuffer( static_cast< GLenum >( buffer.type( ) ) );
+    }
     SON8_OVERGLAD_PROC active_texture( enums::Multi texture )
     { glad_glActiveTexture( static_cast< GLenum >( texture ) ); }
     // Chapter 3: Rasterization
