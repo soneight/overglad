@@ -149,9 +149,14 @@ namespace son8::overglad::enums {
     }; // enum class Capi
 
     template< bool IsEnable >
-    struct Capi_ {
-        Capi value;
-        constexpr static inline Capi_ const Blend{ Capi::Blend };
+    class Capi_ {
+        struct Impl {
+            Capi value;
+        };
+        Impl impl;
+    public:
+        constexpr static inline Capi_::Impl const Blend{ Capi::Blend };
+        constexpr Capi value( ) const noexcept { return impl.value; }
     };
     using Enablei = Capi_< true >;
     using Disablei = Capi_< false >;

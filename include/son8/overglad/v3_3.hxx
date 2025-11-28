@@ -34,10 +34,10 @@ namespace son8::overglad {
 
     // Enablei
     SON8_OVERGLAD_PROC mode( enums::Enablei enablei, GLuint index )
-    { glad_glEnablei( static_cast< GLenum >( enablei.value ), index ); }
+    { glad_glEnablei( static_cast< GLenum >( enablei.value( ) ), index ); }
     // Disablei
     SON8_OVERGLAD_PROC mode( enums::Disablei disablei, GLuint index )
-    { glad_glDisablei( static_cast< GLenum >( disablei.value ), index ); }
+    { glad_glDisablei( static_cast< GLenum >( disablei.value( ) ), index ); }
     // TODO: ColorMaski,ClearBuffer*
 
     // glClampColor: in core has only one target (use compatibility for multiple targets)
