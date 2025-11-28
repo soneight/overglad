@@ -755,12 +755,19 @@ namespace son8::overglad::types {
 #ifdef  SON8_OVERGLAD_VERSION_4_6
 namespace son8::overglad {
     // core
-
+    // Chapter 2: OpenGL Fundamentals
+    // TODO: GetGraphicsResetStatus
+    // Chapter 4: Event Model
+    // TODO: CreateQueries
     // compatibility
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
 #   endif//SON8_OVERGLAD_PROFILE_CORE
     // deprecated
 #   ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
+    SON8_OVERGLAD_DEPR get_graphics_reset_status( )
+    { return glGetGraphicsResetStatus( ); }
+    SON8_OVERGLAD_DEPR create_queries( GLenum target, GLsizei n, GLuint *ids )
+    { glCreateQueries( target, n, ids ); }
 #   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 #endif//SON8_OVERGLAD_VERSION_4_6
