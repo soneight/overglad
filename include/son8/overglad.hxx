@@ -764,7 +764,14 @@ namespace son8::overglad {
     // Chapter 7
     // TODO: SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion
     // Chapter 8
-    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,GenerateTextureMipmap
+    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
+    // Chapter 9
+    // TODO: CreateFramebuffers,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
+    SON8_OVERGLAD_PROC texture_barrier( ) noexcept
+    { glad_glTextureBarrier( ); }
+    // TODO: CheckNamedFramebufferStatus
+    // Chapter 10
+    // TODO: CreateVertexArrays
     // compatibility
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
 #   endif//SON8_OVERGLAD_PROFILE_CORE
@@ -879,6 +886,41 @@ namespace son8::overglad {
     SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
         , GLsizei width, GLsizei height, GLsizei depth )
     { glTextureStorage3D( texture, levels, internalformat, width, height, depth ); }
+    SON8_OVERGLAD_DEPR texture_storage_multisample( GLuint texture, GLsizei samples, GLenum internalformat
+        , GLsizei width, GLsizei height
+        , GLboolean fixedsamplelocations )
+    { glTextureStorage2DMultisample( texture, samples, internalformat, width, height, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR texture_storage_multisample( GLuint texture, GLsizei samples, GLenum internalformat
+        , GLsizei width, GLsizei height, GLsizei depth
+        , GLboolean fixedsamplelocations )
+    { glTextureStorage3DMultisample( texture, samples, internalformat, width, height, depth, fixedsamplelocations ); }
+    SON8_OVERGLAD_DEPR clear_tex_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
+        , GLenum format, GLenum type, GLvoid const *data )
+    { glClearTexSubImage( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data ); }
+    SON8_OVERGLAD_DEPR clear_sub_image( GLuint texture, GLint level, GLenum format, GLenum type, GLvoid const *data )
+    { glClearTexImage( texture, level, format, type, data ); }
+    SON8_OVERGLAD_DEPR bind_image_textures( GLuint first, GLsizei count, GLuint const *textures )
+    { glBindImageTextures( first, count, textures ); }
+    SON8_OVERGLAD_DEPR create_framebuffers( GLsizei n, GLuint *framebuffers )
+    { glCreateFramebuffers( n, framebuffers ); }
+    SON8_OVERGLAD_DEPR create_renderbuffers( GLsizei n, GLuint *renderbuffers )
+    { glCreateRenderbuffers( n, renderbuffers ); }
+    SON8_OVERGLAD_DEPR named_renderbuffer_storage_multisample( GLuint renderbuffer, GLsizei samples, GLenum internalformat
+        , GLsizei width, GLsizei height )
+    { glNamedRenderbufferStorageMultisample( renderbuffer, samples, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR named_renderbuffer_storage( GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height )
+    { glNamedRenderbufferStorage( renderbuffer, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR named_framebuffer_renderbuffer( GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer )
+    { glNamedFramebufferRenderbuffer( framebuffer, attachment, renderbuffertarget, renderbuffer ); }
+    SON8_OVERGLAD_DEPR named_framebuffer_texture( GLuint framebuffer, GLenum attachment, GLuint texture, GLint level )
+    { glNamedFramebufferTexture( framebuffer, attachment, texture, level ); }
+    SON8_OVERGLAD_DEPR named_framebuffer_texture_layer( GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer )
+    { glNamedFramebufferTextureLayer( framebuffer, attachment, texture, level, layer ); }
+    SON8_OVERGLAD_DEPR check_named_framebuffer_status( GLuint framebuffer, GLenum target )
+    { return glCheckNamedFramebufferStatus( framebuffer, target ); }
+    SON8_OVERGLAD_DEPR create_vertex_arrays( GLsizei n, GLuint *arrays )
+    { glCreateVertexArrays( n, arrays ); }
 #   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 #endif//SON8_OVERGLAD_VERSION_4_6
