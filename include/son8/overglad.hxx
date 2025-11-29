@@ -762,7 +762,9 @@ namespace son8::overglad {
     // Chapter 6: Buffer Objects
     // TODO: CreateBuffers,BindBuffersRange,BindBuffersBase,BufferStorage,NamedBufferStorage,NamedBufferData,NamedBufferSubData,ClearNamedBufferSubData,ClearNamedBufferData,MapNamedBufferRange,MapNamedBuffer,FlushMappedNamedBufferRange,UnmapNamedBuffer,CopyNamedBufferSubData,GetNamedBufferParameteriv,GetNamedBufferParameteri64v,GetNamedBufferSubData,GetNamedBufferPointerv
     // Chapter 7
-    // TODO: SpecializeShader,CreateProgramPipelines
+    // TODO: SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion
+    // Chapter 8
+    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,GenerateTextureMipmap
     // compatibility
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
 #   endif//SON8_OVERGLAD_PROFILE_CORE
@@ -817,6 +819,66 @@ namespace son8::overglad {
     { glSpecializeShader( shader, pEntryPoint, numSpecializationConstants, pConstantIndex, pConstantValue ); }
     SON8_OVERGLAD_DEPR create_program_pipelines( GLsizei n, GLuint *pipelines )
     { glCreateProgramPipelines( n, pipelines ); }
+    SON8_OVERGLAD_DEPR memory_barrier_by_region( GLbitfield barriers )
+    { glMemoryBarrierByRegion( barriers ); }
+    SON8_OVERGLAD_DEPR bind_textures( GLuint first, GLsizei count, GLuint const *textures )
+    { glBindTextures( first, count, textures ); }
+    SON8_OVERGLAD_DEPR bind_texture_unit( GLuint unit, GLuint texture )
+    { glBindTextureUnit( unit, texture ); }
+    SON8_OVERGLAD_DEPR create_textures( GLenum target, GLsizei n, GLuint *textures )
+    { glCreateTextures( target, n, textures ); }
+    SON8_OVERGLAD_DEPR create_samplers( GLsizei n, GLuint *samplers )
+    { glCreateSamplers( n, samplers ); }
+    SON8_OVERGLAD_DEPR bind_samplers( GLuint first, GLsizei count, GLuint const *samplers )
+    { glBindSamplers( first, count, samplers ); }
+    SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
+        , GLenum format, GLenum type, void const *pixels )
+    { glTextureSubImage3D( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels ); }
+    SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLsizei width, GLsizei height
+        , GLenum format, GLenum type, void const *pixels )
+    { glTextureSubImage2D( texture, level, xoffset, yoffset, width, height, format, type, pixels ); }
+    SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLsizei width
+        , GLenum format, GLenum type, void const *pixels )
+    { glTextureSubImage1D( texture, level, xoffset, width, format, type, pixels ); }
+    SON8_OVERGLAD_DEPR copy_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height )
+    { glCopyTextureSubImage3D( texture, level, xoffset, yoffset, zoffset, x, y, width, height ); }
+    SON8_OVERGLAD_DEPR copy_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height )
+    { glCopyTextureSubImage2D( texture, level, xoffset, yoffset, x, y, width, height ); }
+    SON8_OVERGLAD_DEPR copy_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint x, GLint y, GLsizei width )
+    { glCopyTextureSubImage1D( texture, level, xoffset, x, y, width ); }
+    SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLsizei width
+        , GLenum format, GLsizei imageSize, void const *data )
+    { glCompressedTextureSubImage1D( texture, level, xoffset, width, format, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLsizei width, GLsizei height
+        , GLenum format, GLsizei imageSize, void const *data )
+    { glCompressedTextureSubImage2D( texture, level, xoffset, yoffset, width, height, format, imageSize, data ); }
+    SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
+        , GLenum format, GLsizei imageSize, void const *data )
+    { glCompressedTextureSubImage3D( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data ); }
+    SON8_OVERGLAD_DEPR texture_buffer_range( GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size )
+    { glTextureBufferRange( texture, internalformat, buffer, offset, size ); }
+    SON8_OVERGLAD_DEPR texture_buffer( GLuint texture, GLenum internalformat, GLuint buffer )
+    { glTextureBuffer( texture, internalformat, buffer ); }
+    SON8_OVERGLAD_DEPR generate_texture_mipmap( GLuint texture )
+    { glGenerateTextureMipmap( texture ); }
+    SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
+        , GLsizei width )
+    { glTextureStorage1D( texture, levels, internalformat, width ); }
+    SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
+        , GLsizei width, GLsizei height )
+    { glTextureStorage2D( texture, levels, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
+        , GLsizei width, GLsizei height, GLsizei depth )
+    { glTextureStorage3D( texture, levels, internalformat, width, height, depth ); }
 #   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
 } // namespace son8::overglad
 #endif//SON8_OVERGLAD_VERSION_4_6
