@@ -764,21 +764,21 @@ namespace son8::overglad {
     // Chapter 7: Programs and Shaders
     // TODO: SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion
     // Chapter 8: Textures and Samplers
-    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
+    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,SamplerParameter[if],TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,TextureParameter[if]v?,TextureParameterI(i|ui)v,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
     // Chapter 9: Framebuffers and Franebuffer Objects
-    // TODO: CreateFramebuffers,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
+    // TODO: CreateFramebuffers,NamedFramebufferParameteri,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
     SON8_OVERGLAD_PROC texture_barrier( ) noexcept
     { glad_glTextureBarrier( ); }
     // TODO: CheckNamedFramebufferStatus
     // Chapter 10: Vertex Specification and Drawing Commands
-    // TODO: CreateVertexArrays,VertexArrayElementBuffer,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount
+    // TODO: CreateVertexArrays,VertexArrayElementBuffer,VertexArrayAttrib[IL]?Format,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount
     // Chapter 13: Fixed-Function Vertex Post-Processing
     // TODO: CreateTransformFeedbacks,TransformFeedbackBufferRange,TransformFeedbackBufferBase,ClipControl
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units, GLfloat clamp ) noexcept
     { glad_glPolygonOffsetClamp( factor, units, clamp ); }
     // Chapter 17: Writing Fragments and Samples to the Framebuffer
-    // TODO: NamedFramebufferDrawBuffer,NamedFramebufferDrawBuffers,InvalidateNamedFramebufferSubData,InvalidateNamedFramebufferData
+    // TODO: NamedFramebufferDrawBuffer,NamedFramebufferDrawBuffers,ClearNamedFramebuffer([if]|ui)v,ClearNamedFramebufferfi,InvalidateNamedFramebufferSubData,InvalidateNamedFramebufferData
     // Chapter 18: Drawing, Reading, and Copying Pixels
     // TODO: NamedFramebufferReadBuffer,BlitNamedFramebuffer
     // compatibility
@@ -852,6 +852,8 @@ namespace son8::overglad {
     { glCreateSamplers( n, samplers ); }
     SON8_OVERGLAD_DEPR bind_samplers( GLuint first, GLsizei count, GLuint const *samplers )
     { glBindSamplers( first, count, samplers ); }
+    SON8_OVERGLAD_DEPR sampler_parameter( GLuint sampler, GLenum pname, GLint param )
+    { glSamplerParameteri( sampler, pname, param ); }
     SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
         , GLenum format, GLenum type, void const *pixels )
@@ -889,6 +891,18 @@ namespace son8::overglad {
     { glTextureBufferRange( texture, internalformat, buffer, offset, size ); }
     SON8_OVERGLAD_DEPR texture_buffer( GLuint texture, GLenum internalformat, GLuint buffer )
     { glTextureBuffer( texture, internalformat, buffer ); }
+    SON8_OVERGLAD_DEPR texture_parameter( GLuint texture, GLenum pname, GLint param )
+    { glTextureParameteri(texture, pname, param ); }
+    SON8_OVERGLAD_DEPR texture_parameter( GLuint texture, GLenum pname, GLfloat param )
+    { glTextureParameterf(texture, pname, param ); }
+    SON8_OVERGLAD_DEPR texture_parameter( GLuint texture, GLenum pname, GLint const *params )
+    { glTextureParameteriv(texture, pname, params ); }
+    SON8_OVERGLAD_DEPR texture_parameter( GLuint texture, GLenum pname, GLfloat const *params )
+    { glTextureParameterfv(texture, pname, params ); }
+    SON8_OVERGLAD_DEPR texture_parameter_I( GLuint texture, GLenum pname, GLint const *params )
+    { glTextureParameterIiv(texture, pname, params ); }
+    SON8_OVERGLAD_DEPR texture_parameter_I( GLuint texture, GLenum pname, GLuint const *params )
+    { glTextureParameterIuiv(texture, pname, params ); }
     SON8_OVERGLAD_DEPR generate_texture_mipmap( GLuint texture )
     { glGenerateTextureMipmap( texture ); }
     SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
@@ -919,6 +933,8 @@ namespace son8::overglad {
     // Chapter 9: Framebuffers and Franebuffer Objects
     SON8_OVERGLAD_DEPR create_framebuffers( GLsizei n, GLuint *framebuffers )
     { glCreateFramebuffers( n, framebuffers ); }
+    SON8_OVERGLAD_DEPR named_framebuffer_parameter( GLuint framebuffer, GLenum pname, GLint param )
+    { glNamedFramebufferParameteri( framebuffer, pname, param ); }
     SON8_OVERGLAD_DEPR create_renderbuffers( GLsizei n, GLuint *renderbuffers )
     { glCreateRenderbuffers( n, renderbuffers ); }
     SON8_OVERGLAD_DEPR named_renderbuffer_storage_multisample( GLuint renderbuffer, GLsizei samples, GLenum internalformat
@@ -939,6 +955,15 @@ namespace son8::overglad {
     { glCreateVertexArrays( n, arrays ); }
     SON8_OVERGLAD_DEPR vertex_array_element_buffer( GLuint vaobj, GLuint buffer )
     { glVertexArrayElementBuffer( vaobj, buffer ); }
+    SON8_OVERGLAD_DEPR vertex_array_attrib_format( GLuint vaobj, GLuint attribindex, GLint size, GLenum type
+        , GLboolean normalized, GLuint relativeoffset )
+    { glVertexArrayAttribFormat( vaobj, attribindex, size, type, normalized, relativeoffset ); }
+    SON8_OVERGLAD_DEPR vertex_array_attrib_I_format( GLuint vaobj, GLuint attribindex, GLint size, GLenum type
+        , GLuint relativeoffset )
+    { glVertexArrayAttribIFormat( vaobj, attribindex, size, type, relativeoffset ); }
+    SON8_OVERGLAD_DEPR vertex_array_attrib_L_format( GLuint vaobj, GLuint attribindex, GLint size, GLenum type
+        , GLuint relativeoffset )
+    { glVertexArrayAttribLFormat( vaobj, attribindex, size, type, relativeoffset ); }
     SON8_OVERGLAD_DEPR vertex_array_vertex_buffer( GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride )
     { glVertexArrayVertexBuffer( vaobj, bindingindex, buffer, offset, stride ); }
     SON8_OVERGLAD_DEPR bind_vertex_buffers( GLuint first, GLsizei count
@@ -976,6 +1001,14 @@ namespace son8::overglad {
     { glNamedFramebufferDrawBuffer( framebuffer, buf ); }
     SON8_OVERGLAD_DEPR named_framebuffer_draw_buffers( GLuint framebuffer, GLsizei n, GLenum const *bufs )
     { glNamedFramebufferDrawBuffers( framebuffer, n, bufs ); }
+    SON8_OVERGLAD_DEPR clear_named_framebuffer( GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLint const *value )
+    { glClearNamedFramebufferiv( framebuffer, buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_named_framebuffer( GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat const *value )
+    { glClearNamedFramebufferfv( framebuffer, buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_named_framebuffer( GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLuint const *value )
+    { glClearNamedFramebufferuiv( framebuffer, buffer, drawbuffer, value ); }
+    SON8_OVERGLAD_DEPR clear_named_framebuffer( GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil )
+    { glClearNamedFramebufferfi( framebuffer, buffer, drawbuffer, depth, stencil ); }
     SON8_OVERGLAD_DEPR invalidate_named_framebuffer_sub_data( GLuint framebuffer, GLsizei numAttachments, GLenum const *attachments
         , GLint x, GLint y, GLsizei width, GLsizei height )
     { glInvalidateNamedFramebufferSubData( framebuffer, numAttachments, attachments, x, y, width, height ); }
