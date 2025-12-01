@@ -296,9 +296,9 @@ namespace son8::overglad {
     { glDeleteBuffers( n, buffers ); }
     SON8_OVERGLAD_DEPR gen_buffers( GLsizei n, GLuint *buffers )
     { glGenBuffers( n, buffers ); }
-    SON8_OVERGLAD_DEPR buffer_data( GLenum target, GLsizeiptr size, void const *data, GLenum usage )
+    SON8_OVERGLAD_DEPR buffer_data( GLenum target, GLsizeiptr size, GLvoid const *data, GLenum usage )
     { glBufferData( target, size, data, usage ); }
-    SON8_OVERGLAD_DEPR buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, void const *data )
+    SON8_OVERGLAD_DEPR buffer_sub_data( GLenum target, GLintptr offset, GLsizeiptr size, GLvoid const *data )
     { glBufferSubData( target, offset, size, data ); }
     SON8_OVERGLAD_DEPR map_buffer( GLenum target, GLenum access ) -> GLvoid *
     { return glMapBuffer( target, access ); }
