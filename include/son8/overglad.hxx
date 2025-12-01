@@ -758,20 +758,20 @@ namespace son8::overglad {
     // Chapter 2: OpenGL Fundamentals
     // TODO: GetGraphicsResetStatus
     // Chapter 4: Event Model
-    // TODO: CreateQueries
+    // TODO: CreateQueries,GetQueryBufferObject(i|ui|i64|ui64)v
     // Chapter 6: Buffer Objects
     // TODO: CreateBuffers,BindBuffersRange,BindBuffersBase,BufferStorage,NamedBufferStorage,NamedBufferData,NamedBufferSubData,ClearNamedBufferSubData,ClearNamedBufferData,MapNamedBufferRange,MapNamedBuffer,FlushMappedNamedBufferRange,UnmapNamedBuffer,CopyNamedBufferSubData,GetNamedBufferParameteriv,GetNamedBufferParameteri64v,GetNamedBufferSubData,GetNamedBufferPointerv
     // Chapter 7: Programs and Shaders
     // TODO: SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion
     // Chapter 8: Textures and Samplers
-    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,SamplerParameter[if],TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,TextureParameter[if]v?,TextureParameterI(i|ui)v,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
+    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,SamplerParameter[if],TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,TextureParameter[if]v?,TextureParameterI(i|ui)v,GetTextureParameter[if]v,GetTextureParameterI(i|ui)v,GetTextureLevelParameter[if]v,GetTextureImage,GetnTexImage,GetTextureSubImage,GetCompressedTextureImage,GetnCompressedTexImage,GetCompressedTextureSubImage,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
     // Chapter 9: Framebuffers and Franebuffer Objects
-    // TODO: CreateFramebuffers,NamedFramebufferParameteri,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
+    // TODO: CreateFramebuffers,NamedFramebufferParameteri,GetNamedFramebufferParameteriv,GetNamedFramebufferAttachmentParameteriv,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,GetNamedRenderbufferParameteriv,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
     SON8_OVERGLAD_PROC texture_barrier( ) noexcept
     { glad_glTextureBarrier( ); }
     // TODO: CheckNamedFramebufferStatus
     // Chapter 10: Vertex Specification and Drawing Commands
-    // TODO: CreateVertexArrays,VertexArrayElementBuffer,VertexArrayAttrib[IL]?Format,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount
+    // TODO: CreateVertexArrays,VertexArrayElementBuffer,VertexArrayAttrib[IL]?Format,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount,GetVertexArrayiv
     // Chapter 13: Fixed-Function Vertex Post-Processing
     // TODO: CreateTransformFeedbacks,TransformFeedbackBufferRange,TransformFeedbackBufferBase,ClipControl
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
@@ -792,6 +792,14 @@ namespace son8::overglad {
     // Chapter 4: Event Model
     SON8_OVERGLAD_DEPR create_queries( GLenum target, GLsizei n, GLuint *ids )
     { glCreateQueries( target, n, ids ); }
+    SON8_OVERGLAD_DEPR get_query_buffer_object_i( GLuint id, GLuint buffer, GLenum pname, GLintptr offset )
+    { glGetQueryBufferObjectiv( id, buffer, pname, offset ); }
+    SON8_OVERGLAD_DEPR get_query_buffer_object_ui( GLuint id, GLuint buffer, GLenum pname, GLintptr offset )
+    { glGetQueryBufferObjectuiv( id, buffer, pname, offset ); }
+    SON8_OVERGLAD_DEPR get_query_buffer_object_i64( GLuint id, GLuint buffer, GLenum pname, GLintptr offset )
+    { glGetQueryBufferObjecti64v( id, buffer, pname, offset ); }
+    SON8_OVERGLAD_DEPR get_query_buffer_object_ui64( GLuint id, GLuint buffer, GLenum pname, GLintptr offset )
+    { glGetQueryBufferObjectui64v( id, buffer, pname, offset ); }
     // Chapter 6: Buffer Objects
     SON8_OVERGLAD_DEPR create_buffers( GLsizei n, GLuint *buffers )
     { glCreateBuffers( n, buffers ); }
@@ -903,6 +911,34 @@ namespace son8::overglad {
     { glTextureParameterIiv(texture, pname, params ); }
     SON8_OVERGLAD_DEPR texture_parameter_I( GLuint texture, GLenum pname, GLuint const *params )
     { glTextureParameterIuiv(texture, pname, params ); }
+    SON8_OVERGLAD_DEPR get_texture_parameter( GLuint texture, GLenum pname, GLint *data )
+    { glGetTextureParameteriv( texture, pname, data ); }
+    SON8_OVERGLAD_DEPR get_texture_parameter( GLuint texture, GLenum pname, GLfloat *data )
+    { glGetTextureParameterfv( texture, pname, data ); }
+    SON8_OVERGLAD_DEPR get_texture_parameter_I( GLuint texture, GLenum pname, GLint *data )
+    { glGetTextureParameterIiv( texture, pname, data ); }
+    SON8_OVERGLAD_DEPR get_texture_parameter_I( GLuint texture, GLenum pname, GLuint *data )
+    { glGetTextureParameterIuiv( texture, pname, data ); }
+    SON8_OVERGLAD_DEPR get_texture_level_parameter( GLuint texture, GLint level, GLenum pname, GLint *params )
+    { glGetTextureLevelParameteriv( texture, level, pname, params ); }
+    SON8_OVERGLAD_DEPR get_texture_level_parameter( GLuint texture, GLint level, GLenum pname, GLfloat *params )
+    { glGetTextureLevelParameterfv( texture, level, pname, params ); }
+    SON8_OVERGLAD_DEPR get_texture_image( GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, GLvoid *pixels )
+    { glGetTextureImage( texture, level, format, type, bufSize, pixels ); }
+    SON8_OVERGLAD_DEPR get_tex_image( GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, GLvoid *pixels )
+    { glGetnTexImage( target, level, format, type, bufSize, pixels ); }
+    SON8_OVERGLAD_DEPR get_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
+        , GLenum format, GLenum type, GLsizei bufSize, GLvoid *pixels )
+    { glGetTextureSubImage( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, bufSize, pixels ); }
+    SON8_OVERGLAD_DEPR get_compressed_texture_image( GLuint texture, GLint level, GLsizei bufSize, GLvoid *pixels )
+    { glGetCompressedTextureImage( texture, level, bufSize, pixels ); }
+    SON8_OVERGLAD_DEPR get_compressed_tex_image( GLenum target, GLint level, GLsizei bufSize, GLvoid *pixels )
+    { glGetnCompressedTexImage( target, level, bufSize, pixels ); }
+    SON8_OVERGLAD_DEPR get_compressed_texture_sub_image( GLuint texture, GLint level
+        , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
+        , GLsizei bufSize, GLvoid *pixels )
+    { glGetCompressedTextureSubImage( texture, level, xoffset, yoffset, zoffset, width, height, depth, bufSize, pixels ); }
     SON8_OVERGLAD_DEPR generate_texture_mipmap( GLuint texture )
     { glGenerateTextureMipmap( texture ); }
     SON8_OVERGLAD_DEPR texture_storage( GLuint texture, GLsizei levels, GLenum internalformat
@@ -935,6 +971,10 @@ namespace son8::overglad {
     { glCreateFramebuffers( n, framebuffers ); }
     SON8_OVERGLAD_DEPR named_framebuffer_parameter( GLuint framebuffer, GLenum pname, GLint param )
     { glNamedFramebufferParameteri( framebuffer, pname, param ); }
+    SON8_OVERGLAD_DEPR get_named_framebuffer_parameter( GLuint framebuffer, GLenum pname, GLint *params )
+    { glGetNamedFramebufferParameteriv( framebuffer, pname, params ); }
+    SON8_OVERGLAD_DEPR get_named_framebuffer_attachment_parameter( GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params )
+    { glGetNamedFramebufferAttachmentParameteriv( framebuffer, attachment, pname, params ); }
     SON8_OVERGLAD_DEPR create_renderbuffers( GLsizei n, GLuint *renderbuffers )
     { glCreateRenderbuffers( n, renderbuffers ); }
     SON8_OVERGLAD_DEPR named_renderbuffer_storage_multisample( GLuint renderbuffer, GLsizei samples, GLenum internalformat
@@ -942,6 +982,8 @@ namespace son8::overglad {
     { glNamedRenderbufferStorageMultisample( renderbuffer, samples, internalformat, width, height ); }
     SON8_OVERGLAD_DEPR named_renderbuffer_storage( GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height )
     { glNamedRenderbufferStorage( renderbuffer, internalformat, width, height ); }
+    SON8_OVERGLAD_DEPR get_named_renderbuffer_parameter( GLuint renderbuffer, GLenum pname, GLint *params )
+    { glGetNamedRenderbufferParameteriv( renderbuffer, pname, params ); }
     SON8_OVERGLAD_DEPR named_framebuffer_renderbuffer( GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer )
     { glNamedFramebufferRenderbuffer( framebuffer, attachment, renderbuffertarget, renderbuffer ); }
     SON8_OVERGLAD_DEPR named_framebuffer_texture( GLuint framebuffer, GLenum attachment, GLuint texture, GLint level )
@@ -984,6 +1026,8 @@ namespace son8::overglad {
     { glMultiDrawArraysIndirectCount( mode, indirect, drawcount, maxdrawcount, stride ); }
     SON8_OVERGLAD_DEPR multi_draw_elements_indirect_count( GLenum mode, GLenum type, GLvoid const *indirect, GLintptr drawcount, GLintptr maxdrawcount, GLsizei stride )
     { glMultiDrawElementsIndirectCount( mode, type, indirect, drawcount, maxdrawcount, stride ); }
+    SON8_OVERGLAD_DEPR get_vertex_array( GLuint vaobj, GLenum pname, GLint *param )
+    { glGetVertexArrayiv( vaobj, pname, param ); }
     // Chapter 13: Fixed-Function Vertex Post-Processing
     SON8_OVERGLAD_DEPR create_transform_feedbacks( GLsizei n, GLuint *ids )
     { glCreateTransformFeedbacks( n, ids ); }
