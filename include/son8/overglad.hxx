@@ -812,20 +812,20 @@ namespace son8::overglad {
     { glBindBuffersRange( target, first, count, buffers, offsets, sizes ); }
     SON8_OVERGLAD_DEPR bind_buffers_base( GLenum target, GLuint first, GLsizei count, GLuint const *buffers )
     { glBindBuffersBase( target, first, count, buffers ); }
-    SON8_OVERGLAD_DEPR buffer_storage( GLenum target, GLsizeiptr size, void const *data, GLbitfield flags )
+    SON8_OVERGLAD_DEPR buffer_storage( GLenum target, GLsizeiptr size, GLvoid const *data, GLbitfield flags )
     { glBufferStorage( target, size, data, flags ); }
-    SON8_OVERGLAD_DEPR named_buffer_storage( GLuint buffer, GLsizeiptr size, void const *data, GLbitfield flags )
+    SON8_OVERGLAD_DEPR named_buffer_storage( GLuint buffer, GLsizeiptr size, GLvoid const *data, GLbitfield flags )
     { glNamedBufferStorage( buffer, size, data, flags ); }
-    SON8_OVERGLAD_DEPR named_buffer_data( GLuint buffer, GLsizeiptr size, void const *data, GLenum usage )
+    SON8_OVERGLAD_DEPR named_buffer_data( GLuint buffer, GLsizeiptr size, GLvoid const *data, GLenum usage )
     { glNamedBufferData( buffer, size, data, usage ); }
-    SON8_OVERGLAD_DEPR named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, void const *data )
+    SON8_OVERGLAD_DEPR named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, GLvoid const *data )
     { glNamedBufferSubData( buffer, offset, size, data ); }
     SON8_OVERGLAD_DEPR clear_named_buffer_sub_data( GLuint buffer, GLenum internalformat
         , GLintptr offset, GLsizeiptr size
-        , GLenum format, GLenum type, void const *data )
+        , GLenum format, GLenum type, GLvoid const *data )
     { glClearNamedBufferSubData( buffer, internalformat, offset, size, format, type, data ); }
     SON8_OVERGLAD_DEPR clear_named_buffer_data( GLuint buffer, GLenum internalformat
-        , GLenum format, GLenum type, void const *data )
+        , GLenum format, GLenum type, GLvoid const *data )
     { glClearNamedBufferData( buffer, internalformat, format, type, data ); }
     SON8_OVERGLAD_DEPR map_named_buffer_range( GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access )
     { return glMapNamedBufferRange( buffer, offset, length, access ); }
@@ -841,9 +841,9 @@ namespace son8::overglad {
     { glGetNamedBufferParameteriv( buffer, pname, data ); }
     SON8_OVERGLAD_DEPR get_named_buffer_parameter( GLuint buffer, GLenum pname, GLint64 *data )
     { glGetNamedBufferParameteri64v( buffer, pname, data ); }
-    SON8_OVERGLAD_DEPR get_named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, void *data )
+    SON8_OVERGLAD_DEPR get_named_buffer_sub_data( GLuint buffer, GLintptr offset, GLsizeiptr size, GLvoid *data )
     { glGetNamedBufferSubData( buffer, offset, size, data ); }
-    SON8_OVERGLAD_DEPR get_named_buffer_pointer( GLuint buffer, GLenum pname, void **data ) // TODO verify void const ** in specification
+    SON8_OVERGLAD_DEPR get_named_buffer_pointer( GLuint buffer, GLenum pname, GLvoid **data ) // TODO verify const ** in specification
     { glGetNamedBufferPointerv( buffer, pname, data ); }
     // Chapter 7: Programs and Shaders
     SON8_OVERGLAD_DEPR specialize_shader( GLuint shader, char const *pEntryPoint, GLuint numSpecializationConstants
@@ -868,15 +868,15 @@ namespace son8::overglad {
     { glSamplerParameteri( sampler, pname, param ); }
     SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
-        , GLenum format, GLenum type, void const *pixels )
+        , GLenum format, GLenum type, GLvoid const *pixels )
     { glTextureSubImage3D( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels ); }
     SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLsizei width, GLsizei height
-        , GLenum format, GLenum type, void const *pixels )
+        , GLenum format, GLenum type, GLvoid const *pixels )
     { glTextureSubImage2D( texture, level, xoffset, yoffset, width, height, format, type, pixels ); }
     SON8_OVERGLAD_DEPR texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLsizei width
-        , GLenum format, GLenum type, void const *pixels )
+        , GLenum format, GLenum type, GLvoid const *pixels )
     { glTextureSubImage1D( texture, level, xoffset, width, format, type, pixels ); }
     SON8_OVERGLAD_DEPR copy_texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height )
@@ -889,15 +889,15 @@ namespace son8::overglad {
     { glCopyTextureSubImage1D( texture, level, xoffset, x, y, width ); }
     SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLsizei width
-        , GLenum format, GLsizei imageSize, void const *data )
+        , GLenum format, GLsizei imageSize, GLvoid const *data )
     { glCompressedTextureSubImage1D( texture, level, xoffset, width, format, imageSize, data ); }
     SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLsizei width, GLsizei height
-        , GLenum format, GLsizei imageSize, void const *data )
+        , GLenum format, GLsizei imageSize, GLvoid const *data )
     { glCompressedTextureSubImage2D( texture, level, xoffset, yoffset, width, height, format, imageSize, data ); }
     SON8_OVERGLAD_DEPR compressed_texture_sub_image( GLuint texture, GLint level
         , GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth
-        , GLenum format, GLsizei imageSize, void const *data )
+        , GLenum format, GLsizei imageSize, GLvoid const *data )
     { glCompressedTextureSubImage3D( texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data ); }
     SON8_OVERGLAD_DEPR texture_buffer_range( GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size )
     { glTextureBufferRange( texture, internalformat, buffer, offset, size ); }
