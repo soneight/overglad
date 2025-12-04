@@ -16,17 +16,18 @@ namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Operation
     template< typename Type >
-    SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x )
+    SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type, 0, false > attrib, Type x )
     {
-        /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1s( attrib.index( ), x );
+        using Attrib = types::Attrib< Type >;
+        static_assert( Attrib::validate( ), "Invalid Type for vertex_attrib with Size equal 0 and 1 argument" );
+        if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1s( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib1f( attrib.index( ), x );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib1d( attrib.index( ), x );
-        else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 1 argument" );
     }
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y )
     {
-        /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib2s( attrib.index( ), x, y );
+        if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib2s( attrib.index( ), x, y );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib2f( attrib.index( ), x, y );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib2d( attrib.index( ), x, y );
         else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 2 arguments" );
@@ -34,7 +35,7 @@ namespace son8::overglad {
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y, Type z )
     {
-        /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib3s( attrib.index( ), x, y, z );
+        if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib3s( attrib.index( ), x, y, z );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib3f( attrib.index( ), x, y, z );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib3d( attrib.index( ), x, y, z );
         else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 3 arguments" );
@@ -42,7 +43,7 @@ namespace son8::overglad {
     template< typename Type >
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type > attrib, Type x, Type y, Type z, Type w )
     {
-        /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib4s( attrib.index( ), x, y, z, w );
+        if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib4s( attrib.index( ), x, y, z, w );
         else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib4f( attrib.index( ), x, y, z, w );
         else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib4d( attrib.index( ), x, y, z, w );
         else static_assert( false, "Invalid Type for vertex_attrib with Size equal 0 and 4 arguments" );
@@ -53,23 +54,23 @@ namespace son8::overglad {
     SON8_OVERGLAD_PROC vertex_attrib( types::Attrib< Type, Size, Norm > attrib, std::array< Type, Size > const &values )
     {
         if constexpr ( Size == 1 ) {
-            /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1sv( attrib.index( ), values.data( ) );
+            if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib1sv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib1fv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib1dv( attrib.index( ), values.data( ) );
             else static_assert( false, "Invalid Type for vertex_attrib with Size equal 1" );
         } else if constexpr ( Size == 2 ) {
-            /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib2sv( attrib.index( ), values.data( ) );
+            if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib2sv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib2fv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib2dv( attrib.index( ), values.data( ) );
             else static_assert( false, "Invalid Type for vertex_attrib with Size equal 2" );
         } else if constexpr ( Size == 3 ) {
-            /*_*/if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib3sv( attrib.index( ), values.data( ) );
+            if/*_*/ constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib3sv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib3fv( attrib.index( ), values.data( ) );
             else if constexpr ( std::is_same_v< Type, GLdouble > ) glad_glVertexAttrib3dv( attrib.index( ), values.data( ) );
             else static_assert( false, "Invalid Type for vertex_attrib with Size equal 3" );
         } else if constexpr ( Size == 4 ) {
             if constexpr ( Norm == false ) {
-                /*_*/if constexpr ( std::is_same_v< Type, GLbyte > ) glad_glVertexAttrib4bv( attrib.index( ), values.data( ) );
+                if/*_*/ constexpr ( std::is_same_v< Type, GLbyte > ) glad_glVertexAttrib4bv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLint > ) glad_glVertexAttrib4iv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib4sv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLfloat > ) glad_glVertexAttrib4fv( attrib.index( ), values.data( ) );
@@ -79,7 +80,7 @@ namespace son8::overglad {
                 else if constexpr ( std::is_same_v< Type, GLuint > ) glad_glVertexAttrib4uiv( attrib.index( ), values.data( ) );
                 else static_assert( false, "Invalid Type for vertex_attrib with Size equal 4" );
             } else {
-                /*_*/if constexpr ( std::is_same_v< Type, GLbyte > ) glad_glVertexAttrib4Nbv( attrib.index( ), values.data( ) );
+                if/*_*/ constexpr ( std::is_same_v< Type, GLbyte > ) glad_glVertexAttrib4Nbv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLint > ) glad_glVertexAttrib4Niv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLshort > ) glad_glVertexAttrib4Nsv( attrib.index( ), values.data( ) );
                 else if constexpr ( std::is_same_v< Type, GLubyte > ) glad_glVertexAttrib4Nubv( attrib.index( ), values.data( ) );

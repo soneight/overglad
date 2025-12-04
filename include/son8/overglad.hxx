@@ -198,7 +198,7 @@ namespace son8::overglad::enums {
 #endif//SON8_OVERGLAD_PROFILE_CORE
     }; // enum class Clearbit
 
-    Clearbit operator|( Clearbit a, Clearbit b ) noexcept
+    constexpr Clearbit operator|( Clearbit a, Clearbit b ) noexcept
     { return static_cast< Clearbit >( static_cast< GLbitfield >( a ) | static_cast< GLbitfield >( b ) ); }
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -538,7 +538,7 @@ namespace son8::overglad::types {
     // object
     struct Object_ final {
         enum class Type : GLenum {
-            None        = 0x0u,
+            None       = 0x0u,
             Texture_1D = 0x0DE0,
             Texture_2D = 0x0DE1,
 #ifdef SON8_OVERGLAD_VERSION_1_5
@@ -581,6 +581,10 @@ namespace son8::overglad::types {
             return type == Type::None;
 #endif
         } // is_pipeline
+
+        static constexpr auto validate( Type type ) noexcept {
+            return is_texture( type ) || is_buffer( type ) || is_vertex( type ) || is_pipeline( type );
+        }
     }; // class Object_
 
     template< Object_::Type Type, bool Name = false >
@@ -667,6 +671,12 @@ namespace son8::overglad::types {
         constexpr auto size( ) const noexcept { return Size; }
         constexpr bool norm( ) const noexcept { return Norm; }
         constexpr auto index( ) const noexcept { return index_; }
+        static constexpr auto validate( ) {
+            if constexpr ( Size == 0u ) {
+                return std::is_same_v< Type, GLshort > || std::is_same_v< Type, GLfloat > || std::is_same_v< Type, GLdouble >;
+            }
+            return false;
+        };
     };
     // coord attribs
     using attrib0s      = Attrib< GLshort >;
