@@ -1,2 +1,2 @@
-add_library( ${PROJECT_NAME} )
-target_sources( ${PROJECT_NAME} PRIVATE gl.c )
+add_library( ${PROJSON8} )
+target_sources( ${PROJSON8} PRIVATE gl.c )

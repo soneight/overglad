@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.8...3.27 )
 project( glad VERSION 2.0.8 )
-
+set( PROJSON8 ${PROJECT_NAME}__son8 )
 add_subdirectory( source )
-add_library( ${PROJECT_NAME}::son8 ALIAS ${PROJECT_NAME} )
-target_include_directories( glad PUBLIC include )
+add_library( ${PROJECT_NAME}::son8 ALIAS ${PROJSON8} )
+target_include_directories( ${PROJSON8} PUBLIC include )
