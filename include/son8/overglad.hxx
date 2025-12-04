@@ -672,8 +672,26 @@ namespace son8::overglad::types {
         constexpr bool norm( ) const noexcept { return Norm; }
         constexpr auto index( ) const noexcept { return index_; }
         static constexpr auto validate( ) {
-            if constexpr ( Size == 0u ) {
-                return std::is_same_v< Type, GLshort > || std::is_same_v< Type, GLfloat > || std::is_same_v< Type, GLdouble >;
+            if constexpr ( Norm == false && Size <= 3 ) {
+                return std::is_same_v< Type, GLshort >
+                    || std::is_same_v< Type, GLfloat >
+                    || std::is_same_v< Type, GLdouble >;
+            } else if constexpr ( Norm == false && Size == 4 ) {
+                return std::is_same_v< Type, GLbyte >
+                    || std::is_same_v< Type, GLint >
+                    || std::is_same_v< Type, GLshort >
+                    || std::is_same_v< Type, GLfloat >
+                    || std::is_same_v< Type, GLdouble >
+                    || std::is_same_v< Type, GLubyte >
+                    || std::is_same_v< Type, GLushort >
+                    || std::is_same_v< Type, GLuint >;
+            } else if constexpr ( Norm == true && Size == 4 ) {
+                return std::is_same_v< Type, GLbyte >
+                    || std::is_same_v< Type, GLint >
+                    || std::is_same_v< Type, GLshort >
+                    || std::is_same_v< Type, GLubyte >
+                    || std::is_same_v< Type, GLushort >
+                    || std::is_same_v< Type, GLuint >;
             }
             return false;
         };
