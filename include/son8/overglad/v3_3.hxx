@@ -9,9 +9,9 @@
 #define      SON8_OVERGLAD_VERSION_3_3
 #define     SON8_OVERGLAD_PROFILE_CORE
 #define SON8_OVERGLAD_VERSION 0x0303CE
-#include                    "v1_1.hxx"
-#include                    "v1_5.hxx"
-#include                    "v2_1.hxx"
+#include      <son8/overglad/v1_1.hxx>
+#include      <son8/overglad/v1_5.hxx>
+#include      <son8/overglad/v2_1.hxx>
 #endif         //SON8_OVERGLAD_DEFINED
 
 namespace son8::overglad {

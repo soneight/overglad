@@ -11,11 +11,11 @@
 #define      SON8_OVERGLAD_VERSION_4_6
 #define     SON8_OVERGLAD_PROFILE_COMP
 #define SON8_OVERGLAD_VERSION 0x0406CB
-#include                    "v1_1.hxx"
-#include                    "v1_5.hxx"
-#include                    "v2_1.hxx"
-#include                    "v3_3.hxx"
-#include                    "v4_3.hxx"
+#include      <son8/overglad/v1_1.hxx>
+#include      <son8/overglad/v1_5.hxx>
+#include      <son8/overglad/v2_1.hxx>
+#include      <son8/overglad/v3_3.hxx>
+#include      <son8/overglad/v4_3.hxx>
 #endif         //SON8_OVERGLAD_DEFINED
 
 // empty as compatibility (cb) profile does not introduce new functionality

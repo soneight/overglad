@@ -8,8 +8,8 @@
 #define      SON8_OVERGLAD_VERSION_2_1
 #define     SON8_OVERGLAD_PROFILE_NONE
 #define SON8_OVERGLAD_VERSION 0x020100
-#include                    "v1_1.hxx"
-#include                    "v1_5.hxx"
+#include      <son8/overglad/v1_1.hxx>
+#include      <son8/overglad/v1_5.hxx>
 #endif         //SON8_OVERGLAD_DEFINED
 
 namespace son8::overglad {
