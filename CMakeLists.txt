@@ -10,7 +10,7 @@ add_library( son8::${PROJECT_NAME} ALIAS ${SON8PROJ} )
 add_subdirectory( glad )
 target_link_libraries( ${SON8PROJ} INTERFACE glad::son8 )
 target_compile_features( ${SON8PROJ} INTERFACE cxx_std_17 )
-target_compile_options( ${SON8PROJ} INTERFACE $<$<CXX_COMPILER_ID:MSVC>:/permissive- /utf-8> )
+target_compile_options( ${SON8PROJ} INTERFACE $<$<CXX_COMPILER_ID:MSVC>:/utf-8 /permissive- /Zc:__cplusplus> )
 target_include_directories( ${SON8PROJ} INTERFACE include )
 
 if ( SON8_OVERGLAD_INCLUDE_DEPRECATED )
