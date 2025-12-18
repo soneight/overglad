@@ -1,0 +1,6 @@
+#ifndef SON8_OVERGLAD_GLAD_SON8_HXX
+#define SON8_OVERGLAD_GLAD_SON8_HXX
+
+#include <glad/gl.h>
+
+#endif//SON8_OVERGLAD_GLAD_SON8_HXX
