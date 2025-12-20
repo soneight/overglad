@@ -160,7 +160,10 @@ namespace son8::overglad {
     // TODO: GetBooleanv, GetIntegerv, GetFloatv, GetDoublev
     SON8_OVERGLAD_FUNC get( enums::Capability cap ) noexcept
     { return static_cast< bool >( glad_glIsEnabled( static_cast< GLenum >( cap ) ) ); }
-    // TODO: GetTexParameter*, GetTexLevelParameter*, GetTexImage, IsTexture, GetPointerv, GetString
+    // TODO: GetTexParameter*, GetTexLevelParameter*, GetTexImage
+    SON8_OVERGLAD_FUNC is_texture( GLuint index ) noexcept
+    { return glad_glIsTexture( index ); }
+    // TODO: GetPointerv, GetString
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 2: OpenGL Operation
     SON8_OVERGLAD_PROC begin( ) noexcept
@@ -415,7 +418,7 @@ namespace son8::overglad {
     { glad_glRectdv( v1.data( ), v2.data( ) ); }
     SON8_OVERGLAD_PROC load_identity( ) noexcept
     { glad_glLoadIdentity( ); }
-    SON8_OVERGLAD_PROC matrix_mode( enums::MatrixMode mode ) noexcept
+    SON8_OVERGLAD_PROC mode( enums::Matrix mode ) noexcept
     { glad_glMatrixMode( static_cast< GLenum >( mode ) ); }
     SON8_OVERGLAD_PROC load_matrix( types::array16f const &m ) noexcept
     { glad_glLoadMatrixf( m.data( ) ); }
@@ -994,8 +997,6 @@ namespace son8::overglad {
     { glGetMapdv( map, value, data ); }
     SON8_OVERGLAD_DEPR get_tex_image( GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img )
     { glGetTexImage( tex, lod, format, type, img ); }
-    SON8_OVERGLAD_DEPR is_texture( GLuint texture )
-    { return glIsTexture( texture ); }
     SON8_OVERGLAD_DEPR get_polygon_stipple( GLubyte *pattern )
     { glGetPolygonStipple( pattern ); }
     SON8_OVERGLAD_DEPR get_pointer( GLenum pname, GLvoid **params )

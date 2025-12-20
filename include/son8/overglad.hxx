@@ -323,12 +323,12 @@ namespace son8::overglad::enums {
     }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     // MatrixMode
-    enum class MatrixMode : GLenum {
+    enum class Matrix : GLenum {
         Modelview   = 0x1700,
         Projection  = 0x1701,
         Texture     = 0x1702,
     }; // enum class MatrixMode
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif//!CORE
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
     // ActiveTexture,ClientActiveTexture,MultTexCoord
