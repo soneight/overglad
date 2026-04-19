@@ -23,5 +23,5 @@
 #### Fixed
 > editorconfig comment bug
 
-### v0.0.1 - 2025-01-04
+### v0.0.1 - 2025-02-04
 > initial tag

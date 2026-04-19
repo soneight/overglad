@@ -24,6 +24,8 @@
  * Online:
  *    http://glad.sh/#api=gl%3Acompatibility%3D4.6&extensions=&generator=c&options=
  *
+ * splitted into separate headers: define (macros,values), header, loader and source
+ *      by Oleg'Ease'Kharchuk
  */
 
 #ifndef GLAD_GL_H_
