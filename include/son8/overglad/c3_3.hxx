@@ -18,4 +18,9 @@
 // empty as compatibility (cb) profile does not introduce new functionality
 
 #endif//SON8_OVERGLAD_C3_3_HXX
-// Ⓒ 2025 Oleg'Ease'Kharchuk ᦒ
+
+// Apache License 2.0
+// NO WARRANTY OF ANY KIND see <http://www.apache.org/licenses/LICENSE-2.0>
+// SPDX-License-Identifier: Apache-2.0
+// lib: `overglad` C++17 Wrapper Over GLAD Loader
+// Ⓒ Copyright (c) 2025-2026 Oleg'Ease'Kharchuk ᦒ

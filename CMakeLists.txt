@@ -16,3 +16,9 @@ target_include_directories( ${SON8_LIB} INTERFACE include )
 if ( SON8_OVERGLAD_INCLUDE_DEPRECATED )
     target_compile_definitions( ${SON8_LIB} INTERFACE SON8_OVERGLAD_INCLUDE_DEPRECATED )
 endif( )
+
+# Apache License 2.0
+# NO WARRANTY OF ANY KIND see <http://www.apache.org/licenses/LICENSE-2.0>
+# SPDX-License-Identifier: Apache-2.0
+# lib: `overglad` C++17 Wrapper Over GLAD Loader
+# Ⓒ Copyright (c) 2025-2026 Oleg'Ease'Kharchuk ᦒ
