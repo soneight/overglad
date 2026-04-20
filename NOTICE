@@ -33,3 +33,5 @@ soneight/overglad C++17 Wrapper Over GLAD Loader
     lib: [`NAME`] [LEGEND]
     [COPYRIGHT NOTICE]
     PRACTICAL LICENSE FOOTER END
+
+Dependencies for loading OpenGL functionality were obtained online by using the glad2 C/C++ generator in early 2025 (version 2.0.8), which also provided KHR platform header file from the Khronos Group. The original generated gl header was modified by splitting into separate headers by Oleg'Ease'Kharchuk.
