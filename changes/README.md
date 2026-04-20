@@ -3,6 +3,9 @@
 
 ## Branch: glad
 
+### v0.0.6 - 2026-04-20
+> add license related notices and other documentation related adjustments
+
 ### v0.0.5 - 2025-12-18
 > add `glad/son8.hxx` header
 
