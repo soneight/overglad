@@ -4,24 +4,102 @@
 ## Branch: main
 
 ### v0.8.1 - 2026-04-20
+> merge glad 0.0.6 version, that almost all related to licensing transition
 
 ### v0.8.0 - 2026-04-19
+> mostly license related updates with some sneaked in changes
+
+#### Changed
+> change license from `BSL-1.0` to `Apache-2.0`
+
+- overglad header:
+  - enums: rename `MatrixMode` to `Matrix`
+- v1_1 header:
+  - rename procedure `matrix_mode` to `mode`
+  - move `is_texture` procedure from deprecated section to core
 
 ### v0.6.1 - 2025-12-18
+> merged glad 0.0.5 version, that just added glad son8 header
 
 ### v0.6.0 - 2025-12-15
+> mostly refactoring and building related changes, but added special generic object type creation/deletion
+
+#### Added
+
+- Makefile
+- merge glad split define header into macros and values
+- v1_1 header:
+  - generic gen, del, bind family of functions for OpenGL object maintenance through most versions
+- overglad header:
+  - types: `Object` and `Objects`
+  - alias: many `Object` related
+  - `Attrib` class validate method for compile time validation of correct generic parameters
+  - TODOs and many OpenGL 4.6 related functionality
+
+#### Changed
+
+- replace double quotes file inclusion in favor of angle brackets
+- use GLvoid instead of void
+- replace using C++17 none-standard conformant static_assert false with some compile-time generic ones
+- overglad header:
+  - fix Clearbit bit or operator not being constexpr
+  - complicate helper class `Capi` implementation
+
+##### Removed
+- `Buf` and `Bufs` helper classes in favor of more generic `Object` and `Objects`
 
 ### v0.5.0 - 2025-07-17
+> OpenGL 4.3 related functionality
+
+#### Added
+
+- v4_3 header: TODOs and most of deprecated functionality
+- overglad header: base header should contain OpenGL 4.6 (latest) related functionality
+  - enums: Barrier
 
 ### v0.4.0 - 2025-07-10
+> OpenGL 3.3 related functionality
+
+#### Added
+
+- v3_3 header additions
+- overglad header:
+  - enums: `Capi` and internal `Capi_` helper class, `Clamp`, `ClampColor`, `Packed`, `Provoke`
+  - types: `Packed` struct helper
+  - alias: `Enablei`, `Disablei` for `Capi_` helper, array1ui, packed related
 
 ### v0.3.1 - 2025-07-10
+> fix using gl* instead of glad_gl* function calls that intended to be used outside of deprecated realm, as gl* ones are not available without deprecated macro
 
 ### v0.3.0 - 2025-07-06
+> mostly additions to support OpenGL 2.1 functionality
+
+#### Added
+
+- v2_1 header: large chunks of OpenGL 2.1 functionality and TODOs
+- overglad header:
+  - include standard `type_traits` header into overglad header
+  - enums: Shader, "dummy" Program enum
+  - types: Attrib, Shader and Program class wrappers
+  - alias: attrib related
 
 ### v0.2.0 - 2025-07-04
+> most changes related to adding OpenGL 1.5 functionality
+
+#### Added
+
+- v1_5 header: TODOs, most of deprecated, core and compatibility functionality of OpenGL 1.5
+- overglad header:
+  - include standard `cassert` header into overglad header
+  - enums: Access, Buffer, Equation, Multi, Usage
+  - types: Buf and `Bufs` templated class wrappers for Buffer enums
+  - alias: for array and element buffers of Buf and Bufs types
+
+#### Changed
+> added new fields to enums Capabilities
 
 ### v0.1.0 - 2025-05-16
+> init overglad include headers structure with basic enums and types namespaces
 
 ## Branch: glad
 
