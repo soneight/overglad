@@ -28,7 +28,7 @@
 
 namespace son8::overglad::enums {
 #ifdef SON8_OVERGLAD_VERSION_1_5
-    // MapBuffer
+    // `MapBuffer`
     enum class Access : GLenum {
         Read_Only   = 0x88B8,
         Write_Only  = 0x88B9,
@@ -49,7 +49,7 @@ namespace son8::overglad::enums {
 #endif//SON8_OVERGLAD_VERSION_1_5
 
 #ifdef SON8_OVERGLAD_VERSION_4_3
-    // MemoryBarrier
+    // `MemoryBarrier`
     enum class Barrier : GLbitfield {
         Attrib      = 0x00000001,
         Element     = 0x00000002,
@@ -68,7 +68,7 @@ namespace son8::overglad::enums {
     };
 #endif//SON8_OVERGLAD_VERSION_4_3
 
-    // Enable, Disable, IsEnabled
+    // `Enable, Disable, IsEnabled`
     enum class Capability : GLenum {
         Polygon_Smooth          = 0x0B41,
         Cull_Face               = 0x0B44,
@@ -143,10 +143,13 @@ namespace son8::overglad::enums {
     }; // enum class Capability
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
-    // Enablei, Disablei, IsEnabledi
+    // `Enablei, Disablei, IsEnabledi`
     enum class Capi : GLenum {
         Blend = 0x0BE2,
-    }; // enum class Capi
+#   ifdef SON8_OVERGLAD_VERSION_4_3
+        Scissor = 0x0C11,
+#   endif
+    }; // enum class
 
     template< bool IsEnable >
     class Capi_ {
@@ -155,19 +158,22 @@ namespace son8::overglad::enums {
         };
         Impl impl;
     public:
-        constexpr static inline Capi_::Impl const Blend{ Capi::Blend };
+        static constexpr Capi_::Impl Blend{ Capi::Blend };
+#   ifdef SON8_OVERGLAD_VERSION_4_3
+        static constexpr Capi_::Impl Scissor{ Capi::Scissor };
+#   endif
         constexpr Capi value( ) const noexcept { return impl.value; }
     };
     using Enablei = Capi_< true >;
     using Disablei = Capi_< false >;
 #endif//SON8_OVERGLAD_VERSION_3_3
 
-    // Hint
+    // `Hint`
     enum class Care : GLenum {
         Dont    = 0x1100,
         Fast    = 0x1101,
         Nice    = 0x1102,
-    }; // enum class Care
+    }; // enum class `Care`
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
     // ClampColor
@@ -175,17 +181,17 @@ namespace son8::overglad::enums {
         False   = 0x0000,
         True    = 0x0001,
         Fixed   = 0x891D,
-    }; // enum class Clamp
+    }; // enum class `Clamp`
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
     enum class ClampColor : GLenum {
         Vertex      = 0x891A,
         Fragment    = 0x891B,
         Read        = 0x891C, // Only this target are available in core profile
-    }; // enum class ClampColor
+    }; // enum class `ClampColor`
 #   endif
 #endif//SON8_OVERGLAD_VERSION_3_3
 
-    // Clear
+    // `Clear`
     enum class Clearbit : GLbitfield {
         Depth   = 0x00000100,
         Stencil = 0x00000400,
@@ -195,23 +201,23 @@ namespace son8::overglad::enums {
 #else
         Accum   = 0x00000200,
         All     = Depth | Accum | Stencil | Color,
-#endif//SON8_OVERGLAD_PROFILE_CORE
-    }; // enum class Clearbit
+#endif // core
+    }; // enum class `Clearbit`
 
     constexpr Clearbit operator|( Clearbit a, Clearbit b ) noexcept
     { return static_cast< Clearbit >( static_cast< GLbitfield >( a ) | static_cast< GLbitfield >( b ) ); }
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
-    // PushClientAttrib
+    // `PushClientAttrib`
     enum class Client : GLbitfield {
         Pixel   = 0x00000001,
         Vertex  = 0x00000002,
         All     = 0xFFFFFFFF,
     };
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#endif // not core
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
-    // EnableClientState, DisableClientState
+    // `EnableClientState, DisableClientState`
     enum class ClientState : GLenum {
         Vertex  = 0x8074,
         Normal  = 0x8075,
@@ -222,14 +228,14 @@ namespace son8::overglad::enums {
 #   ifdef SON8_OVERGLAD_VERSION_1_5
         Fog     = 0x8457,
         Color2  = 0x845E,
-#   endif
+#   endif // version 1.5
     }; // enum class ClientState
-#endif//!SON8_OVERGLAD_PROFILE_CORE
-    // FrontFace
+#endif// not core
+    // `FrontFace`
     enum class Dir : GLenum {
         CW  = 0x0900,
         CCW = 0x0901,
-    }; // enum class Dir
+    }; // enum class `Dir`
     // Begin
     enum class Draw : GLenum {
         Points          = 0x0000,
@@ -244,20 +250,20 @@ namespace son8::overglad::enums {
         Quads           = 0x0007,
         Quad_S          = 0x0008,
         Polygon         = 0x0009,
-#endif
+#endif // not core
 #ifdef SON8_OVERGLAD_VERSION_3_3
         Lines_A         = 0x000A,
         Lines_SA        = 0x000B,
         Triangles_A     = 0x000C,
         Triangles_SA    = 0x000D,
-#endif
+#endif // version 3.3
 #ifdef SON8_OVERGLAD_VERSION_4_3
         Patches         = 0x000E,
-#endif
+#endif // version 4.3
     }; // enum class Draw
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
-    // BlendEquation
+    // `BlendEquation`
     enum class Equation : GLenum {
         Add         = 0x8006,
         Subtract    = 0x800A,
@@ -265,9 +271,9 @@ namespace son8::overglad::enums {
         Min         = 0x8007,
         Max         = 0x8008,
     }; // enum class Equation
-#endif//SON8_OVERGLAD_VERSION_1_5
+#endif // version 1.5
 
-    // GetError
+    // `GetError`
     enum class Error : GLenum {
         No          = 0x0,
         Enum        = 0x0500,
@@ -276,21 +282,21 @@ namespace son8::overglad::enums {
 #if 0x0303CE != SON8_OVERGLAD_VERSION
         Overflow    = 0x0503,
         Underflow   = 0x0504,
-#endif
+#endif // not version 3.3 core
         Memory      = 0x0505,
 #ifdef SON8_OVERGLAD_VERSION_4_3
         Framebuffer = 0x0506,
-#endif
+#endif // version 4.3
 #ifdef SON8_OVERGLAD_VERSION_4_6
         Context     = 0x0507,
-#endif
+#endif // version 4.6
     }; // enum class Error
-    // CullFace, PolygonMode
+    // `CullFace, PolygonMode`
     enum class Face : GLenum {
         Front       = 0x0404,
         Back        = 0x0405,
         Front_Back  = 0x0408,
-    }; // enum class CullFace
+    }; // enum class `Face`
     // Func
     enum class Func : GLenum {
         Never       = 0x0200,
@@ -301,37 +307,37 @@ namespace son8::overglad::enums {
         Notequal    = 0x0205,
         Gequal      = 0x0206,
         Always      = 0x0207,
-    }; // enum class Func
-    // Hint
+    }; // enum class `Func`
+    // `Hint`
     enum class Hint : GLenum {
         Line        = 0x0C52,
         Polygon     = 0x0C53,
 #ifdef SON8_OVERGLAD_VERSION_1_5
         Texture     = 0x84EF,
-#endif
+#endif // version 1.5
 #ifdef SON8_OVERGLAD_VERSION_2_1
         Fragment    = 0x8B8B,
-#endif
+#endif // version 2.1
 #ifndef SON8_OVERGLAD_PROFILE_CORE
         Perspective = 0x0C50,
         Point       = 0x0C51,
         Fog         = 0x0C54,
 #   ifdef SON8_OVERGLAD_VERSION_1_5
         Mipmap      = 0x8192,
-#   endif
-#endif//!CORE
+#   endif // version 1.5
+#endif// not core
     }; // enum class Hint
 #ifndef SON8_OVERGLAD_PROFILE_CORE
-    // MatrixMode
+    // `MatrixMode`
     enum class Matrix : GLenum {
         Modelview   = 0x1700,
         Projection  = 0x1701,
         Texture     = 0x1702,
-    }; // enum class MatrixMode
+    }; // enum class `Matrix`
 #endif//!CORE
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
-    // ActiveTexture,ClientActiveTexture,MultTexCoord
+    // `ActiveTexture,ClientActiveTexture,MultTexCoord`
     enum class Multi : GLenum {
         Texture_0   = 0x84C0,
         Texture_1   = 0x84C1,
@@ -365,10 +371,10 @@ namespace son8::overglad::enums {
         Texture_29  = 0x84DD,
         Texture_30  = 0x84DE,
         Texture_31  = 0x84DF,
-    }; // enum class Multi
-#endif//SON8_OVERGLAD_VERSION_1_5
+    }; // enum class `Multi`
+#endif // version 1.5
 
-    // LogicOp
+    // `LogicOp`
     enum class Op : GLenum {
         Clear           = 0x1500,
         And             = 0x1501,
@@ -386,24 +392,24 @@ namespace son8::overglad::enums {
         Or_Inverted     = 0x150D,
         Nand            = 0x150E,
         Set             = 0x150F,
-    }; // enum class Op
+    }; // enum class `Op`
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
-    // VertexAttribP*,VetexP*,TexCoordP*,NormalP*,ColorP*,SecondaryColorP*
+    // `VertexAttribP*,VetexP*,TexCoordP*,NormalP*,ColorP*,SecondaryColorP*`
     enum class Packed : GLenum {
         Unsign  = 0x8368,
         Signed  = 0x8D9F,
-    }; // enum class Packed
-
+    }; // enum class `Packed`
+    // TODO rename function
     constexpr bool Packed_is_enum( GLenum packed ) noexcept
     {
         return packed == static_cast< GLenum >( Packed::Unsign )
             || packed == static_cast< GLenum >( Packed::Signed );
-    } // constexpr enum_is_packed
-#endif//SON8_OVERGLAD_VERSION_3_3
+    }
+#endif // version 3.3
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
-    // ClipPlane
+    // `ClipPlane`
     enum class Plane : GLenum {
         Num_0   = 0x3000,
         Num_1   = 0x3001,
@@ -411,38 +417,39 @@ namespace son8::overglad::enums {
         Num_3   = 0x3003,
         Num_4   = 0x3004,
         Num_5   = 0x3005,
-    }; // enum class Plane
+    }; // enum class `Plane`
 #endif//SON8_OVERGLAD_PROFILE_CORE
 
-    // PolygonMode
+    // `PolygonMode`
     enum class Polygon : GLenum {
         Point   = 0x1B00,
         Line    = 0x1B01,
         Fill    = 0x1B02,
-    }; // enum class Polygon
+    }; // enum class `Polygon`
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
+    // TODO: add what `gl` functions use this comment
     enum class Provoke : GLenum {
         First   = 0x8E4D,
         Last    = 0x8E4E,
     };
-#endif//SON8_OVERGLAD_VERSION_3_3
+#endif // version 3.3
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
-    // RenderMode
+    // `RenderMode`
     enum class Render : GLenum {
         Render      = 0x1C00,
         Feedback    = 0x1C01,
         Select      = 0x1C02,
-    }; // enum class Render
-#endif//SON8_OVERGLAD_PROFILE_CORE
+    }; // enum class `Render`
+#endif // not core
 
 #ifdef SON8_OVERGLAD_VERSION_2_1
-    // UseProgram(unused)
+    // `UseProgram(unused)`
     enum class Program : GLenum {
         All = 0x0u,
     }; // enum class Program
-#endif//SON8_OVERGLAD_VERSION_2_1
+#endif // version 2.1
 
 #ifndef SON8_OVERGLAD_PROFILE_CORE
     enum class Server : GLbitfield {
@@ -468,21 +475,22 @@ namespace son8::overglad::enums {
         Scissor     = 0x00080000,
 #   ifdef SON8_OVERGLAD_VERSION_1_5
         Multisample = 0x20000000,
-#   endif
+#   endif // version 1.5
         All         = 0xFFFFFFFF,
-    }; // enum class Server
-#endif//SON8_OVERGLAD_PROFILE_CORE
+    }; // enum class `Server`
+#endif // not core
 
 #ifdef SON8_OVERGLAD_VERSION_2_1
-    // CreateShader
+    // `CreateShader`
     enum class Shader : GLenum {
         Fragment    = 0x8B30,
         Vertex      = 0x8B31,
-    }; // enum class Shader
-#endif//SON8_OVERGLAD_VERSION_2_1
+    }; // enum class `Shader`
+#endif // version 2.1
 
 #ifdef SON8_OVERGLAD_VERSION_1_5
-    // BufferData
+    // `BufferData`
+    // -- TODO: rename Dynamic to similar six character word
     enum class Usage : GLenum {
         Stream_Draw     = 0x88E0,
         Stream_Read     = 0x88E1,
@@ -493,8 +501,8 @@ namespace son8::overglad::enums {
         Dynamic_Draw    = 0x88E8,
         Dynamic_Read    = 0x88E9,
         Dynamic_Copy    = 0x88EA,
-    }; // enum class Usage
-#endif//SON8_OVERGLAD_VERSION_1_5
+    }; // enum class `Usage`
+#endif // version 1.5
 } // namespace son8::overglad::enums
 namespace son8::overglad::types {
 #ifndef SON8_OVERGLAD_PROFILE_CORE
@@ -532,8 +540,8 @@ namespace son8::overglad::types {
     using array16d      = std::array< GLdouble, 16 >;
 #   ifdef SON8_OVERGLAD_VERSION_3_3
     using array1ui     = std::array< GLuint, 1 >;
-#   endif//SON8_OVERGLAD_VERSION_3_3
-#endif//SON8_OVERGLAD_PROFILE_CORE
+#   endif // version 3.3
+#endif// not core
 
     // object
     struct Object_ final {
@@ -544,13 +552,13 @@ namespace son8::overglad::types {
 #ifdef SON8_OVERGLAD_VERSION_1_5
             Buffer_Array = static_cast< GLenum >( enums::Buffer::Array ),
             Buffer_Element = static_cast< GLenum >( enums::Buffer::Element ),
-#endif
+#endif // version 1.5
 #ifdef SON8_OVERGLAD_VERSION_3_3
             Vertex_Array,
-#endif
+#endif // version 3.3
 #ifdef SON8_OVERGLAD_VERSION_4_3
             Program_Pipeline,
-#endif
+#endif // version 4.3
         };
 
         static constexpr auto is_texture( Type type ) noexcept {
@@ -585,7 +593,7 @@ namespace son8::overglad::types {
         static constexpr auto validate( Type type ) noexcept {
             return is_texture( type ) || is_buffer( type ) || is_vertex( type ) || is_pipeline( type );
         }
-    }; // class Object_
+    }; // class `Object_`
 
     template< Object_::Type Type, bool Name = false >
     class Object final {
@@ -621,7 +629,7 @@ namespace son8::overglad::types {
         void zero( ) { for ( GLsizei i = 0u; i < size_; ++i ) data_[i] = 0; }
         constexpr auto type( ) const { return static_cast< GLenum >( Type ); }
         constexpr auto is_named( ) const noexcept { return Name; }
-    }; // class Objects
+    }; // class `Objects`
 
     using Texture1D = Object< Object_::Type::Texture_1D >;
     using Texture2D = Object< Object_::Type::Texture_2D >;
@@ -633,17 +641,17 @@ namespace son8::overglad::types {
     using BufferElement = Object< Object_::Type::Buffer_Element >;
     using BuffersArray = Objects< Object_::Type::Buffer_Array >;
     using BuffersElement = Objects< Object_::Type::Buffer_Element >;
-#endif//SON8_OVERGLAD_VERSION_1_5
+#endif // version 1.5
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
     using VertexArray = Object< Object_::Type::Vertex_Array >;
     using VertexArrays = Objects< Object_::Type::Vertex_Array >;
-#endif//SON8_OVERGLAD_VERSION_3_3
+#endif // version 3.3
 
 #ifdef SON8_OVERGLAD_VERSION_4_3
     using ProgramPipeline = Object< Object_::Type::Program_Pipeline >;
     using ProgramPipelines = Objects< Object_::Type::Program_Pipeline >;
-#endif
+#endif // version 4.3
 #ifdef SON8_OVERGLAD_VERSION_4_6
     using NamedTexture1D = Object< Object_::Type::Texture_1D, true >;
     using NamedTexture2D = Object< Object_::Type::Texture_2D, true >;
@@ -658,7 +666,7 @@ namespace son8::overglad::types {
     using NamedBuffersElement = Objects< Object_::Type::Buffer_Element, true >;
     using NamedVertexArrays = Objects< Object_::Type::Vertex_Array, true >;
     using NamedProgramPipelines = Objects< Object_::Type::Program_Pipeline, true >;
-#endif
+#endif // version 4.6
 
 #ifdef SON8_OVERGLAD_VERSION_2_1
     template< typename Type, unsigned Size = 0u, bool Norm = false >
@@ -695,12 +703,12 @@ namespace son8::overglad::types {
             }
             return false;
         };
-    };
-    // coord attribs
+    }; // class `Attrib`
+    // `coord attribs`
     using attrib0s      = Attrib< GLshort >;
     using attrib0f      = Attrib< GLfloat >;
     using attrib0d      = Attrib< GLdouble >;
-    // array attribs
+    // `array attribs`
     using attrib1s      = Attrib< GLshort, 1 >;
     using attrib2s      = Attrib< GLshort, 2 >;
     using attrib3s      = Attrib< GLshort, 3 >;
@@ -718,9 +726,9 @@ namespace son8::overglad::types {
     using attrib4ub     = Attrib< GLubyte, 4 >;
     using attrib4us     = Attrib< GLushort, 4 >;
     using attrib4ui     = Attrib< GLuint, 4 >;
-    // coord attribs normalized
+    // `coord attribs normalized`
     using attrib0Nub    = Attrib< GLubyte, 0, true >;
-    // array attribs normalized
+    // `array attribs normalized`
     using attrib4Ni     = Attrib< GLint, 4, true >;
     using attrib4Nb     = Attrib< GLbyte, 4, true >;
     using attrib4Ns     = Attrib< GLshort, 4, true >;
@@ -734,7 +742,7 @@ namespace son8::overglad::types {
         Shader( GLuint index = 0 ) : index_{ index } { };
         operator GLuint( ) const noexcept { return index_; }
         auto index( ) const noexcept { return index_; }
-    };
+    }; // class `Shader`
 
     class Program final {
         GLuint index_;
@@ -742,8 +750,8 @@ namespace son8::overglad::types {
         Program( GLuint index = 0 ) : index_{ index } { };
         operator GLuint( ) const noexcept { return index_; }
         auto index( ) const noexcept { return index_; }
-    };
-#endif//SON8_OVERGLAD_VERSION_2_1
+    }; // class `Program`
+#endif// version 2.1
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
     template< enums::Packed Pack, unsigned Size >
@@ -752,7 +760,7 @@ namespace son8::overglad::types {
         static_assert( enums::Packed_is_enum( static_cast< GLenum >( Pack ) ), "Packed Type must be Packed::Unsign or Packed::Signed" );
         constexpr auto size( ) const noexcept { return Size; }
         constexpr auto pack( ) const noexcept { return Pack; }
-    };
+    }; // struct `Packed`
 
     using packed1u  = Packed< enums::Packed::Unsign, 1 >;
     using packed1s  = Packed< enums::Packed::Signed, 1 >;
@@ -763,7 +771,7 @@ namespace son8::overglad::types {
     using packed4u  = Packed< enums::Packed::Unsign, 4 >;
     using packed4s  = Packed< enums::Packed::Signed, 4 >;
 
-#endif//SON8_OVERGLAD_VERSION_3_3
+#endif // version 3.3
 
 } // namespace son8::overglad::types
 
@@ -784,37 +792,37 @@ namespace son8::overglad::types {
 namespace son8::overglad {
     // core
     // Chapter 2: OpenGL Fundamentals
-    // TODO: GetGraphicsResetStatus
+    // TODO: `GetGraphicsResetStatus`
     // Chapter 4: Event Model
-    // TODO: CreateQueries,GetQueryBufferObject(i|ui|i64|ui64)v
+    // TODO: `CreateQueries,GetQueryBufferObject(i|ui|i64|ui64)v`
     // Chapter 6: Buffer Objects
-    // TODO: CreateBuffers,BindBuffersRange,BindBuffersBase,BufferStorage,NamedBufferStorage,NamedBufferData,NamedBufferSubData,ClearNamedBufferSubData,ClearNamedBufferData,MapNamedBufferRange,MapNamedBuffer,FlushMappedNamedBufferRange,UnmapNamedBuffer,CopyNamedBufferSubData,GetNamedBufferParameteriv,GetNamedBufferParameteri64v,GetNamedBufferSubData,GetNamedBufferPointerv
+    // TODO: `CreateBuffers,BindBuffersRange,BindBuffersBase,BufferStorage,NamedBufferStorage,NamedBufferData,NamedBufferSubData,ClearNamedBufferSubData,ClearNamedBufferData,MapNamedBufferRange,MapNamedBuffer,FlushMappedNamedBufferRange,UnmapNamedBuffer,CopyNamedBufferSubData,GetNamedBufferParameteriv,GetNamedBufferParameteri64v,GetNamedBufferSubData,GetNamedBufferPointerv`
     // Chapter 7: Programs and Shaders
-    // TODO: SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion
+    // TODO: `SpecializeShader,CreateProgramPipelines,MemoryBarrierByRegion`
     // Chapter 8: Textures and Samplers
-    // TODO: BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,SamplerParameter[if],TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,TextureParameter[if]v?,TextureParameterI(i|ui)v,GetTextureParameter[if]v,GetTextureParameterI(i|ui)v,GetTextureLevelParameter[if]v,GetTextureImage,GetnTexImage,GetTextureSubImage,GetCompressedTextureImage,GetnCompressedTexImage,GetCompressedTextureSubImage,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures
-    // Chapter 9: Framebuffers and Franebuffer Objects
-    // TODO: CreateFramebuffers,NamedFramebufferParameteri,GetNamedFramebufferParameteriv,GetNamedFramebufferAttachmentParameteriv,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,GetNamedRenderbufferParameteriv,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer
+    // TODO: `BindTextures,BindTextureUnit,CreateTextures,CreateSamplers,BindSamplers,SamplerParameter[if],TextureSubImage[123]D,CopyTextureSubImage[123]D,CompressedTextureSubImage[123]D,TextureBufferRange,TextureBuffer,TextureParameter[if]v?,TextureParameterI(i|ui)v,GetTextureParameter[if]v,GetTextureParameterI(i|ui)v,GetTextureLevelParameter[if]v,GetTextureImage,GetnTexImage,GetTextureSubImage,GetCompressedTextureImage,GetnCompressedTexImage,GetCompressedTextureSubImage,GenerateTextureMipmap,TextureStorage2DMultisample,TextureStorage3DMultisample,ClearTexSubImage,ClearTexImage,BindImageTextures`
+    // Chapter 9: Framebuffers and Framebuffer Objects
+    // TODO: `CreateFramebuffers,NamedFramebufferParameteri,GetNamedFramebufferParameteriv,GetNamedFramebufferAttachmentParameteriv,CreateRenderbuffers,NamedRenderbufferStorageMultisample,NamedRenderbufferStorage,GetNamedRenderbufferParameteriv,NamedFramebufferRenderbuffer,NamedFramebufferTexture,NamedFramebufferTextureLayer`
     SON8_OVERGLAD_PROC texture_barrier( ) noexcept
     { glad_glTextureBarrier( ); }
-    // TODO: CheckNamedFramebufferStatus
+    // TODO: `CheckNamedFramebufferStatus`
     // Chapter 10: Vertex Specification and Drawing Commands
-    // TODO: CreateVertexArrays,VertexArrayElementBuffer,VertexArrayAttrib[IL]?Format,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount,GetVertexArrayiv,GetVertexArrayIndexediv,GetVertexArrayIndexed64iv
-    // Chapter 13: Fixed-Function Vertex Post-Processing
-    // TODO: CreateTransformFeedbacks,TransformFeedbackBufferRange,TransformFeedbackBufferBase,ClipControl
+    // TODO: `CreateVertexArrays,VertexArrayElementBuffer,VertexArrayAttrib[IL]?Format,VertexArrayVertexBuffer,BindVertexBuffers,VertexArrayVertexBuffers,VertexArrayAttribBinding,EnableVertexArrayAttrib,DisableVertexArrayAttrib,VertexArrayBindingDivisor,MultiDrawArraysIndirectCount,MultiDrawElementsIndirectCount,GetVertexArrayiv,GetVertexArrayIndexediv,GetVertexArrayIndexed64iv`
+    // Chapter 13: Fixed-Function Vertex Post - Processing
+    // TODO: `CreateTransformFeedbacks,TransformFeedbackBufferRange,TransformFeedbackBufferBase,ClipControl`
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
     SON8_OVERGLAD_PROC polygon_offset( GLfloat factor, GLfloat units, GLfloat clamp ) noexcept
     { glad_glPolygonOffsetClamp( factor, units, clamp ); }
     // Chapter 17: Writing Fragments and Samples to the Framebuffer
-    // TODO: NamedFramebufferDrawBuffer,NamedFramebufferDrawBuffers,ClearNamedFramebuffer([if]|ui)v,ClearNamedFramebufferfi,InvalidateNamedFramebufferSubData,InvalidateNamedFramebufferData
+    // TODO: `NamedFramebufferDrawBuffer,NamedFramebufferDrawBuffers,ClearNamedFramebuffer([if]|ui)v,ClearNamedFramebufferfi,InvalidateNamedFramebufferSubData,InvalidateNamedFramebufferData`
     // Chapter 18: Drawing, Reading, and Copying Pixels
-    // TODO: NamedFramebufferReadBuffer,ReadnPixels,BlitNamedFramebuffer
+    // TODO: `NamedFramebufferReadBuffer,ReadnPixels,BlitNamedFramebuffer`
     // Chapter 21: Special Functions
-    // TODO: GetnMap
+    // TODO: `GetnMap`
     // compatibility
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
-    // TODO: GetnPolygonStipple
+    // TODO: `GetnPolygonStipple`
 #   endif//SON8_OVERGLAD_PROFILE_CORE
     // deprecated
 #   ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
@@ -998,7 +1006,7 @@ namespace son8::overglad {
     { glClearTexImage( texture, level, format, type, data ); }
     SON8_OVERGLAD_DEPR bind_image_textures( GLuint first, GLsizei count, GLuint const *textures )
     { glBindImageTextures( first, count, textures ); }
-    // Chapter 9: Framebuffers and Franebuffer Objects
+    // Chapter 9: Framebuffers and Framebuffer Objects
     SON8_OVERGLAD_DEPR create_framebuffers( GLsizei n, GLuint *framebuffers )
     { glCreateFramebuffers( n, framebuffers ); }
     SON8_OVERGLAD_DEPR named_framebuffer_parameter( GLuint framebuffer, GLenum pname, GLint param )
@@ -1064,7 +1072,7 @@ namespace son8::overglad {
     { glGetVertexArrayIndexediv( vaobj, index, pname, param ); }
     SON8_OVERGLAD_DEPR get_vertex_array_indexed( GLuint vaobj, GLuint index, GLenum pname, GLint64 *param )
     { glGetVertexArrayIndexed64iv( vaobj, index, pname, param ); }
-    // Chapter 13: Fixed-Function Vertex Post-Processing
+    // Chapter 13: Fixed-Function Vertex Post - Processing
     SON8_OVERGLAD_DEPR create_transform_feedbacks( GLsizei n, GLuint *ids )
     { glCreateTransformFeedbacks( n, ids ); }
     SON8_OVERGLAD_DEPR transform_feedback_buffer_range( GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size )
