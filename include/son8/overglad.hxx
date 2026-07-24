@@ -12,7 +12,7 @@
 #define      SON8_OVERGLAD_VERSION_4_6
 #define     SON8_OVERGLAD_PROFILE_CORE
 #define SON8_OVERGLAD_VERSION 0x0406CE
-#endif         //SON8_OVERGLAD_DEFINED
+#endif                      // defined
 
 #include <glad/son8/source.h>
 
@@ -33,20 +33,20 @@ namespace son8::overglad::enums {
         Read_Only   = 0x88B8,
         Write_Only  = 0x88B9,
         Read_Write  = 0x88BA,
-    }; // enum class Access
-#endif//SON8_OVERGLAD_VERSION_1_5
+    }; // enum class `Access`
+#endif// version 1.5
 
     // Boolean
     enum class Boolean : GLboolean {
         False   = 0x0,
         True    = 0x1,
-    }; // enum class Boolean
+    }; // enum class `Boolean`
 #ifdef SON8_OVERGLAD_VERSION_1_5
     enum class Buffer : GLenum {
         Array   = 0x8892,
         Element = 0x8893,
-    };
-#endif//SON8_OVERGLAD_VERSION_1_5
+    }; // enum class `Buffer`
+#endif // version 1.5
 
 #ifdef SON8_OVERGLAD_VERSION_4_3
     // `MemoryBarrier`
@@ -65,8 +65,8 @@ namespace son8::overglad::enums {
         Counter     = 0x00001000,
         Storage     = 0x00002000,
         All         = 0xFFFFFFFF,
-    };
-#endif//SON8_OVERGLAD_VERSION_4_3
+    }; // enum class `Barrier`
+#endif // version 4.3
 
     // `Enable, Disable, IsEnabled`
     enum class Capability : GLenum {
@@ -82,7 +82,7 @@ namespace son8::overglad::enums {
         Polygon_Offset_Fill     = 0x8037,
 #ifdef SON8_OVERGLAD_VERSION_1_5
         Multisample             = 0x809D,
-#endif
+#endif // version 1.5
 #ifndef SON8_OVERGLAD_PROFILE_CORE
         Point_Smooth            = 0x0B10,
         Fog                     = 0x0B60,
@@ -139,8 +139,8 @@ namespace son8::overglad::enums {
         Index_Array             = 0x8077,
         Texture_Coord_Array     = 0x8078,
         Edge_Flag_Array         = 0x8079,
-#endif//SON8_OVERGLAD_PROFILE_CORE
-    }; // enum class Capability
+#endif// not core
+    }; // enum class `Capability`
 
 #ifdef SON8_OVERGLAD_VERSION_3_3
     // `Enablei, Disablei, IsEnabledi`
@@ -148,8 +148,8 @@ namespace son8::overglad::enums {
         Blend = 0x0BE2,
 #   ifdef SON8_OVERGLAD_VERSION_4_3
         Scissor = 0x0C11,
-#   endif
-    }; // enum class
+#   endif // version 4.3
+    }; // enum class `Capi`
 
     template< bool IsEnable >
     class Capi_ {
@@ -166,7 +166,7 @@ namespace son8::overglad::enums {
     };
     using Enablei = Capi_< true >;
     using Disablei = Capi_< false >;
-#endif//SON8_OVERGLAD_VERSION_3_3
+#endif // version 3.3
 
     // `Hint`
     enum class Care : GLenum {
@@ -823,7 +823,7 @@ namespace son8::overglad {
 #   ifndef SON8_OVERGLAD_PROFILE_CORE
     // Chapter 14: Fixed-Function Primitive Assembly and Rasterization
     // TODO: `GetnPolygonStipple`
-#   endif//SON8_OVERGLAD_PROFILE_CORE
+#   endif // not core
     // deprecated
 #   ifdef  SON8_OVERGLAD_INCLUDE_DEPRECATED
     // Chapter 2: OpenGL Fundamentals
@@ -1128,11 +1128,11 @@ namespace son8::overglad {
     { glGetTransformFeedbacki_v( xfb, pname, index, param ); }
     SON8_OVERGLAD_DEPR get_transform_feedback( GLuint xfb, GLenum pname, GLuint index, GLint64 *param )
     { glGetTransformFeedbacki64_v( xfb, pname, index, param ); }
-#   endif//SON8_OVERGLAD_INCLUDE_DEPRECATED
+#   endif // include deprecated
 } // namespace son8::overglad
-#endif//SON8_OVERGLAD_VERSION_4_6
+#endif // version 4.6
 
-#endif//SON8_OVERGLAD_HXX
+#endif // header
 
 // Apache License 2.0
 // NO WARRANTY OF ANY KIND see <http://www.apache.org/licenses/LICENSE-2.0>
